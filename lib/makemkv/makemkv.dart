@@ -25,6 +25,37 @@ class DiscInfo {
   DiscInfo(this.title);
 }
 
+enum DiscInfoAttribude {
+  type(1),
+  name(2),
+  langCode(3),
+  langName(4),
+  codecId(5),
+  codecShort(6),
+  codecLong(7),
+  chapterCount(8),
+  duration(9),
+  diskSize(10),
+  diskSizebytes(11),
+  sourceFileName(16),
+  videoSize(19),
+  videoAspectRatio(20),
+  videoFrameRate(21),
+  streamFlags(22),
+  segmentsCount(25),
+  segmentsMap(26),
+  outputFileName(27),
+  metaLangCode(28),
+  metaLangName(29),
+  treeInfo(30),
+  panelTitle(31),
+  volumeName(32),
+  comment(49);
+
+  const DiscInfoAttribude(this.id);
+  final int id;
+}
+
 class Progress {
   String titleTotal;
   String titleCurrent;
@@ -142,3 +173,16 @@ List<dynamic> csvRowToList(String row) {
   var csv = const CsvToListConverter().convert(row);
   return csv[0];
 }
+
+
+//TINFO looks like <track id>,code, value
+//SINFO loks like <track id>,<stream id>,code, value
+//CINFO looks like <code>,?,value
+/*
+TINFO:2,31,6120,"<b>Title information</b><br>"
+TINFO:2,33,0,"0"
+TINFO:2,49,0,"SF_Almost_Everything"
+SINFO:2,0,1,6201,"Video"
+SINFO:2,0,5,0,"V_MPEG4/ISO/AVC"
+SINFO:2,0,6,0,"Mpeg4"
+*/

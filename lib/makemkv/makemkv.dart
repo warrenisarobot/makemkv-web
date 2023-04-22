@@ -2,6 +2,9 @@ import "dart:convert";
 import "dart:io";
 
 import "package:csv/csv.dart";
+import "package:logging/logging.dart";
+
+final _log = Logger("makemkv");
 
 class Device {
   final int index;
@@ -20,12 +23,165 @@ class Device {
 }
 
 class DiscInfo {
-  final String title;
+  String? name;
+  String? type;
+  String? metaLangCode;
+  String? metaLangName;
+  Map<int, TrackInfo> tracks = {};
 
-  DiscInfo(this.title);
+  DiscInfo();
+
+  bool updateFromInfo(DiscInfoAttribute attr, String value) {
+    switch (attr) {
+      case DiscInfoAttribute.name:
+        name = value;
+        break;
+      case DiscInfoAttribute.type:
+        type = value;
+        break;
+      case DiscInfoAttribute.metaLangCode:
+        metaLangCode = value;
+        break;
+      default:
+        return false;
+    }
+    return true;
+  }
 }
 
-enum DiscInfoAttribude {
+class TrackInfo {
+  final int index;
+  String? name;
+  String? chapterCount;
+  String? duration;
+  String? diskSize;
+  String? diskSizebytes;
+  String? sourceFileName;
+  String? segmentsCount;
+  String? segmentsMap;
+  String? outputFileName;
+  String? metaLangCode;
+  String? metaLangName;
+  String? treeInfo;
+  String? panelTitle;
+
+  Map<int, StreamInfo> streams = {};
+
+  TrackInfo(this.index);
+
+  bool updateFromInfo(DiscInfoAttribute attr, String value) {
+    switch (attr) {
+      case DiscInfoAttribute.name:
+        name = value;
+        break;
+      case DiscInfoAttribute.chapterCount:
+        chapterCount = value;
+        break;
+      case DiscInfoAttribute.duration:
+        duration = value;
+        break;
+      case DiscInfoAttribute.diskSize:
+        diskSize = value;
+        break;
+      case DiscInfoAttribute.diskSizebytes:
+        diskSizebytes = value;
+        break;
+      case DiscInfoAttribute.sourceFileName:
+        sourceFileName = value;
+        break;
+      case DiscInfoAttribute.segmentsCount:
+        segmentsCount = value;
+        break;
+      case DiscInfoAttribute.segmentsMap:
+        segmentsMap = value;
+        break;
+      case DiscInfoAttribute.outputFileName:
+        outputFileName = value;
+        break;
+      case DiscInfoAttribute.metaLangCode:
+        metaLangCode = value;
+        break;
+      case DiscInfoAttribute.metaLangName:
+        metaLangName = value;
+        break;
+      case DiscInfoAttribute.treeInfo:
+        treeInfo = value;
+        break;
+      case DiscInfoAttribute.panelTitle:
+        panelTitle = value;
+        break;
+      default:
+        return false;
+    }
+    return true;
+  }
+}
+
+class StreamInfo {
+  final int trackIndex;
+  final int index;
+  String? type;
+  String? codecId;
+  String? codecShort;
+  String? codecLong;
+  String? videoSize;
+  String? videoAspectRatio;
+  String? videoFrameRate;
+  String? streamFlags;
+  String? metaLangCode;
+  String? metaLangName;
+  String? treeInfo;
+  String? panelTitle;
+
+  StreamInfo(this.trackIndex, this.index);
+
+  bool updateFromInfo(DiscInfoAttribute attr, String value) {
+    switch (attr) {
+      case DiscInfoAttribute.type:
+        type = value;
+        break;
+      case DiscInfoAttribute.codecId:
+        codecId = value;
+        break;
+      case DiscInfoAttribute.codecShort:
+        codecShort = value;
+        break;
+      case DiscInfoAttribute.codecLong:
+        codecLong = value;
+        break;
+      case DiscInfoAttribute.videoSize:
+        videoSize = value;
+        break;
+      case DiscInfoAttribute.videoAspectRatio:
+        videoAspectRatio = value;
+        break;
+      case DiscInfoAttribute.videoFrameRate:
+        videoFrameRate = value;
+        break;
+      case DiscInfoAttribute.streamFlags:
+        streamFlags = value;
+        break;
+      case DiscInfoAttribute.metaLangCode:
+        metaLangCode = value;
+        break;
+      case DiscInfoAttribute.metaLangName:
+        metaLangName = value;
+        break;
+      case DiscInfoAttribute.treeInfo:
+        treeInfo = value;
+        break;
+      case DiscInfoAttribute.panelTitle:
+        panelTitle = value;
+        break;
+      default:
+        return false;
+    }
+    return true;
+  }
+}
+
+//This enum applies to makemkvcon INFO output for disc, title and attributes
+enum DiscInfoAttribute {
   type(1),
   name(2),
   langCode(3),
@@ -50,9 +206,18 @@ enum DiscInfoAttribude {
   treeInfo(30),
   panelTitle(31),
   volumeName(32),
-  comment(49);
+  comment(49),
+  unknown(-1);
 
-  const DiscInfoAttribude(this.id);
+  const DiscInfoAttribute(this.id);
+
+  factory DiscInfoAttribute.fromId(int id) {
+    final match = DiscInfoAttribute.values.where((e) => e.id == id);
+    if (match.isNotEmpty) {
+      return match.first;
+    }
+    return DiscInfoAttribute.unknown;
+  }
   final int id;
 }
 
@@ -105,8 +270,36 @@ class MakemkvCon {
   String makemkvconCli;
   Progress? progress;
   List<Device> devices = [];
+  DiscInfo? disc;
 
   MakemkvCon(this.makemkvconCli);
+
+  DiscInfo getOrCreateDisc() {
+    if (disc == null) {
+      disc = DiscInfo();
+    }
+    return disc!;
+  }
+
+  TrackInfo getOrCreateTrack(int index) {
+    final disc = getOrCreateDisc();
+    var track = disc.tracks[index];
+    if (track == null) {
+      track = TrackInfo(index);
+      disc.tracks[index] = track;
+    }
+    return track;
+  }
+
+  StreamInfo getOrCreateStream(int trackIndex, int index) {
+    final track = getOrCreateTrack(trackIndex);
+    var stream = track.streams[index];
+    if (stream == null) {
+      stream = StreamInfo(trackIndex, index);
+      track.streams[index] = stream;
+    }
+    return stream;
+  }
 
   void init() {
     if (running == true) {
@@ -128,7 +321,43 @@ class MakemkvCon {
       if (device.visible) devices.add(device);
     } else if (message.messageType.startsWith("PRG") && progress != null) {
       progress!.updateFromMessage(message);
+    } else if (message.messageType.length == 5 &&
+        message.messageType.endsWith("INFO")) {
+      processInfoMessage(message);
     }
+  }
+
+  void processInfoMessage(CliMessage message) {
+    int attrId = -1;
+    var attr = DiscInfoAttribute.unknown;
+    bool success = false;
+    switch (message.messageType) {
+      case "CINFO":
+        attrId = message.paramsAsList()[0];
+        attr = DiscInfoAttribute.fromId(attrId);
+        success =
+            getOrCreateDisc().updateFromInfo(attr, message.paramsAsList()[2]);
+        break;
+      case "TINFO":
+        final index = message.paramsAsList()[0];
+        attrId = message.paramsAsList()[1];
+        attr = DiscInfoAttribute.fromId(attrId);
+        success = getOrCreateTrack(index)
+            .updateFromInfo(attr, message.paramsAsList()[3]);
+        break;
+      case "SINFO":
+        final discIndex = message.paramsAsList()[0];
+        final index = message.paramsAsList()[1];
+        attrId = message.paramsAsList()[2];
+        attr = DiscInfoAttribute.fromId(attrId);
+        success = getOrCreateStream(discIndex, index)
+            .updateFromInfo(attr, message.paramsAsList()[4]);
+        break;
+      default:
+        _log.warning("Unknown info message type: ${message.messageType}");
+    }
+    _log.finest(
+        "Processed ${message.messageType}, code: $attr, success: $success");
   }
 
   Future<List<Device>> getDevices() async {
@@ -144,7 +373,7 @@ class MakemkvCon {
     if (statusCode != 0) {
       throw Exception('Failed to get disc track info');
     }
-    return DiscInfo('Disc $discIndex');
+    return getOrCreateDisc();
   }
 
   Future<int> runCommand(List<String> args) async {

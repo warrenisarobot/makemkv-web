@@ -4,6 +4,6 @@ void main(List<String> arguments) async {
   final mkv = MakemkvCon("/Applications/MakeMKV.app/Contents/MacOS/makemkvcon");
   final devices = await mkv.getDevices();
   print(devices);
-  final trackInfo = await mkv.discInfo(devices[0].index);
-  print(trackInfo);
+  final discInfo = await mkv.discInfo(devices[0].index);
+  print(discInfo);
 }

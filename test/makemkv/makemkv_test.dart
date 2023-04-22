@@ -48,11 +48,11 @@ void messageParseTests() {
     final makeMkv = await makemkvFromOutput();
     expect(makeMkv.disc, isNotNull);
     expect(makeMkv.disc?.name, "Test Disc Name");
-    expect(makeMkv.disc?.tracks, hasLength(12));
-    expect(makeMkv.disc?.tracks[1]?.name, "Test Disc Name");
-    expect(makeMkv.disc?.tracks[1]?.streams, hasLength(10));
-    expect(makeMkv.disc?.tracks[1]?.streams[0]?.metaLangName, "English");
-    expect(makeMkv.disc?.tracks[1]?.streams[0]?.metaLangCode, "eng");
+    expect(makeMkv.disc?.titles, hasLength(12));
+    expect(makeMkv.disc?.titles[1]?.name, "Test Disc Name");
+    expect(makeMkv.disc?.titles[1]?.streams, hasLength(10));
+    expect(makeMkv.disc?.titles[1]?.streams[0]?.metaLangName, "English");
+    expect(makeMkv.disc?.titles[1]?.streams[0]?.metaLangCode, "eng");
   });
 }
 

@@ -1,1 +1,1 @@
-export "package:makemkv_web/makemkv.dart";
+export "makemkv/makemkv.dart";

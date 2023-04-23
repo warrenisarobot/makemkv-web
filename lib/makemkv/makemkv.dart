@@ -35,20 +35,20 @@ class MakemkvCon {
 
   TitleInfo getOrCreateTitle(int index) {
     final disc = getOrCreateDisc();
-    var title = disc.titles[index];
+    var title = disc.titleMap[index];
     if (title == null) {
       title = TitleInfo(index);
-      disc.titles[index] = title;
+      disc.titleMap[index] = title;
     }
     return title;
   }
 
   StreamInfo getOrCreateStream(int titleIndex, int index) {
     final title = getOrCreateTitle(titleIndex);
-    var stream = title.streams[index];
+    var stream = title.streamMap[index];
     if (stream == null) {
       stream = StreamInfo(titleIndex, index);
-      title.streams[index] = stream;
+      title.streamMap[index] = stream;
     }
     return stream;
   }

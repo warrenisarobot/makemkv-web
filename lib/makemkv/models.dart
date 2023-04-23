@@ -1,5 +1,9 @@
 import "package:csv/csv.dart";
+import "package:leto_schema/leto_schema.dart";
 
+part "models.g.dart";
+
+@GraphQLObject()
 class Device {
   final int index;
   final String name;
@@ -16,13 +20,15 @@ class Device {
         visible = [1, 2].contains(params[1]);
 }
 
+@GraphQLObject()
 class DiscInfo {
   String? name;
   String? type;
   String? metaLangCode;
   String? metaLangName;
-  Map<int, TitleInfo> titles = {};
-
+  @GraphQLField(omit: true)
+  Map<int, TitleInfo> titleMap = {};
+  List<TitleInfo> get titles => titleMap.values.toList();
   DiscInfo();
 
   bool updateFromInfo(DiscInfoAttribute attr, String value) {
@@ -55,6 +61,7 @@ SINFO:2,0,5,0,"V_MPEG4/ISO/AVC"
 SINFO:2,0,6,0,"Mpeg4"
 */
 
+@GraphQLObject()
 class TitleInfo {
   final int index;
   String? name;
@@ -71,7 +78,10 @@ class TitleInfo {
   String? treeInfo;
   String? panelTitle;
 
-  Map<int, StreamInfo> streams = {};
+  @GraphQLField(omit: true)
+  Map<int, StreamInfo> streamMap = {};
+
+  List<StreamInfo> get streams => streamMap.values.toList();
 
   TitleInfo(this.index);
 
@@ -123,6 +133,7 @@ class TitleInfo {
   }
 }
 
+@GraphQLObject()
 class StreamInfo {
   final int titleIndex;
   final int index;
@@ -187,6 +198,7 @@ class StreamInfo {
 }
 
 //This enum applies to makemkvcon INFO output for disc, title and attributes
+@GraphQLEnum()
 enum DiscInfoAttribute {
   type(1),
   name(2),

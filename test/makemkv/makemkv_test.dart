@@ -54,6 +54,26 @@ void messageParseTests() {
     expect(makeMkv.disc?.titles[1]?.streams[0]?.metaLangName, "English");
     expect(makeMkv.disc?.titles[1]?.streams[0]?.metaLangCode, "eng");
   });
+
+  //55
+  test("Parse progress messages", () async {
+    var makeMkv = MakemkvCon("");
+
+    final messages =
+        await getMessages(filename: "test/makemkv/progress_output.txt");
+    for (final message in messages) {
+      makeMkv.processMessage(message);
+    }
+    makeMkv.close();
+
+    final events = await makeMkv.progressStream.toList();
+    expect(events, hasLength(54));
+    expect(events.last.titleTotal, "Opening Blu-ray disc");
+    expect(events.last.titleCurrent, "Processing titles");
+    expect(events.last.current, 65536);
+    expect(events.last.total, 15101);
+    expect(events.last.max, 65536);
+  });
 }
 
 void main() {

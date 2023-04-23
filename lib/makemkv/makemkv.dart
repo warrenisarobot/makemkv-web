@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:convert";
 import "dart:io";
 
@@ -12,12 +13,18 @@ final _log = Logger("makemkv");
 class MakemkvCon {
   bool running = false;
   String makemkvconCli;
-  Progress? progress;
+  Progress progress;
   List<Device> devices = [];
   DiscInfo? disc;
   static List<String> commonArgs = ["--robot", "--progress", "-same"];
+  StreamController<Progress> _progressUpdatedController;
+  Process? process;
 
-  MakemkvCon(this.makemkvconCli);
+  MakemkvCon(this.makemkvconCli)
+      : progress = Progress("", "", 0, 0, 0),
+        _progressUpdatedController = StreamController<Progress>();
+
+  Stream<Progress> get progressStream => _progressUpdatedController.stream;
 
   DiscInfo getOrCreateDisc() {
     if (disc == null) {
@@ -53,23 +60,34 @@ class MakemkvCon {
     devices = [];
     running = true;
     progress = Progress("", "", 0, 0, 0);
+    _progressUpdatedController = StreamController<Progress>();
   }
 
   void close() {
     running = false;
-    progress = null;
+    _progressUpdatedController.close();
+    if (process != null) {
+      process!.kill();
+      process = null;
+    }
   }
 
   void processMessage(CliMessage message) {
     if (message.messageType == "DRV") {
       final device = Device.fromParamList(message.paramsAsList());
       if (device.visible) devices.add(device);
-    } else if (message.messageType.startsWith("PRG") && progress != null) {
-      progress!.updateFromMessage(message);
+    } else if (message.messageType.length == 4 &&
+        message.messageType.startsWith("PRG")) {
+      processProgressMessage(message);
     } else if (message.messageType.length == 5 &&
         message.messageType.endsWith("INFO")) {
       processInfoMessage(message);
     }
+  }
+
+  void processProgressMessage(CliMessage message) {
+    progress.updateFromMessage(message);
+    _progressUpdatedController.add(progress);
   }
 
   void processInfoMessage(CliMessage message) {
@@ -124,11 +142,11 @@ class MakemkvCon {
 
   Future<int> runCommand(List<String> args) async {
     init();
-    final process = await Process.start(makemkvconCli, args);
+    process = await Process.start(makemkvconCli, args);
     final stdoutStream =
-        process.stdout.transform(utf8.decoder).transform(LineSplitter());
+        process!.stdout.transform(utf8.decoder).transform(LineSplitter());
     //log these errors
-    process.stderr
+    process!.stderr
         .transform(utf8.decoder)
         .transform(LineSplitter())
         .listen((line) {
@@ -139,7 +157,9 @@ class MakemkvCon {
       final msg = CliMessage.fromLine(line);
       processMessage(msg);
     }
+    final exitCode = await process!.exitCode;
+    process = null;
     close();
-    return await process.exitCode;
+    return exitCode;
   }
 }

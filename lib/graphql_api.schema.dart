@@ -19,7 +19,14 @@ GraphQLSchema get graphqlApiSchema => _graphqlApiSchema ??= GraphQLSchema(
         fields: [
           isRunningGraphQLField,
           devicesGraphQLField,
+          refreshDevicesGraphQLField,
           discInfoGraphQLField,
+        ],
+      ),
+      subscriptionType: objectType(
+        'Subscription',
+        fields: [
+          progressGraphQLField,
         ],
       ),
     );

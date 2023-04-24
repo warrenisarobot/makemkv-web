@@ -33,6 +33,20 @@ final _devicesGraphQLField = HotReloadableDefinition<
           },
         )));
 
+GraphQLObjectField<List<Device>, Object?, Object?>
+    get refreshDevicesGraphQLField => _refreshDevicesGraphQLField.value;
+final _refreshDevicesGraphQLField = HotReloadableDefinition<
+        GraphQLObjectField<List<Device>, Object?, Object?>>(
+    (setValue) =>
+        setValue(deviceGraphQLType.nonNull().list().nonNull().field<Object?>(
+          'refreshDevices',
+          resolve: (obj, ctx) {
+            final args = ctx.args;
+
+            return refreshDevices(ctx);
+          },
+        )));
+
 GraphQLObjectField<DiscInfo, Object?, Object?> get discInfoGraphQLField =>
     _discInfoGraphQLField.value;
 final _discInfoGraphQLField = HotReloadableDefinition<
@@ -43,6 +57,20 @@ final _discInfoGraphQLField = HotReloadableDefinition<
             final args = ctx.args;
 
             return discInfo(ctx, (args["deviceIndex"] as int));
+          },
+        ))
+          ..inputs.addAll([graphQLInt.nonNull().inputField('deviceIndex')]));
+
+GraphQLObjectField<Progress, Object?, Object?> get progressGraphQLField =>
+    _progressGraphQLField.value;
+final _progressGraphQLField = HotReloadableDefinition<
+        GraphQLObjectField<Progress, Object?, Object?>>(
+    (setValue) => setValue(progressGraphQLType.nonNull().field<Object?>(
+          'progress',
+          subscribe: (obj, ctx) {
+            final args = ctx.args;
+
+            return progress(ctx, (args["deviceIndex"] as int));
           },
         ))
           ..inputs.addAll([graphQLInt.nonNull().inputField('deviceIndex')]));

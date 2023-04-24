@@ -18,13 +18,14 @@ class MakemkvCon {
   DiscInfo? disc;
   static List<String> commonArgs = ["--robot", "--progress", "-same"];
   StreamController<Progress> _progressUpdatedController;
+  late Stream<Progress> progressStream;
   Process? process;
 
   MakemkvCon(this.makemkvconCli)
       : progress = Progress("", "", 0, 0, 0),
-        _progressUpdatedController = StreamController<Progress>();
-
-  Stream<Progress> get progressStream => _progressUpdatedController.stream;
+        _progressUpdatedController = StreamController<Progress>() {
+    progressStream = _progressUpdatedController.stream.asBroadcastStream();
+  }
 
   DiscInfo getOrCreateDisc() {
     if (disc == null) {

@@ -31,6 +31,7 @@ class DiscInfo {
   List<TitleInfo> get titles => titleMap.values.toList();
   DiscInfo();
 
+  @GraphQLField(omit: true)
   bool updateFromInfo(DiscInfoAttribute attr, String value) {
     switch (attr) {
       case DiscInfoAttribute.name:
@@ -85,6 +86,7 @@ class TitleInfo {
 
   TitleInfo(this.index);
 
+  @GraphQLField(omit: true)
   bool updateFromInfo(DiscInfoAttribute attr, String value) {
     switch (attr) {
       case DiscInfoAttribute.name:
@@ -152,6 +154,7 @@ class StreamInfo {
 
   StreamInfo(this.titleIndex, this.index);
 
+  @GraphQLField(omit: true)
   bool updateFromInfo(DiscInfoAttribute attr, String value) {
     switch (attr) {
       case DiscInfoAttribute.type:
@@ -227,6 +230,8 @@ enum DiscInfoAttribute {
   comment(49),
   unknown(-1);
 
+  final int id;
+
   const DiscInfoAttribute(this.id);
 
   factory DiscInfoAttribute.fromId(int id) {
@@ -236,9 +241,9 @@ enum DiscInfoAttribute {
     }
     return DiscInfoAttribute.unknown;
   }
-  final int id;
 }
 
+@GraphQLObject()
 class Progress {
   String titleTotal;
   String titleCurrent;
@@ -249,7 +254,8 @@ class Progress {
   Progress(
       this.titleTotal, this.titleCurrent, this.current, this.total, this.max);
 
-  updateFromMessage(CliMessage message) {
+  @GraphQLField(omit: true)
+  void updateFromMessage(CliMessage message) {
     final params = message.paramsAsList();
     if (message.messageType == "PRGT") {
       titleTotal = params[2];
@@ -280,6 +286,7 @@ class CliMessage {
   @override
   String toString() => "CliMessage<type: $messageType, params: $params>";
 
+  @GraphQLField(omit: true)
   List<dynamic> paramsAsList() => csvRowToList(params);
 }
 

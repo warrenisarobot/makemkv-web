@@ -73,22 +73,6 @@ final _discInfoGraphQLType =
   setValue(__discInfoGraphQLType);
   __discInfoGraphQLType.fields.addAll(
     [
-      graphQLBoolean.nonNull().field(
-        'updateFromInfo',
-        resolve: (
-          obj,
-          ctx,
-        ) {
-          final args = ctx.args;
-
-          return obj.updateFromInfo(
-              (args["attr"] as DiscInfoAttribute), (args["value"] as String));
-        },
-        inputs: [
-          discInfoAttributeGraphQLType.nonNull().inputField('attr'),
-          graphQLString.nonNull().inputField('value'),
-        ],
-      ),
       graphQLString.field(
         'name',
         resolve: (
@@ -152,22 +136,6 @@ final _titleInfoGraphQLType =
   setValue(__titleInfoGraphQLType);
   __titleInfoGraphQLType.fields.addAll(
     [
-      graphQLBoolean.nonNull().field(
-        'updateFromInfo',
-        resolve: (
-          obj,
-          ctx,
-        ) {
-          final args = ctx.args;
-
-          return obj.updateFromInfo(
-              (args["attr"] as DiscInfoAttribute), (args["value"] as String));
-        },
-        inputs: [
-          discInfoAttributeGraphQLType.nonNull().inputField('attr'),
-          graphQLString.nonNull().inputField('value'),
-        ],
-      ),
       graphQLInt.nonNull().field(
             'index',
             resolve: (
@@ -311,22 +279,6 @@ final _streamInfoGraphQLType =
   setValue(__streamInfoGraphQLType);
   __streamInfoGraphQLType.fields.addAll(
     [
-      graphQLBoolean.nonNull().field(
-        'updateFromInfo',
-        resolve: (
-          obj,
-          ctx,
-        ) {
-          final args = ctx.args;
-
-          return obj.updateFromInfo(
-              (args["attr"] as DiscInfoAttribute), (args["value"] as String));
-        },
-        inputs: [
-          discInfoAttributeGraphQLType.nonNull().inputField('attr'),
-          graphQLString.nonNull().inputField('value'),
-        ],
-      ),
       graphQLInt.nonNull().field(
             'titleIndex',
             resolve: (
@@ -448,6 +400,69 @@ final _streamInfoGraphQLType =
 /// Auto-generated from [StreamInfo].
 GraphQLObjectType<StreamInfo> get streamInfoGraphQLType =>
     _streamInfoGraphQLType.value;
+
+final _progressGraphQLType =
+    HotReloadableDefinition<GraphQLObjectType<Progress>>((setValue) {
+  final __name = 'Progress';
+
+  final __progressGraphQLType = objectType<Progress>(
+    __name,
+    isInterface: false,
+    interfaces: [],
+  );
+
+  setValue(__progressGraphQLType);
+  __progressGraphQLType.fields.addAll(
+    [
+      graphQLString.nonNull().field(
+            'titleTotal',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.titleTotal,
+          ),
+      graphQLString.nonNull().field(
+            'titleCurrent',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.titleCurrent,
+          ),
+      graphQLInt.nonNull().field(
+            'current',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.current,
+          ),
+      graphQLInt.nonNull().field(
+            'total',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.total,
+          ),
+      graphQLInt.nonNull().field(
+            'max',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.max,
+          ),
+    ],
+  );
+
+  return __progressGraphQLType;
+});
+
+/// Auto-generated from [Progress].
+GraphQLObjectType<Progress> get progressGraphQLType =>
+    _progressGraphQLType.value;
 
 /// Auto-generated from [DiscInfoAttribute].
 final GraphQLEnumType<DiscInfoAttribute> discInfoAttributeGraphQLType =

@@ -1,0 +1,51 @@
+query devices {
+  devices {
+    index
+    name
+    discName
+    visible
+  }
+}
+
+
+query discInfo ($discIndex: Int!)
+{
+  discInfo(deviceIndex: $discIndex) {
+    name
+    type
+    metaLangCode
+    metaLangName
+    titles {
+      index
+      name
+      chapterCount
+      duration
+      diskSize
+      diskSizebytes
+      sourceFileName
+      segmentsCount
+      segmentsMap
+      outputFileName
+      metaLangCode
+      metaLangName
+      treeInfo
+      panelTitle
+      streams {
+        titleIndex
+        index
+        type
+        codecId
+        codecShort
+        codecLong
+        videoSize
+        videoAspectRatio
+        videoFrameRate
+        streamFlags
+        metaLangCode
+        metaLangName
+        treeInfo
+        panelTitle
+      }
+    }
+  }
+}

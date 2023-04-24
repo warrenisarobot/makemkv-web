@@ -1,0 +1,73 @@
+"""
+Specifies that an input can only have one of the input object fields. All fields should be nullable and have no default value. For an input value of the annotate type to be valid, exactly one of the provided fields should be present and non-null.
+"""
+directive @oneOf on INPUT_OBJECT
+
+type Query {
+  isRunning: Boolean!
+  devices: [Device!]!
+  refreshDevices: [Device!]!
+  discInfo(deviceIndex: Int!): DiscInfo!
+}
+
+type Device {
+  index: Int!
+  name: String!
+  discName: String!
+  visible: Boolean!
+}
+
+type DiscInfo {
+  name: String
+  type: String
+  metaLangCode: String
+  metaLangName: String
+  titles: [TitleInfo!]!
+}
+
+type TitleInfo {
+  index: Int!
+  name: String
+  chapterCount: String
+  duration: String
+  diskSize: String
+  diskSizebytes: String
+  sourceFileName: String
+  segmentsCount: String
+  segmentsMap: String
+  outputFileName: String
+  metaLangCode: String
+  metaLangName: String
+  treeInfo: String
+  panelTitle: String
+  streams: [StreamInfo!]!
+}
+
+type StreamInfo {
+  titleIndex: Int!
+  index: Int!
+  type: String
+  codecId: String
+  codecShort: String
+  codecLong: String
+  videoSize: String
+  videoAspectRatio: String
+  videoFrameRate: String
+  streamFlags: String
+  metaLangCode: String
+  metaLangName: String
+  treeInfo: String
+  panelTitle: String
+}
+
+type Subscription {
+  progress(deviceIndex: Int!): Progress!
+}
+
+type Progress {
+  titleTotal: String!
+  titleCurrent: String!
+  current: Int!
+  total: Int!
+  max: Int!
+}

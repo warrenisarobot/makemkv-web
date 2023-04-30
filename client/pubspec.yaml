@@ -38,6 +38,7 @@ dependencies:
   ferry: ^0.14.0+1
   gql_http_link: ^0.4.5
   gql_websocket_link: ^0.3.4+1
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:

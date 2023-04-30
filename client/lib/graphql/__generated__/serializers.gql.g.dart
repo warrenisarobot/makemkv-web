@@ -8,28 +8,82 @@ part of 'serializers.gql.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
+      ..add(GallStatusData.serializer)
+      ..add(GallStatusData_allStatus.serializer)
+      ..add(GallStatusData_allStatus_device.serializer)
+      ..add(GallStatusData_allStatus_discInfo.serializer)
+      ..add(GallStatusData_allStatus_discInfo_titles.serializer)
+      ..add(GallStatusData_allStatus_discInfo_titles_streams.serializer)
+      ..add(GallStatusReq.serializer)
+      ..add(GallStatusVars.serializer)
+      ..add(GdeviceInfoFragmentData.serializer)
+      ..add(GdeviceInfoFragmentReq.serializer)
+      ..add(GdeviceInfoFragmentVars.serializer)
       ..add(GdevicesData.serializer)
       ..add(GdevicesData_devices.serializer)
       ..add(GdevicesReq.serializer)
       ..add(GdevicesVars.serializer)
-      ..add(GdiscinfoData.serializer)
-      ..add(GdiscinfoData_discInfo.serializer)
-      ..add(GdiscinfoData_discInfo_titles.serializer)
-      ..add(GdiscinfoData_discInfo_titles_streams.serializer)
-      ..add(GdiscinfoReq.serializer)
-      ..add(GdiscinfoVars.serializer)
+      ..add(GdiscInfoData.serializer)
+      ..add(GdiscInfoData_discInfo.serializer)
+      ..add(GdiscInfoData_discInfo_titles.serializer)
+      ..add(GdiscInfoData_discInfo_titles_streams.serializer)
+      ..add(GdiscInfoFragmentData.serializer)
+      ..add(GdiscInfoFragmentData_titles.serializer)
+      ..add(GdiscInfoFragmentData_titles_streams.serializer)
+      ..add(GdiscInfoFragmentReq.serializer)
+      ..add(GdiscInfoFragmentVars.serializer)
+      ..add(GdiscInfoReq.serializer)
+      ..add(GdiscInfoVars.serializer)
+      ..add(GstatusFragmentData.serializer)
+      ..add(GstatusFragmentData_device.serializer)
+      ..add(GstatusFragmentData_discInfo.serializer)
+      ..add(GstatusFragmentData_discInfo_titles.serializer)
+      ..add(GstatusFragmentData_discInfo_titles_streams.serializer)
+      ..add(GstatusFragmentReq.serializer)
+      ..add(GstatusFragmentVars.serializer)
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GallStatusData_allStatus)]),
+          () => new ListBuilder<GallStatusData_allStatus>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GallStatusData_allStatus_discInfo_titles)]),
+          () => new ListBuilder<GallStatusData_allStatus_discInfo_titles>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GallStatusData_allStatus_discInfo_titles_streams)
+          ]),
+          () => new ListBuilder<
+              GallStatusData_allStatus_discInfo_titles_streams>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GdevicesData_devices)]),
           () => new ListBuilder<GdevicesData_devices>())
       ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(GdiscinfoData_discInfo_titles)]),
-          () => new ListBuilder<GdiscinfoData_discInfo_titles>())
+              BuiltList, const [const FullType(GdiscInfoData_discInfo_titles)]),
+          () => new ListBuilder<GdiscInfoData_discInfo_titles>())
       ..addBuilderFactory(
           const FullType(BuiltList,
-              const [const FullType(GdiscinfoData_discInfo_titles_streams)]),
-          () => new ListBuilder<GdiscinfoData_discInfo_titles_streams>()))
+              const [const FullType(GdiscInfoData_discInfo_titles_streams)]),
+          () => new ListBuilder<GdiscInfoData_discInfo_titles_streams>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GdiscInfoFragmentData_titles)]),
+          () => new ListBuilder<GdiscInfoFragmentData_titles>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GdiscInfoFragmentData_titles_streams)]),
+          () => new ListBuilder<GdiscInfoFragmentData_titles_streams>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GstatusFragmentData_discInfo_titles)]),
+          () => new ListBuilder<GstatusFragmentData_discInfo_titles>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GstatusFragmentData_discInfo_titles_streams)
+          ]),
+          () => new ListBuilder<GstatusFragmentData_discInfo_titles_streams>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

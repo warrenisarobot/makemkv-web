@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dart';
 import 'package:makemkv_client/graphql/queries/requests.dart';
+import 'package:makemkv_client/model/makemkv_model.dart';
+import 'package:makemkv_client/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -91,7 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
+      body: ChangeNotifierProvider(
+        create: (context) => MakemkvModel(GraphRequest(
+            "http://localhost:8080/graphql",
+            "ws://localhost:8080/graphql-subscription")),
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -118,8 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Text(
-                "Devices: ${_devices.length}, ${_devices.map<String>((e) => e!.name).join(',')}"),
+            Consumer<MakemkvModel>(
+                builder: (context, makemkv, child) => DeviceSelect(
+                    makemkv.driveStatuses.map((e) => e.device).toList())),
           ],
         ),
       ),

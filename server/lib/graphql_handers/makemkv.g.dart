@@ -33,6 +33,20 @@ final _devicesGraphQLField = HotReloadableDefinition<
           },
         )));
 
+GraphQLObjectField<List<MakemkvStatus>, Object?, Object?>
+    get allStatusGraphQLField => _allStatusGraphQLField.value;
+final _allStatusGraphQLField = HotReloadableDefinition<
+        GraphQLObjectField<List<MakemkvStatus>, Object?, Object?>>(
+    (setValue) => setValue(
+            makemkvStatusGraphQLType.nonNull().list().nonNull().field<Object?>(
+          'allStatus',
+          resolve: (obj, ctx) {
+            final args = ctx.args;
+
+            return allStatus(ctx);
+          },
+        )));
+
 GraphQLObjectField<List<Device>, Object?, Object?>
     get refreshDevicesGraphQLField => _refreshDevicesGraphQLField.value;
 final _refreshDevicesGraphQLField = HotReloadableDefinition<

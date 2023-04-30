@@ -37,6 +37,12 @@ class GraphRequest {
     throwGraphError(res);
     return res.data!.devices;
   }
+
+  Future<List<GstatusFragment>> deviceStatuses() async {
+    final res = await client.request(GallStatusReq()).first;
+    throwGraphError(res);
+    return res.data!.allStatus.toList();
+  }
 }
 
 final graphRequests = GraphRequest(

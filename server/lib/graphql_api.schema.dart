@@ -19,6 +19,7 @@ GraphQLSchema get graphqlApiSchema => _graphqlApiSchema ??= GraphQLSchema(
         fields: [
           isRunningGraphQLField,
           devicesGraphQLField,
+          allStatusGraphQLField,
           refreshDevicesGraphQLField,
           discInfoGraphQLField,
         ],

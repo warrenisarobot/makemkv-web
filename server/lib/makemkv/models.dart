@@ -4,6 +4,16 @@ import "package:leto_schema/leto_schema.dart";
 part "models.g.dart";
 
 @GraphQLObject()
+class MakemkvStatus {
+  bool running;
+  int deviceIndex;
+  Device device;
+  DiscInfo? discInfo;
+
+  MakemkvStatus(this.running, this.deviceIndex, this.device, {this.discInfo});
+}
+
+@GraphQLObject()
 class Device {
   final int index;
   final String name;

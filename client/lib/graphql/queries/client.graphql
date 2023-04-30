@@ -1,16 +1,11 @@
-query devices {
-  devices {
-    index
-    name
-    discName
-    visible
-  }
+fragment deviceInfoFragment on Device {
+  index
+  name
+  discName
+  visible
 }
 
-
-query discInfo ($discIndex: Int!)
-{
-  discInfo(deviceIndex: $discIndex) {
+fragment discInfoFragment on DiscInfo {
     name
     type
     metaLangCode
@@ -46,6 +41,37 @@ query discInfo ($discIndex: Int!)
         treeInfo
         panelTitle
       }
+    }  
+  }
+
+fragment statusFragment on MakemkvStatus {
+  running
+  deviceIndex
+  device {
+    ...deviceInfoFragment
     }
+
+    discInfo {
+      ...discInfoFragment
+    }  
+  }
+
+query devices {
+  devices {
+    ...deviceInfoFragment
+  }
+}
+
+
+query discInfo ($discIndex: Int!)
+{
+  discInfo(deviceIndex: $discIndex) {
+  ...discInfoFragment    
+  }
+}
+
+query allStatus {
+  allStatus {
+    ...statusFragment
   }
 }

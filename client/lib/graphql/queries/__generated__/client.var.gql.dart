@@ -28,22 +28,104 @@ abstract class GdevicesVars
       );
 }
 
-abstract class GdiscinfoVars
-    implements Built<GdiscinfoVars, GdiscinfoVarsBuilder> {
-  GdiscinfoVars._();
+abstract class GdiscInfoVars
+    implements Built<GdiscInfoVars, GdiscInfoVarsBuilder> {
+  GdiscInfoVars._();
 
-  factory GdiscinfoVars([Function(GdiscinfoVarsBuilder b) updates]) =
-      _$GdiscinfoVars;
+  factory GdiscInfoVars([Function(GdiscInfoVarsBuilder b) updates]) =
+      _$GdiscInfoVars;
 
   int get discIndex;
-  static Serializer<GdiscinfoVars> get serializer => _$gdiscinfoVarsSerializer;
+  static Serializer<GdiscInfoVars> get serializer => _$gdiscInfoVarsSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GdiscinfoVars.serializer,
+        GdiscInfoVars.serializer,
         this,
       ) as Map<String, dynamic>);
-  static GdiscinfoVars? fromJson(Map<String, dynamic> json) =>
+  static GdiscInfoVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GdiscinfoVars.serializer,
+        GdiscInfoVars.serializer,
+        json,
+      );
+}
+
+abstract class GallStatusVars
+    implements Built<GallStatusVars, GallStatusVarsBuilder> {
+  GallStatusVars._();
+
+  factory GallStatusVars([Function(GallStatusVarsBuilder b) updates]) =
+      _$GallStatusVars;
+
+  static Serializer<GallStatusVars> get serializer =>
+      _$gallStatusVarsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GallStatusVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GallStatusVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GallStatusVars.serializer,
+        json,
+      );
+}
+
+abstract class GdeviceInfoFragmentVars
+    implements Built<GdeviceInfoFragmentVars, GdeviceInfoFragmentVarsBuilder> {
+  GdeviceInfoFragmentVars._();
+
+  factory GdeviceInfoFragmentVars(
+          [Function(GdeviceInfoFragmentVarsBuilder b) updates]) =
+      _$GdeviceInfoFragmentVars;
+
+  static Serializer<GdeviceInfoFragmentVars> get serializer =>
+      _$gdeviceInfoFragmentVarsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GdeviceInfoFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GdeviceInfoFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GdeviceInfoFragmentVars.serializer,
+        json,
+      );
+}
+
+abstract class GdiscInfoFragmentVars
+    implements Built<GdiscInfoFragmentVars, GdiscInfoFragmentVarsBuilder> {
+  GdiscInfoFragmentVars._();
+
+  factory GdiscInfoFragmentVars(
+          [Function(GdiscInfoFragmentVarsBuilder b) updates]) =
+      _$GdiscInfoFragmentVars;
+
+  static Serializer<GdiscInfoFragmentVars> get serializer =>
+      _$gdiscInfoFragmentVarsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GdiscInfoFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GdiscInfoFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GdiscInfoFragmentVars.serializer,
+        json,
+      );
+}
+
+abstract class GstatusFragmentVars
+    implements Built<GstatusFragmentVars, GstatusFragmentVarsBuilder> {
+  GstatusFragmentVars._();
+
+  factory GstatusFragmentVars(
+      [Function(GstatusFragmentVarsBuilder b) updates]) = _$GstatusFragmentVars;
+
+  static Serializer<GstatusFragmentVars> get serializer =>
+      _$gstatusFragmentVarsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GstatusFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GstatusFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GstatusFragmentVars.serializer,
         json,
       );
 }

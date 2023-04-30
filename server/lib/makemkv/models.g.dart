@@ -6,6 +6,61 @@ part of 'models.dart';
 // _GraphQLGenerator
 // **************************************************************************
 
+final _makemkvStatusGraphQLType =
+    HotReloadableDefinition<GraphQLObjectType<MakemkvStatus>>((setValue) {
+  final __name = 'MakemkvStatus';
+
+  final __makemkvStatusGraphQLType = objectType<MakemkvStatus>(
+    __name,
+    isInterface: false,
+    interfaces: [],
+  );
+
+  setValue(__makemkvStatusGraphQLType);
+  __makemkvStatusGraphQLType.fields.addAll(
+    [
+      graphQLBoolean.nonNull().field(
+            'running',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.running,
+          ),
+      graphQLInt.nonNull().field(
+            'deviceIndex',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.deviceIndex,
+          ),
+      deviceGraphQLType.nonNull().field(
+            'device',
+            resolve: (
+              obj,
+              ctx,
+            ) =>
+                obj.device,
+          ),
+      discInfoGraphQLType.field(
+        'discInfo',
+        resolve: (
+          obj,
+          ctx,
+        ) =>
+            obj.discInfo,
+      ),
+    ],
+  );
+
+  return __makemkvStatusGraphQLType;
+});
+
+/// Auto-generated from [MakemkvStatus].
+GraphQLObjectType<MakemkvStatus> get makemkvStatusGraphQLType =>
+    _makemkvStatusGraphQLType.value;
+
 final _deviceGraphQLType =
     HotReloadableDefinition<GraphQLObjectType<Device>>((setValue) {
   final __name = 'Device';

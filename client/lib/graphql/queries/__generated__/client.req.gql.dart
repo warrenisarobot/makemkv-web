@@ -5,6 +5,7 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
+import 'package:gql/ast.dart' as _i7;
 import 'package:gql_exec/gql_exec.dart' as _i4;
 import 'package:makemkv_client/graphql/__generated__/serializers.gql.dart'
     as _i6;
@@ -73,23 +74,23 @@ abstract class GdevicesReq
       );
 }
 
-abstract class GdiscinfoReq
+abstract class GdiscInfoReq
     implements
-        Built<GdiscinfoReq, GdiscinfoReqBuilder>,
-        _i1.OperationRequest<_i2.GdiscinfoData, _i3.GdiscinfoVars> {
-  GdiscinfoReq._();
+        Built<GdiscInfoReq, GdiscInfoReqBuilder>,
+        _i1.OperationRequest<_i2.GdiscInfoData, _i3.GdiscInfoVars> {
+  GdiscInfoReq._();
 
-  factory GdiscinfoReq([Function(GdiscinfoReqBuilder b) updates]) =
-      _$GdiscinfoReq;
+  factory GdiscInfoReq([Function(GdiscInfoReqBuilder b) updates]) =
+      _$GdiscInfoReq;
 
-  static void _initializeBuilder(GdiscinfoReqBuilder b) => b
+  static void _initializeBuilder(GdiscInfoReqBuilder b) => b
     ..operation = _i4.Operation(
       document: _i5.document,
-      operationName: 'discinfo',
+      operationName: 'discInfo',
     )
     ..executeOnListen = true;
   @override
-  _i3.GdiscinfoVars get vars;
+  _i3.GdiscInfoVars get vars;
   @override
   _i4.Operation get operation;
   @override
@@ -101,12 +102,12 @@ abstract class GdiscinfoReq
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GdiscinfoData? Function(
-    _i2.GdiscinfoData?,
-    _i2.GdiscinfoData?,
+  _i2.GdiscInfoData? Function(
+    _i2.GdiscInfoData?,
+    _i2.GdiscInfoData?,
   )? get updateResult;
   @override
-  _i2.GdiscinfoData? get optimisticResponse;
+  _i2.GdiscInfoData? get optimisticResponse;
   @override
   String? get updateCacheHandlerKey;
   @override
@@ -116,16 +117,185 @@ abstract class GdiscinfoReq
   @override
   bool get executeOnListen;
   @override
-  _i2.GdiscinfoData? parseData(Map<String, dynamic> json) =>
-      _i2.GdiscinfoData.fromJson(json);
-  static Serializer<GdiscinfoReq> get serializer => _$gdiscinfoReqSerializer;
+  _i2.GdiscInfoData? parseData(Map<String, dynamic> json) =>
+      _i2.GdiscInfoData.fromJson(json);
+  static Serializer<GdiscInfoReq> get serializer => _$gdiscInfoReqSerializer;
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GdiscinfoReq.serializer,
+        GdiscInfoReq.serializer,
         this,
       ) as Map<String, dynamic>);
-  static GdiscinfoReq? fromJson(Map<String, dynamic> json) =>
+  static GdiscInfoReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
-        GdiscinfoReq.serializer,
+        GdiscInfoReq.serializer,
+        json,
+      );
+}
+
+abstract class GallStatusReq
+    implements
+        Built<GallStatusReq, GallStatusReqBuilder>,
+        _i1.OperationRequest<_i2.GallStatusData, _i3.GallStatusVars> {
+  GallStatusReq._();
+
+  factory GallStatusReq([Function(GallStatusReqBuilder b) updates]) =
+      _$GallStatusReq;
+
+  static void _initializeBuilder(GallStatusReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'allStatus',
+    )
+    ..executeOnListen = true;
+  @override
+  _i3.GallStatusVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GallStatusData? Function(
+    _i2.GallStatusData?,
+    _i2.GallStatusData?,
+  )? get updateResult;
+  @override
+  _i2.GallStatusData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GallStatusData? parseData(Map<String, dynamic> json) =>
+      _i2.GallStatusData.fromJson(json);
+  static Serializer<GallStatusReq> get serializer => _$gallStatusReqSerializer;
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GallStatusReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GallStatusReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GallStatusReq.serializer,
+        json,
+      );
+}
+
+abstract class GdeviceInfoFragmentReq
+    implements
+        Built<GdeviceInfoFragmentReq, GdeviceInfoFragmentReqBuilder>,
+        _i1.FragmentRequest<_i2.GdeviceInfoFragmentData,
+            _i3.GdeviceInfoFragmentVars> {
+  GdeviceInfoFragmentReq._();
+
+  factory GdeviceInfoFragmentReq(
+          [Function(GdeviceInfoFragmentReqBuilder b) updates]) =
+      _$GdeviceInfoFragmentReq;
+
+  static void _initializeBuilder(GdeviceInfoFragmentReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'deviceInfoFragment';
+  @override
+  _i3.GdeviceInfoFragmentVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GdeviceInfoFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GdeviceInfoFragmentData.fromJson(json);
+  static Serializer<GdeviceInfoFragmentReq> get serializer =>
+      _$gdeviceInfoFragmentReqSerializer;
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GdeviceInfoFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GdeviceInfoFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GdeviceInfoFragmentReq.serializer,
+        json,
+      );
+}
+
+abstract class GdiscInfoFragmentReq
+    implements
+        Built<GdiscInfoFragmentReq, GdiscInfoFragmentReqBuilder>,
+        _i1.FragmentRequest<_i2.GdiscInfoFragmentData,
+            _i3.GdiscInfoFragmentVars> {
+  GdiscInfoFragmentReq._();
+
+  factory GdiscInfoFragmentReq(
+          [Function(GdiscInfoFragmentReqBuilder b) updates]) =
+      _$GdiscInfoFragmentReq;
+
+  static void _initializeBuilder(GdiscInfoFragmentReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'discInfoFragment';
+  @override
+  _i3.GdiscInfoFragmentVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GdiscInfoFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GdiscInfoFragmentData.fromJson(json);
+  static Serializer<GdiscInfoFragmentReq> get serializer =>
+      _$gdiscInfoFragmentReqSerializer;
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GdiscInfoFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GdiscInfoFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GdiscInfoFragmentReq.serializer,
+        json,
+      );
+}
+
+abstract class GstatusFragmentReq
+    implements
+        Built<GstatusFragmentReq, GstatusFragmentReqBuilder>,
+        _i1.FragmentRequest<_i2.GstatusFragmentData, _i3.GstatusFragmentVars> {
+  GstatusFragmentReq._();
+
+  factory GstatusFragmentReq([Function(GstatusFragmentReqBuilder b) updates]) =
+      _$GstatusFragmentReq;
+
+  static void _initializeBuilder(GstatusFragmentReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'statusFragment';
+  @override
+  _i3.GstatusFragmentVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GstatusFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GstatusFragmentData.fromJson(json);
+  static Serializer<GstatusFragmentReq> get serializer =>
+      _$gstatusFragmentReqSerializer;
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GstatusFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GstatusFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GstatusFragmentReq.serializer,
         json,
       );
 }

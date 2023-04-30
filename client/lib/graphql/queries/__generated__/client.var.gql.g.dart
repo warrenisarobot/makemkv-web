@@ -8,8 +8,16 @@ part of 'client.var.gql.dart';
 
 Serializer<GdevicesVars> _$gdevicesVarsSerializer =
     new _$GdevicesVarsSerializer();
-Serializer<GdiscinfoVars> _$gdiscinfoVarsSerializer =
-    new _$GdiscinfoVarsSerializer();
+Serializer<GdiscInfoVars> _$gdiscInfoVarsSerializer =
+    new _$GdiscInfoVarsSerializer();
+Serializer<GallStatusVars> _$gallStatusVarsSerializer =
+    new _$GallStatusVarsSerializer();
+Serializer<GdeviceInfoFragmentVars> _$gdeviceInfoFragmentVarsSerializer =
+    new _$GdeviceInfoFragmentVarsSerializer();
+Serializer<GdiscInfoFragmentVars> _$gdiscInfoFragmentVarsSerializer =
+    new _$GdiscInfoFragmentVarsSerializer();
+Serializer<GstatusFragmentVars> _$gstatusFragmentVarsSerializer =
+    new _$GstatusFragmentVarsSerializer();
 
 class _$GdevicesVarsSerializer implements StructuredSerializer<GdevicesVars> {
   @override
@@ -31,14 +39,14 @@ class _$GdevicesVarsSerializer implements StructuredSerializer<GdevicesVars> {
   }
 }
 
-class _$GdiscinfoVarsSerializer implements StructuredSerializer<GdiscinfoVars> {
+class _$GdiscInfoVarsSerializer implements StructuredSerializer<GdiscInfoVars> {
   @override
-  final Iterable<Type> types = const [GdiscinfoVars, _$GdiscinfoVars];
+  final Iterable<Type> types = const [GdiscInfoVars, _$GdiscInfoVars];
   @override
-  final String wireName = 'GdiscinfoVars';
+  final String wireName = 'GdiscInfoVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GdiscinfoVars object,
+  Iterable<Object?> serialize(Serializers serializers, GdiscInfoVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'discIndex',
@@ -50,10 +58,10 @@ class _$GdiscinfoVarsSerializer implements StructuredSerializer<GdiscinfoVars> {
   }
 
   @override
-  GdiscinfoVars deserialize(
+  GdiscInfoVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GdiscinfoVarsBuilder();
+    final result = new GdiscInfoVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -69,6 +77,102 @@ class _$GdiscinfoVarsSerializer implements StructuredSerializer<GdiscinfoVars> {
     }
 
     return result.build();
+  }
+}
+
+class _$GallStatusVarsSerializer
+    implements StructuredSerializer<GallStatusVars> {
+  @override
+  final Iterable<Type> types = const [GallStatusVars, _$GallStatusVars];
+  @override
+  final String wireName = 'GallStatusVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GallStatusVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GallStatusVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GallStatusVarsBuilder().build();
+  }
+}
+
+class _$GdeviceInfoFragmentVarsSerializer
+    implements StructuredSerializer<GdeviceInfoFragmentVars> {
+  @override
+  final Iterable<Type> types = const [
+    GdeviceInfoFragmentVars,
+    _$GdeviceInfoFragmentVars
+  ];
+  @override
+  final String wireName = 'GdeviceInfoFragmentVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GdeviceInfoFragmentVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GdeviceInfoFragmentVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GdeviceInfoFragmentVarsBuilder().build();
+  }
+}
+
+class _$GdiscInfoFragmentVarsSerializer
+    implements StructuredSerializer<GdiscInfoFragmentVars> {
+  @override
+  final Iterable<Type> types = const [
+    GdiscInfoFragmentVars,
+    _$GdiscInfoFragmentVars
+  ];
+  @override
+  final String wireName = 'GdiscInfoFragmentVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GdiscInfoFragmentVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GdiscInfoFragmentVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GdiscInfoFragmentVarsBuilder().build();
+  }
+}
+
+class _$GstatusFragmentVarsSerializer
+    implements StructuredSerializer<GstatusFragmentVars> {
+  @override
+  final Iterable<Type> types = const [
+    GstatusFragmentVars,
+    _$GstatusFragmentVars
+  ];
+  @override
+  final String wireName = 'GstatusFragmentVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GstatusFragmentVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GstatusFragmentVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GstatusFragmentVarsBuilder().build();
   }
 }
 
@@ -129,29 +233,29 @@ class GdevicesVarsBuilder
   }
 }
 
-class _$GdiscinfoVars extends GdiscinfoVars {
+class _$GdiscInfoVars extends GdiscInfoVars {
   @override
   final int discIndex;
 
-  factory _$GdiscinfoVars([void Function(GdiscinfoVarsBuilder)? updates]) =>
-      (new GdiscinfoVarsBuilder()..update(updates))._build();
+  factory _$GdiscInfoVars([void Function(GdiscInfoVarsBuilder)? updates]) =>
+      (new GdiscInfoVarsBuilder()..update(updates))._build();
 
-  _$GdiscinfoVars._({required this.discIndex}) : super._() {
+  _$GdiscInfoVars._({required this.discIndex}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        discIndex, r'GdiscinfoVars', 'discIndex');
+        discIndex, r'GdiscInfoVars', 'discIndex');
   }
 
   @override
-  GdiscinfoVars rebuild(void Function(GdiscinfoVarsBuilder) updates) =>
+  GdiscInfoVars rebuild(void Function(GdiscInfoVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GdiscinfoVarsBuilder toBuilder() => new GdiscinfoVarsBuilder()..replace(this);
+  GdiscInfoVarsBuilder toBuilder() => new GdiscInfoVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GdiscinfoVars && discIndex == other.discIndex;
+    return other is GdiscInfoVars && discIndex == other.discIndex;
   }
 
   @override
@@ -164,23 +268,23 @@ class _$GdiscinfoVars extends GdiscinfoVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GdiscinfoVars')
+    return (newBuiltValueToStringHelper(r'GdiscInfoVars')
           ..add('discIndex', discIndex))
         .toString();
   }
 }
 
-class GdiscinfoVarsBuilder
-    implements Builder<GdiscinfoVars, GdiscinfoVarsBuilder> {
-  _$GdiscinfoVars? _$v;
+class GdiscInfoVarsBuilder
+    implements Builder<GdiscInfoVars, GdiscInfoVarsBuilder> {
+  _$GdiscInfoVars? _$v;
 
   int? _discIndex;
   int? get discIndex => _$this._discIndex;
   set discIndex(int? discIndex) => _$this._discIndex = discIndex;
 
-  GdiscinfoVarsBuilder();
+  GdiscInfoVarsBuilder();
 
-  GdiscinfoVarsBuilder get _$this {
+  GdiscInfoVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _discIndex = $v.discIndex;
@@ -190,24 +294,263 @@ class GdiscinfoVarsBuilder
   }
 
   @override
-  void replace(GdiscinfoVars other) {
+  void replace(GdiscInfoVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GdiscinfoVars;
+    _$v = other as _$GdiscInfoVars;
   }
 
   @override
-  void update(void Function(GdiscinfoVarsBuilder)? updates) {
+  void update(void Function(GdiscInfoVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GdiscinfoVars build() => _build();
+  GdiscInfoVars build() => _build();
 
-  _$GdiscinfoVars _build() {
+  _$GdiscInfoVars _build() {
     final _$result = _$v ??
-        new _$GdiscinfoVars._(
+        new _$GdiscInfoVars._(
             discIndex: BuiltValueNullFieldError.checkNotNull(
-                discIndex, r'GdiscinfoVars', 'discIndex'));
+                discIndex, r'GdiscInfoVars', 'discIndex'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GallStatusVars extends GallStatusVars {
+  factory _$GallStatusVars([void Function(GallStatusVarsBuilder)? updates]) =>
+      (new GallStatusVarsBuilder()..update(updates))._build();
+
+  _$GallStatusVars._() : super._();
+
+  @override
+  GallStatusVars rebuild(void Function(GallStatusVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GallStatusVarsBuilder toBuilder() =>
+      new GallStatusVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GallStatusVars;
+  }
+
+  @override
+  int get hashCode {
+    return 850052210;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GallStatusVars').toString();
+  }
+}
+
+class GallStatusVarsBuilder
+    implements Builder<GallStatusVars, GallStatusVarsBuilder> {
+  _$GallStatusVars? _$v;
+
+  GallStatusVarsBuilder();
+
+  @override
+  void replace(GallStatusVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GallStatusVars;
+  }
+
+  @override
+  void update(void Function(GallStatusVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GallStatusVars build() => _build();
+
+  _$GallStatusVars _build() {
+    final _$result = _$v ?? new _$GallStatusVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GdeviceInfoFragmentVars extends GdeviceInfoFragmentVars {
+  factory _$GdeviceInfoFragmentVars(
+          [void Function(GdeviceInfoFragmentVarsBuilder)? updates]) =>
+      (new GdeviceInfoFragmentVarsBuilder()..update(updates))._build();
+
+  _$GdeviceInfoFragmentVars._() : super._();
+
+  @override
+  GdeviceInfoFragmentVars rebuild(
+          void Function(GdeviceInfoFragmentVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GdeviceInfoFragmentVarsBuilder toBuilder() =>
+      new GdeviceInfoFragmentVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GdeviceInfoFragmentVars;
+  }
+
+  @override
+  int get hashCode {
+    return 605386016;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GdeviceInfoFragmentVars').toString();
+  }
+}
+
+class GdeviceInfoFragmentVarsBuilder
+    implements
+        Builder<GdeviceInfoFragmentVars, GdeviceInfoFragmentVarsBuilder> {
+  _$GdeviceInfoFragmentVars? _$v;
+
+  GdeviceInfoFragmentVarsBuilder();
+
+  @override
+  void replace(GdeviceInfoFragmentVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GdeviceInfoFragmentVars;
+  }
+
+  @override
+  void update(void Function(GdeviceInfoFragmentVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GdeviceInfoFragmentVars build() => _build();
+
+  _$GdeviceInfoFragmentVars _build() {
+    final _$result = _$v ?? new _$GdeviceInfoFragmentVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GdiscInfoFragmentVars extends GdiscInfoFragmentVars {
+  factory _$GdiscInfoFragmentVars(
+          [void Function(GdiscInfoFragmentVarsBuilder)? updates]) =>
+      (new GdiscInfoFragmentVarsBuilder()..update(updates))._build();
+
+  _$GdiscInfoFragmentVars._() : super._();
+
+  @override
+  GdiscInfoFragmentVars rebuild(
+          void Function(GdiscInfoFragmentVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GdiscInfoFragmentVarsBuilder toBuilder() =>
+      new GdiscInfoFragmentVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GdiscInfoFragmentVars;
+  }
+
+  @override
+  int get hashCode {
+    return 713097531;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GdiscInfoFragmentVars').toString();
+  }
+}
+
+class GdiscInfoFragmentVarsBuilder
+    implements Builder<GdiscInfoFragmentVars, GdiscInfoFragmentVarsBuilder> {
+  _$GdiscInfoFragmentVars? _$v;
+
+  GdiscInfoFragmentVarsBuilder();
+
+  @override
+  void replace(GdiscInfoFragmentVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GdiscInfoFragmentVars;
+  }
+
+  @override
+  void update(void Function(GdiscInfoFragmentVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GdiscInfoFragmentVars build() => _build();
+
+  _$GdiscInfoFragmentVars _build() {
+    final _$result = _$v ?? new _$GdiscInfoFragmentVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GstatusFragmentVars extends GstatusFragmentVars {
+  factory _$GstatusFragmentVars(
+          [void Function(GstatusFragmentVarsBuilder)? updates]) =>
+      (new GstatusFragmentVarsBuilder()..update(updates))._build();
+
+  _$GstatusFragmentVars._() : super._();
+
+  @override
+  GstatusFragmentVars rebuild(
+          void Function(GstatusFragmentVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GstatusFragmentVarsBuilder toBuilder() =>
+      new GstatusFragmentVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GstatusFragmentVars;
+  }
+
+  @override
+  int get hashCode {
+    return 30312411;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GstatusFragmentVars').toString();
+  }
+}
+
+class GstatusFragmentVarsBuilder
+    implements Builder<GstatusFragmentVars, GstatusFragmentVarsBuilder> {
+  _$GstatusFragmentVars? _$v;
+
+  GstatusFragmentVarsBuilder();
+
+  @override
+  void replace(GstatusFragmentVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GstatusFragmentVars;
+  }
+
+  @override
+  void update(void Function(GstatusFragmentVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GstatusFragmentVars build() => _build();
+
+  _$GstatusFragmentVars _build() {
+    final _$result = _$v ?? new _$GstatusFragmentVars._();
     replace(_$result);
     return _$result;
   }

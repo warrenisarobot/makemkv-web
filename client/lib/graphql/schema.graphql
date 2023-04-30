@@ -6,6 +6,7 @@ directive @oneOf on INPUT_OBJECT
 type Query {
   isRunning: Boolean!
   devices: [Device!]!
+  allStatus: [MakemkvStatus!]!
   refreshDevices: [Device!]!
   discInfo(deviceIndex: Int!): DiscInfo!
 }
@@ -15,6 +16,13 @@ type Device {
   name: String!
   discName: String!
   visible: Boolean!
+}
+
+type MakemkvStatus {
+  running: Boolean!
+  deviceIndex: Int!
+  device: Device!
+  discInfo: DiscInfo
 }
 
 type DiscInfo {

@@ -27,6 +27,18 @@ Future<List<Device>> devices(Ctx ctx) async {
 }
 
 @Query()
+Future<List<MakemkvStatus>> allStatus(Ctx ctx) async {
+  List<MakemkvStatus> res = [];
+  final devices = await mkvManager.getDevices();
+  for (final device in devices) {
+    final mkv = await mkvManager.getMkvByDevice(device.index);
+    res.add(
+        MakemkvStatus(mkv.running, device.index, device, discInfo: mkv.disc));
+  }
+  return res;
+}
+
+@Query()
 Future<List<Device>> refreshDevices(Ctx ctx) async {
   return await mkvManager.refreshDevices();
 }

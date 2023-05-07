@@ -25,6 +25,7 @@ fragment discInfoFragment on DiscInfo {
       metaLangName
       treeInfo
       panelTitle
+      comment
       streams {
         titleIndex
         index
@@ -66,7 +67,7 @@ query devices {
 query discInfo ($discIndex: Int!)
 {
   discInfo(deviceIndex: $discIndex) {
-  ...discInfoFragment    
+  ...discInfoFragment
   }
 }
 
@@ -75,3 +76,9 @@ query allStatus {
     ...statusFragment
   }
 }
+
+query refreshDevices {
+  refreshDevices{
+    ...deviceInfoFragment
+    }
+  }

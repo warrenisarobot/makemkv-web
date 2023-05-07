@@ -12,6 +12,8 @@ Serializer<GdiscInfoVars> _$gdiscInfoVarsSerializer =
     new _$GdiscInfoVarsSerializer();
 Serializer<GallStatusVars> _$gallStatusVarsSerializer =
     new _$GallStatusVarsSerializer();
+Serializer<GrefreshDevicesVars> _$grefreshDevicesVarsSerializer =
+    new _$GrefreshDevicesVarsSerializer();
 Serializer<GdeviceInfoFragmentVars> _$gdeviceInfoFragmentVarsSerializer =
     new _$GdeviceInfoFragmentVarsSerializer();
 Serializer<GdiscInfoFragmentVars> _$gdiscInfoFragmentVarsSerializer =
@@ -98,6 +100,31 @@ class _$GallStatusVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GallStatusVarsBuilder().build();
+  }
+}
+
+class _$GrefreshDevicesVarsSerializer
+    implements StructuredSerializer<GrefreshDevicesVars> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshDevicesVars,
+    _$GrefreshDevicesVars
+  ];
+  @override
+  final String wireName = 'GrefreshDevicesVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshDevicesVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GrefreshDevicesVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GrefreshDevicesVarsBuilder().build();
   }
 }
 
@@ -370,6 +397,66 @@ class GallStatusVarsBuilder
 
   _$GallStatusVars _build() {
     final _$result = _$v ?? new _$GallStatusVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshDevicesVars extends GrefreshDevicesVars {
+  factory _$GrefreshDevicesVars(
+          [void Function(GrefreshDevicesVarsBuilder)? updates]) =>
+      (new GrefreshDevicesVarsBuilder()..update(updates))._build();
+
+  _$GrefreshDevicesVars._() : super._();
+
+  @override
+  GrefreshDevicesVars rebuild(
+          void Function(GrefreshDevicesVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshDevicesVarsBuilder toBuilder() =>
+      new GrefreshDevicesVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshDevicesVars;
+  }
+
+  @override
+  int get hashCode {
+    return 142297855;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GrefreshDevicesVars').toString();
+  }
+}
+
+class GrefreshDevicesVarsBuilder
+    implements Builder<GrefreshDevicesVars, GrefreshDevicesVarsBuilder> {
+  _$GrefreshDevicesVars? _$v;
+
+  GrefreshDevicesVarsBuilder();
+
+  @override
+  void replace(GrefreshDevicesVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshDevicesVars;
+  }
+
+  @override
+  void update(void Function(GrefreshDevicesVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshDevicesVars build() => _build();
+
+  _$GrefreshDevicesVars _build() {
+    final _$result = _$v ?? new _$GrefreshDevicesVars._();
     replace(_$result);
     return _$result;
   }

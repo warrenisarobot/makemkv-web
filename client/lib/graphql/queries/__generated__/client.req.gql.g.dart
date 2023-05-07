@@ -11,6 +11,8 @@ Serializer<GdiscInfoReq> _$gdiscInfoReqSerializer =
     new _$GdiscInfoReqSerializer();
 Serializer<GallStatusReq> _$gallStatusReqSerializer =
     new _$GallStatusReqSerializer();
+Serializer<GrefreshDevicesReq> _$grefreshDevicesReqSerializer =
+    new _$GrefreshDevicesReqSerializer();
 Serializer<GdeviceInfoFragmentReq> _$gdeviceInfoFragmentReqSerializer =
     new _$GdeviceInfoFragmentReqSerializer();
 Serializer<GdiscInfoFragmentReq> _$gdiscInfoFragmentReqSerializer =
@@ -340,6 +342,125 @@ class _$GallStatusReqSerializer implements StructuredSerializer<GallStatusReq> {
           result.optimisticResponse.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i2.GallStatusData))!
               as _i2.GallStatusData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshDevicesReqSerializer
+    implements StructuredSerializer<GrefreshDevicesReq> {
+  @override
+  final Iterable<Type> types = const [GrefreshDevicesReq, _$GrefreshDevicesReq];
+  @override
+  final String wireName = 'GrefreshDevicesReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshDevicesReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GrefreshDevicesVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GrefreshDevicesData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshDevicesReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshDevicesReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GrefreshDevicesVars))!
+              as _i3.GrefreshDevicesVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GrefreshDevicesData))!
+              as _i2.GrefreshDevicesData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -1251,6 +1372,232 @@ class GallStatusReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GallStatusReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshDevicesReq extends GrefreshDevicesReq {
+  @override
+  final _i3.GrefreshDevicesVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GrefreshDevicesData? Function(
+      _i2.GrefreshDevicesData?, _i2.GrefreshDevicesData?)? updateResult;
+  @override
+  final _i2.GrefreshDevicesData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$GrefreshDevicesReq(
+          [void Function(GrefreshDevicesReqBuilder)? updates]) =>
+      (new GrefreshDevicesReqBuilder()..update(updates))._build();
+
+  _$GrefreshDevicesReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'GrefreshDevicesReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GrefreshDevicesReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GrefreshDevicesReq', 'executeOnListen');
+  }
+
+  @override
+  GrefreshDevicesReq rebuild(
+          void Function(GrefreshDevicesReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshDevicesReqBuilder toBuilder() =>
+      new GrefreshDevicesReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GrefreshDevicesReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshDevicesReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class GrefreshDevicesReqBuilder
+    implements Builder<GrefreshDevicesReq, GrefreshDevicesReqBuilder> {
+  _$GrefreshDevicesReq? _$v;
+
+  _i3.GrefreshDevicesVarsBuilder? _vars;
+  _i3.GrefreshDevicesVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GrefreshDevicesVarsBuilder();
+  set vars(_i3.GrefreshDevicesVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GrefreshDevicesData? Function(
+      _i2.GrefreshDevicesData?, _i2.GrefreshDevicesData?)? _updateResult;
+  _i2.GrefreshDevicesData? Function(
+          _i2.GrefreshDevicesData?, _i2.GrefreshDevicesData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GrefreshDevicesData? Function(
+                  _i2.GrefreshDevicesData?, _i2.GrefreshDevicesData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GrefreshDevicesDataBuilder? _optimisticResponse;
+  _i2.GrefreshDevicesDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GrefreshDevicesDataBuilder();
+  set optimisticResponse(_i2.GrefreshDevicesDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  GrefreshDevicesReqBuilder() {
+    GrefreshDevicesReq._initializeBuilder(this);
+  }
+
+  GrefreshDevicesReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshDevicesReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshDevicesReq;
+  }
+
+  @override
+  void update(void Function(GrefreshDevicesReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshDevicesReq build() => _build();
+
+  _$GrefreshDevicesReq _build() {
+    _$GrefreshDevicesReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshDevicesReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GrefreshDevicesReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GrefreshDevicesReq', 'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshDevicesReq', _$failedField, e.toString());
       }
       rethrow;
     }

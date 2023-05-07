@@ -185,6 +185,13 @@ const discInfoFragment = _i1.FragmentDefinitionNode(
           selectionSet: null,
         ),
         _i1.FieldNode(
+          name: _i1.NameNode(value: 'comment'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
           name: _i1.NameNode(value: 'streams'),
           alias: null,
           arguments: [],
@@ -418,6 +425,26 @@ const allStatus = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const refreshDevices = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'refreshDevices'),
+  variableDefinitions: [],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'refreshDevices'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'deviceInfoFragment'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   deviceInfoFragment,
   discInfoFragment,
@@ -425,4 +452,5 @@ const document = _i1.DocumentNode(definitions: [
   devices,
   discInfo,
   allStatus,
+  refreshDevices,
 ]);

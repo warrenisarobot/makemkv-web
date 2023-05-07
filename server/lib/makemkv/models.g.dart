@@ -303,6 +303,14 @@ final _titleInfoGraphQLType =
         ) =>
             obj.panelTitle,
       ),
+      graphQLString.field(
+        'comment',
+        resolve: (
+          obj,
+          ctx,
+        ) =>
+            obj.comment,
+      ),
       streamInfoGraphQLType.nonNull().list().nonNull().field(
             'streams',
             resolve: (

@@ -88,6 +88,7 @@ class TitleInfo {
   String? metaLangName;
   String? treeInfo;
   String? panelTitle;
+  String? comment;
 
   @GraphQLField(omit: true)
   Map<int, StreamInfo> streamMap = {};
@@ -137,6 +138,9 @@ class TitleInfo {
         break;
       case DiscInfoAttribute.panelTitle:
         panelTitle = value;
+        break;
+      case DiscInfoAttribute.comment:
+        comment = value;
         break;
       default:
         return false;

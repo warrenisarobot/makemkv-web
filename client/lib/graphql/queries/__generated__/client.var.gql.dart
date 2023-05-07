@@ -68,6 +68,26 @@ abstract class GallStatusVars
       );
 }
 
+abstract class GrefreshDevicesVars
+    implements Built<GrefreshDevicesVars, GrefreshDevicesVarsBuilder> {
+  GrefreshDevicesVars._();
+
+  factory GrefreshDevicesVars(
+      [Function(GrefreshDevicesVarsBuilder b) updates]) = _$GrefreshDevicesVars;
+
+  static Serializer<GrefreshDevicesVars> get serializer =>
+      _$grefreshDevicesVarsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshDevicesVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GrefreshDevicesVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshDevicesVars.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragmentVars
     implements Built<GdeviceInfoFragmentVars, GdeviceInfoFragmentVarsBuilder> {
   GdeviceInfoFragmentVars._();

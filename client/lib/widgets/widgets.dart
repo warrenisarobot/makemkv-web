@@ -4,8 +4,10 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dar
 class DeviceSelect extends StatefulWidget {
   final List<GdeviceInfoFragment>? devices;
   final String bob = "bob";
+  final void Function(int index) selectDrive;
 
-  const DeviceSelect(this.devices, {Key? key}) : super(key: key);
+  const DeviceSelect(this.devices, this.selectDrive, {Key? key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _DeviceSelectState();
@@ -22,11 +24,12 @@ class _DeviceSelectState extends State<DeviceSelect> {
                 value: device,
                 groupValue: selectedDevice,
                 onChanged: (thing) {
+                  widget.selectDrive(device.index);
                   setState(() {
                     selectedDevice = thing;
                   });
                 },
-                child: Text("${device.name}")))
+                child: Text(device.name)))
             .toList());
   }
 }

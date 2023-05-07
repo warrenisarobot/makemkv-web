@@ -34,6 +34,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GdiscInfoFragmentVars.serializer)
       ..add(GdiscInfoReq.serializer)
       ..add(GdiscInfoVars.serializer)
+      ..add(GrefreshDevicesData.serializer)
+      ..add(GrefreshDevicesData_refreshDevices.serializer)
+      ..add(GrefreshDevicesReq.serializer)
+      ..add(GrefreshDevicesVars.serializer)
       ..add(GstatusFragmentData.serializer)
       ..add(GstatusFragmentData_device.serializer)
       ..add(GstatusFragmentData_discInfo.serializer)
@@ -75,6 +79,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GdiscInfoFragmentData_titles_streams)]),
           () => new ListBuilder<GdiscInfoFragmentData_titles_streams>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GrefreshDevicesData_refreshDevices)]),
+          () => new ListBuilder<GrefreshDevicesData_refreshDevices>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GstatusFragmentData_discInfo_titles)]),

@@ -48,6 +48,7 @@ type TitleInfo {
   metaLangName: String
   treeInfo: String
   panelTitle: String
+  comment: String
   streams: [StreamInfo!]!
 }
 

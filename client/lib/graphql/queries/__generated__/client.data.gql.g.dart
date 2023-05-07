@@ -36,6 +36,11 @@ Serializer<GallStatusData_allStatus_discInfo_titles>
 Serializer<GallStatusData_allStatus_discInfo_titles_streams>
     _$gallStatusDataAllStatusDiscInfoTitlesStreamsSerializer =
     new _$GallStatusData_allStatus_discInfo_titles_streamsSerializer();
+Serializer<GrefreshDevicesData> _$grefreshDevicesDataSerializer =
+    new _$GrefreshDevicesDataSerializer();
+Serializer<GrefreshDevicesData_refreshDevices>
+    _$grefreshDevicesDataRefreshDevicesSerializer =
+    new _$GrefreshDevicesData_refreshDevicesSerializer();
 Serializer<GdeviceInfoFragmentData> _$gdeviceInfoFragmentDataSerializer =
     new _$GdeviceInfoFragmentDataSerializer();
 Serializer<GdiscInfoFragmentData> _$gdiscInfoFragmentDataSerializer =
@@ -449,6 +454,13 @@ class _$GdiscInfoData_discInfo_titlesSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.comment;
+    if (value != null) {
+      result
+        ..add('comment')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -522,6 +534,10 @@ class _$GdiscInfoData_discInfo_titlesSerializer
           break;
         case 'panelTitle':
           result.panelTitle = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'comment':
+          result.comment = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'streams':
@@ -1153,6 +1169,13 @@ class _$GallStatusData_allStatus_discInfo_titlesSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.comment;
+    if (value != null) {
+      result
+        ..add('comment')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -1226,6 +1249,10 @@ class _$GallStatusData_allStatus_discInfo_titlesSerializer
           break;
         case 'panelTitle':
           result.panelTitle = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'comment':
+          result.comment = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'streams':
@@ -1426,6 +1453,134 @@ class _$GallStatusData_allStatus_discInfo_titles_streamsSerializer
         case 'panelTitle':
           result.panelTitle = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshDevicesDataSerializer
+    implements StructuredSerializer<GrefreshDevicesData> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshDevicesData,
+    _$GrefreshDevicesData
+  ];
+  @override
+  final String wireName = 'GrefreshDevicesData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshDevicesData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'refreshDevices',
+      serializers.serialize(object.refreshDevices,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GrefreshDevicesData_refreshDevices)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshDevicesData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshDevicesDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'refreshDevices':
+          result.refreshDevices.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GrefreshDevicesData_refreshDevices)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshDevicesData_refreshDevicesSerializer
+    implements StructuredSerializer<GrefreshDevicesData_refreshDevices> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshDevicesData_refreshDevices,
+    _$GrefreshDevicesData_refreshDevices
+  ];
+  @override
+  final String wireName = 'GrefreshDevicesData_refreshDevices';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshDevicesData_refreshDevices object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'index',
+      serializers.serialize(object.index, specifiedType: const FullType(int)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'discName',
+      serializers.serialize(object.discName,
+          specifiedType: const FullType(String)),
+      'visible',
+      serializers.serialize(object.visible,
+          specifiedType: const FullType(bool)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshDevicesData_refreshDevices deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshDevicesData_refreshDevicesBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'index':
+          result.index = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'discName':
+          result.discName = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'visible':
+          result.visible = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1723,6 +1878,13 @@ class _$GdiscInfoFragmentData_titlesSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.comment;
+    if (value != null) {
+      result
+        ..add('comment')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -1796,6 +1958,10 @@ class _$GdiscInfoFragmentData_titlesSerializer
           break;
         case 'panelTitle':
           result.panelTitle = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'comment':
+          result.comment = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'streams':
@@ -2372,6 +2538,13 @@ class _$GstatusFragmentData_discInfo_titlesSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.comment;
+    if (value != null) {
+      result
+        ..add('comment')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2445,6 +2618,10 @@ class _$GstatusFragmentData_discInfo_titlesSerializer
           break;
         case 'panelTitle':
           result.panelTitle = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'comment':
+          result.comment = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'streams':
@@ -3236,6 +3413,8 @@ class _$GdiscInfoData_discInfo_titles extends GdiscInfoData_discInfo_titles {
   @override
   final String? panelTitle;
   @override
+  final String? comment;
+  @override
   final BuiltList<GdiscInfoData_discInfo_titles_streams> streams;
 
   factory _$GdiscInfoData_discInfo_titles(
@@ -3258,6 +3437,7 @@ class _$GdiscInfoData_discInfo_titles extends GdiscInfoData_discInfo_titles {
       this.metaLangName,
       this.treeInfo,
       this.panelTitle,
+      this.comment,
       required this.streams})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -3296,6 +3476,7 @@ class _$GdiscInfoData_discInfo_titles extends GdiscInfoData_discInfo_titles {
         metaLangName == other.metaLangName &&
         treeInfo == other.treeInfo &&
         panelTitle == other.panelTitle &&
+        comment == other.comment &&
         streams == other.streams;
   }
 
@@ -3317,6 +3498,7 @@ class _$GdiscInfoData_discInfo_titles extends GdiscInfoData_discInfo_titles {
     _$hash = $jc(_$hash, metaLangName.hashCode);
     _$hash = $jc(_$hash, treeInfo.hashCode);
     _$hash = $jc(_$hash, panelTitle.hashCode);
+    _$hash = $jc(_$hash, comment.hashCode);
     _$hash = $jc(_$hash, streams.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -3340,6 +3522,7 @@ class _$GdiscInfoData_discInfo_titles extends GdiscInfoData_discInfo_titles {
           ..add('metaLangName', metaLangName)
           ..add('treeInfo', treeInfo)
           ..add('panelTitle', panelTitle)
+          ..add('comment', comment)
           ..add('streams', streams))
         .toString();
   }
@@ -3415,6 +3598,10 @@ class GdiscInfoData_discInfo_titlesBuilder
   String? get panelTitle => _$this._panelTitle;
   set panelTitle(String? panelTitle) => _$this._panelTitle = panelTitle;
 
+  String? _comment;
+  String? get comment => _$this._comment;
+  set comment(String? comment) => _$this._comment = comment;
+
   ListBuilder<GdiscInfoData_discInfo_titles_streams>? _streams;
   ListBuilder<GdiscInfoData_discInfo_titles_streams> get streams =>
       _$this._streams ??=
@@ -3444,6 +3631,7 @@ class GdiscInfoData_discInfo_titlesBuilder
       _metaLangName = $v.metaLangName;
       _treeInfo = $v.treeInfo;
       _panelTitle = $v.panelTitle;
+      _comment = $v.comment;
       _streams = $v.streams.toBuilder();
       _$v = null;
     }
@@ -3486,6 +3674,7 @@ class GdiscInfoData_discInfo_titlesBuilder
               metaLangName: metaLangName,
               treeInfo: treeInfo,
               panelTitle: panelTitle,
+              comment: comment,
               streams: streams.build());
     } catch (_) {
       late String _$failedField;
@@ -4427,6 +4616,8 @@ class _$GallStatusData_allStatus_discInfo_titles
   @override
   final String? panelTitle;
   @override
+  final String? comment;
+  @override
   final BuiltList<GallStatusData_allStatus_discInfo_titles_streams> streams;
 
   factory _$GallStatusData_allStatus_discInfo_titles(
@@ -4451,6 +4642,7 @@ class _$GallStatusData_allStatus_discInfo_titles
       this.metaLangName,
       this.treeInfo,
       this.panelTitle,
+      this.comment,
       required this.streams})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
@@ -4490,6 +4682,7 @@ class _$GallStatusData_allStatus_discInfo_titles
         metaLangName == other.metaLangName &&
         treeInfo == other.treeInfo &&
         panelTitle == other.panelTitle &&
+        comment == other.comment &&
         streams == other.streams;
   }
 
@@ -4511,6 +4704,7 @@ class _$GallStatusData_allStatus_discInfo_titles
     _$hash = $jc(_$hash, metaLangName.hashCode);
     _$hash = $jc(_$hash, treeInfo.hashCode);
     _$hash = $jc(_$hash, panelTitle.hashCode);
+    _$hash = $jc(_$hash, comment.hashCode);
     _$hash = $jc(_$hash, streams.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -4535,6 +4729,7 @@ class _$GallStatusData_allStatus_discInfo_titles
           ..add('metaLangName', metaLangName)
           ..add('treeInfo', treeInfo)
           ..add('panelTitle', panelTitle)
+          ..add('comment', comment)
           ..add('streams', streams))
         .toString();
   }
@@ -4610,6 +4805,10 @@ class GallStatusData_allStatus_discInfo_titlesBuilder
   String? get panelTitle => _$this._panelTitle;
   set panelTitle(String? panelTitle) => _$this._panelTitle = panelTitle;
 
+  String? _comment;
+  String? get comment => _$this._comment;
+  set comment(String? comment) => _$this._comment = comment;
+
   ListBuilder<GallStatusData_allStatus_discInfo_titles_streams>? _streams;
   ListBuilder<GallStatusData_allStatus_discInfo_titles_streams> get streams =>
       _$this._streams ??=
@@ -4641,6 +4840,7 @@ class GallStatusData_allStatus_discInfo_titlesBuilder
       _metaLangName = $v.metaLangName;
       _treeInfo = $v.treeInfo;
       _panelTitle = $v.panelTitle;
+      _comment = $v.comment;
       _streams = $v.streams.toBuilder();
       _$v = null;
     }
@@ -4684,6 +4884,7 @@ class GallStatusData_allStatus_discInfo_titlesBuilder
               metaLangName: metaLangName,
               treeInfo: treeInfo,
               panelTitle: panelTitle,
+              comment: comment,
               streams: streams.build());
     } catch (_) {
       late String _$failedField;
@@ -4982,6 +5183,286 @@ class GallStatusData_allStatus_discInfo_titles_streamsBuilder
             metaLangName: metaLangName,
             treeInfo: treeInfo,
             panelTitle: panelTitle);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshDevicesData extends GrefreshDevicesData {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GrefreshDevicesData_refreshDevices> refreshDevices;
+
+  factory _$GrefreshDevicesData(
+          [void Function(GrefreshDevicesDataBuilder)? updates]) =>
+      (new GrefreshDevicesDataBuilder()..update(updates))._build();
+
+  _$GrefreshDevicesData._(
+      {required this.G__typename, required this.refreshDevices})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshDevicesData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        refreshDevices, r'GrefreshDevicesData', 'refreshDevices');
+  }
+
+  @override
+  GrefreshDevicesData rebuild(
+          void Function(GrefreshDevicesDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshDevicesDataBuilder toBuilder() =>
+      new GrefreshDevicesDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshDevicesData &&
+        G__typename == other.G__typename &&
+        refreshDevices == other.refreshDevices;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, refreshDevices.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshDevicesData')
+          ..add('G__typename', G__typename)
+          ..add('refreshDevices', refreshDevices))
+        .toString();
+  }
+}
+
+class GrefreshDevicesDataBuilder
+    implements Builder<GrefreshDevicesData, GrefreshDevicesDataBuilder> {
+  _$GrefreshDevicesData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GrefreshDevicesData_refreshDevices>? _refreshDevices;
+  ListBuilder<GrefreshDevicesData_refreshDevices> get refreshDevices =>
+      _$this._refreshDevices ??=
+          new ListBuilder<GrefreshDevicesData_refreshDevices>();
+  set refreshDevices(
+          ListBuilder<GrefreshDevicesData_refreshDevices>? refreshDevices) =>
+      _$this._refreshDevices = refreshDevices;
+
+  GrefreshDevicesDataBuilder() {
+    GrefreshDevicesData._initializeBuilder(this);
+  }
+
+  GrefreshDevicesDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _refreshDevices = $v.refreshDevices.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshDevicesData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshDevicesData;
+  }
+
+  @override
+  void update(void Function(GrefreshDevicesDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshDevicesData build() => _build();
+
+  _$GrefreshDevicesData _build() {
+    _$GrefreshDevicesData _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshDevicesData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GrefreshDevicesData', 'G__typename'),
+              refreshDevices: refreshDevices.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'refreshDevices';
+        refreshDevices.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshDevicesData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshDevicesData_refreshDevices
+    extends GrefreshDevicesData_refreshDevices {
+  @override
+  final String G__typename;
+  @override
+  final int index;
+  @override
+  final String name;
+  @override
+  final String discName;
+  @override
+  final bool visible;
+
+  factory _$GrefreshDevicesData_refreshDevices(
+          [void Function(GrefreshDevicesData_refreshDevicesBuilder)?
+              updates]) =>
+      (new GrefreshDevicesData_refreshDevicesBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshDevicesData_refreshDevices._(
+      {required this.G__typename,
+      required this.index,
+      required this.name,
+      required this.discName,
+      required this.visible})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshDevicesData_refreshDevices', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        index, r'GrefreshDevicesData_refreshDevices', 'index');
+    BuiltValueNullFieldError.checkNotNull(
+        name, r'GrefreshDevicesData_refreshDevices', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        discName, r'GrefreshDevicesData_refreshDevices', 'discName');
+    BuiltValueNullFieldError.checkNotNull(
+        visible, r'GrefreshDevicesData_refreshDevices', 'visible');
+  }
+
+  @override
+  GrefreshDevicesData_refreshDevices rebuild(
+          void Function(GrefreshDevicesData_refreshDevicesBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshDevicesData_refreshDevicesBuilder toBuilder() =>
+      new GrefreshDevicesData_refreshDevicesBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshDevicesData_refreshDevices &&
+        G__typename == other.G__typename &&
+        index == other.index &&
+        name == other.name &&
+        discName == other.discName &&
+        visible == other.visible;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, index.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, discName.hashCode);
+    _$hash = $jc(_$hash, visible.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshDevicesData_refreshDevices')
+          ..add('G__typename', G__typename)
+          ..add('index', index)
+          ..add('name', name)
+          ..add('discName', discName)
+          ..add('visible', visible))
+        .toString();
+  }
+}
+
+class GrefreshDevicesData_refreshDevicesBuilder
+    implements
+        Builder<GrefreshDevicesData_refreshDevices,
+            GrefreshDevicesData_refreshDevicesBuilder> {
+  _$GrefreshDevicesData_refreshDevices? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _index;
+  int? get index => _$this._index;
+  set index(int? index) => _$this._index = index;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _discName;
+  String? get discName => _$this._discName;
+  set discName(String? discName) => _$this._discName = discName;
+
+  bool? _visible;
+  bool? get visible => _$this._visible;
+  set visible(bool? visible) => _$this._visible = visible;
+
+  GrefreshDevicesData_refreshDevicesBuilder() {
+    GrefreshDevicesData_refreshDevices._initializeBuilder(this);
+  }
+
+  GrefreshDevicesData_refreshDevicesBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _index = $v.index;
+      _name = $v.name;
+      _discName = $v.discName;
+      _visible = $v.visible;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshDevicesData_refreshDevices other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshDevicesData_refreshDevices;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshDevicesData_refreshDevicesBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshDevicesData_refreshDevices build() => _build();
+
+  _$GrefreshDevicesData_refreshDevices _build() {
+    final _$result = _$v ??
+        new _$GrefreshDevicesData_refreshDevices._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GrefreshDevicesData_refreshDevices', 'G__typename'),
+            index: BuiltValueNullFieldError.checkNotNull(
+                index, r'GrefreshDevicesData_refreshDevices', 'index'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GrefreshDevicesData_refreshDevices', 'name'),
+            discName: BuiltValueNullFieldError.checkNotNull(
+                discName, r'GrefreshDevicesData_refreshDevices', 'discName'),
+            visible: BuiltValueNullFieldError.checkNotNull(
+                visible, r'GrefreshDevicesData_refreshDevices', 'visible'));
     replace(_$result);
     return _$result;
   }
@@ -5341,6 +5822,8 @@ class _$GdiscInfoFragmentData_titles extends GdiscInfoFragmentData_titles {
   @override
   final String? panelTitle;
   @override
+  final String? comment;
+  @override
   final BuiltList<GdiscInfoFragmentData_titles_streams> streams;
 
   factory _$GdiscInfoFragmentData_titles(
@@ -5363,6 +5846,7 @@ class _$GdiscInfoFragmentData_titles extends GdiscInfoFragmentData_titles {
       this.metaLangName,
       this.treeInfo,
       this.panelTitle,
+      this.comment,
       required this.streams})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -5401,6 +5885,7 @@ class _$GdiscInfoFragmentData_titles extends GdiscInfoFragmentData_titles {
         metaLangName == other.metaLangName &&
         treeInfo == other.treeInfo &&
         panelTitle == other.panelTitle &&
+        comment == other.comment &&
         streams == other.streams;
   }
 
@@ -5422,6 +5907,7 @@ class _$GdiscInfoFragmentData_titles extends GdiscInfoFragmentData_titles {
     _$hash = $jc(_$hash, metaLangName.hashCode);
     _$hash = $jc(_$hash, treeInfo.hashCode);
     _$hash = $jc(_$hash, panelTitle.hashCode);
+    _$hash = $jc(_$hash, comment.hashCode);
     _$hash = $jc(_$hash, streams.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -5445,6 +5931,7 @@ class _$GdiscInfoFragmentData_titles extends GdiscInfoFragmentData_titles {
           ..add('metaLangName', metaLangName)
           ..add('treeInfo', treeInfo)
           ..add('panelTitle', panelTitle)
+          ..add('comment', comment)
           ..add('streams', streams))
         .toString();
   }
@@ -5520,6 +6007,10 @@ class GdiscInfoFragmentData_titlesBuilder
   String? get panelTitle => _$this._panelTitle;
   set panelTitle(String? panelTitle) => _$this._panelTitle = panelTitle;
 
+  String? _comment;
+  String? get comment => _$this._comment;
+  set comment(String? comment) => _$this._comment = comment;
+
   ListBuilder<GdiscInfoFragmentData_titles_streams>? _streams;
   ListBuilder<GdiscInfoFragmentData_titles_streams> get streams =>
       _$this._streams ??=
@@ -5549,6 +6040,7 @@ class GdiscInfoFragmentData_titlesBuilder
       _metaLangName = $v.metaLangName;
       _treeInfo = $v.treeInfo;
       _panelTitle = $v.panelTitle;
+      _comment = $v.comment;
       _streams = $v.streams.toBuilder();
       _$v = null;
     }
@@ -5591,6 +6083,7 @@ class GdiscInfoFragmentData_titlesBuilder
               metaLangName: metaLangName,
               treeInfo: treeInfo,
               panelTitle: panelTitle,
+              comment: comment,
               streams: streams.build());
     } catch (_) {
       late String _$failedField;
@@ -6406,6 +6899,8 @@ class _$GstatusFragmentData_discInfo_titles
   @override
   final String? panelTitle;
   @override
+  final String? comment;
+  @override
   final BuiltList<GstatusFragmentData_discInfo_titles_streams> streams;
 
   factory _$GstatusFragmentData_discInfo_titles(
@@ -6430,6 +6925,7 @@ class _$GstatusFragmentData_discInfo_titles
       this.metaLangName,
       this.treeInfo,
       this.panelTitle,
+      this.comment,
       required this.streams})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -6468,6 +6964,7 @@ class _$GstatusFragmentData_discInfo_titles
         metaLangName == other.metaLangName &&
         treeInfo == other.treeInfo &&
         panelTitle == other.panelTitle &&
+        comment == other.comment &&
         streams == other.streams;
   }
 
@@ -6489,6 +6986,7 @@ class _$GstatusFragmentData_discInfo_titles
     _$hash = $jc(_$hash, metaLangName.hashCode);
     _$hash = $jc(_$hash, treeInfo.hashCode);
     _$hash = $jc(_$hash, panelTitle.hashCode);
+    _$hash = $jc(_$hash, comment.hashCode);
     _$hash = $jc(_$hash, streams.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -6512,6 +7010,7 @@ class _$GstatusFragmentData_discInfo_titles
           ..add('metaLangName', metaLangName)
           ..add('treeInfo', treeInfo)
           ..add('panelTitle', panelTitle)
+          ..add('comment', comment)
           ..add('streams', streams))
         .toString();
   }
@@ -6587,6 +7086,10 @@ class GstatusFragmentData_discInfo_titlesBuilder
   String? get panelTitle => _$this._panelTitle;
   set panelTitle(String? panelTitle) => _$this._panelTitle = panelTitle;
 
+  String? _comment;
+  String? get comment => _$this._comment;
+  set comment(String? comment) => _$this._comment = comment;
+
   ListBuilder<GstatusFragmentData_discInfo_titles_streams>? _streams;
   ListBuilder<GstatusFragmentData_discInfo_titles_streams> get streams =>
       _$this._streams ??=
@@ -6617,6 +7120,7 @@ class GstatusFragmentData_discInfo_titlesBuilder
       _metaLangName = $v.metaLangName;
       _treeInfo = $v.treeInfo;
       _panelTitle = $v.panelTitle;
+      _comment = $v.comment;
       _streams = $v.streams.toBuilder();
       _$v = null;
     }
@@ -6660,6 +7164,7 @@ class GstatusFragmentData_discInfo_titlesBuilder
               metaLangName: metaLangName,
               treeInfo: treeInfo,
               panelTitle: panelTitle,
+              comment: comment,
               streams: streams.build());
     } catch (_) {
       late String _$failedField;

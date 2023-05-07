@@ -188,6 +188,64 @@ abstract class GallStatusReq
       );
 }
 
+abstract class GrefreshDevicesReq
+    implements
+        Built<GrefreshDevicesReq, GrefreshDevicesReqBuilder>,
+        _i1.OperationRequest<_i2.GrefreshDevicesData, _i3.GrefreshDevicesVars> {
+  GrefreshDevicesReq._();
+
+  factory GrefreshDevicesReq([Function(GrefreshDevicesReqBuilder b) updates]) =
+      _$GrefreshDevicesReq;
+
+  static void _initializeBuilder(GrefreshDevicesReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'refreshDevices',
+    )
+    ..executeOnListen = true;
+  @override
+  _i3.GrefreshDevicesVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GrefreshDevicesData? Function(
+    _i2.GrefreshDevicesData?,
+    _i2.GrefreshDevicesData?,
+  )? get updateResult;
+  @override
+  _i2.GrefreshDevicesData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GrefreshDevicesData? parseData(Map<String, dynamic> json) =>
+      _i2.GrefreshDevicesData.fromJson(json);
+  static Serializer<GrefreshDevicesReq> get serializer =>
+      _$grefreshDevicesReqSerializer;
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GrefreshDevicesReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GrefreshDevicesReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GrefreshDevicesReq.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragmentReq
     implements
         Built<GdeviceInfoFragmentReq, GdeviceInfoFragmentReqBuilder>,

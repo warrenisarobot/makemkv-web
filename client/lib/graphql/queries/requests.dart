@@ -43,6 +43,20 @@ class GraphRequest {
     throwGraphError(res);
     return res.data!.allStatus.toList();
   }
+
+  Future<List<GdeviceInfoFragment>> refreshDevices() async {
+    final res = await client.request(GrefreshDevicesReq()).first;
+    throwGraphError(res);
+    return res.data!.refreshDevices.toList();
+  }
+
+  Future<GdiscInfoFragment> discInfo(int index) async {
+    final res = await client
+        .request(GdiscInfoReq((b) => b..vars.discIndex = index))
+        .first;
+    throwGraphError(res);
+    return res.data!.discInfo;
+  }
 }
 
 final graphRequests = GraphRequest(

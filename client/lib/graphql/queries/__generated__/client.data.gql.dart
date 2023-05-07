@@ -179,6 +179,8 @@ abstract class GdiscInfoData_discInfo_titles
   @override
   String? get panelTitle;
   @override
+  String? get comment;
+  @override
   BuiltList<GdiscInfoData_discInfo_titles_streams> get streams;
   static Serializer<GdiscInfoData_discInfo_titles> get serializer =>
       _$gdiscInfoDataDiscInfoTitlesSerializer;
@@ -444,6 +446,8 @@ abstract class GallStatusData_allStatus_discInfo_titles
   @override
   String? get panelTitle;
   @override
+  String? get comment;
+  @override
   BuiltList<GallStatusData_allStatus_discInfo_titles_streams> get streams;
   static Serializer<GallStatusData_allStatus_discInfo_titles> get serializer =>
       _$gallStatusDataAllStatusDiscInfoTitlesSerializer;
@@ -522,6 +526,70 @@ abstract class GallStatusData_allStatus_discInfo_titles_streams
       );
 }
 
+abstract class GrefreshDevicesData
+    implements Built<GrefreshDevicesData, GrefreshDevicesDataBuilder> {
+  GrefreshDevicesData._();
+
+  factory GrefreshDevicesData(
+      [Function(GrefreshDevicesDataBuilder b) updates]) = _$GrefreshDevicesData;
+
+  static void _initializeBuilder(GrefreshDevicesDataBuilder b) =>
+      b..G__typename = 'Query';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GrefreshDevicesData_refreshDevices> get refreshDevices;
+  static Serializer<GrefreshDevicesData> get serializer =>
+      _$grefreshDevicesDataSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshDevicesData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GrefreshDevicesData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshDevicesData.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshDevicesData_refreshDevices
+    implements
+        Built<GrefreshDevicesData_refreshDevices,
+            GrefreshDevicesData_refreshDevicesBuilder>,
+        GdeviceInfoFragment {
+  GrefreshDevicesData_refreshDevices._();
+
+  factory GrefreshDevicesData_refreshDevices(
+          [Function(GrefreshDevicesData_refreshDevicesBuilder b) updates]) =
+      _$GrefreshDevicesData_refreshDevices;
+
+  static void _initializeBuilder(GrefreshDevicesData_refreshDevicesBuilder b) =>
+      b..G__typename = 'Device';
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get index;
+  @override
+  String get name;
+  @override
+  String get discName;
+  @override
+  bool get visible;
+  static Serializer<GrefreshDevicesData_refreshDevices> get serializer =>
+      _$grefreshDevicesDataRefreshDevicesSerializer;
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshDevicesData_refreshDevices.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GrefreshDevicesData_refreshDevices? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshDevicesData_refreshDevices.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragment {
   String get G__typename;
   int get index;
@@ -594,6 +662,7 @@ abstract class GdiscInfoFragment_titles {
   String? get metaLangName;
   String? get treeInfo;
   String? get panelTitle;
+  String? get comment;
   BuiltList<GdiscInfoFragment_titles_streams> get streams;
   Map<String, dynamic> toJson();
 }
@@ -700,6 +769,8 @@ abstract class GdiscInfoFragmentData_titles
   String? get treeInfo;
   @override
   String? get panelTitle;
+  @override
+  String? get comment;
   @override
   BuiltList<GdiscInfoFragmentData_titles_streams> get streams;
   static Serializer<GdiscInfoFragmentData_titles> get serializer =>
@@ -849,6 +920,8 @@ abstract class GstatusFragment_discInfo_titles
   String? get treeInfo;
   @override
   String? get panelTitle;
+  @override
+  String? get comment;
   @override
   BuiltList<GstatusFragment_discInfo_titles_streams> get streams;
   @override
@@ -1052,6 +1125,8 @@ abstract class GstatusFragmentData_discInfo_titles
   String? get treeInfo;
   @override
   String? get panelTitle;
+  @override
+  String? get comment;
   @override
   BuiltList<GstatusFragmentData_discInfo_titles_streams> get streams;
   static Serializer<GstatusFragmentData_discInfo_titles> get serializer =>

@@ -133,7 +133,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       Column(
                           children: makemkv.selectedDrive!.discInfo!.titles
                               .map<Widget>((title) => Row(children: [
-                                    Checkbox(value: true, onChanged: (val) {}),
+                                    Checkbox(
+                                        value: makemkv.titleSelection(
+                                            makemkv.selectedDrive!.deviceIndex,
+                                            title.index),
+                                        onChanged: (val) {
+                                          makemkv.toggleTitleSelection(
+                                              makemkv
+                                                  .selectedDrive!.deviceIndex,
+                                              title.index);
+                                        }),
                                     Text(title.comment ?? "Unknown name")
                                   ]))
                               .toList())

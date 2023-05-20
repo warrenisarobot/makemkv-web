@@ -2,8 +2,11 @@ import "dart:async";
 
 import "package:leto_schema/leto_schema.dart";
 import "package:makemkv_web/makemkv.dart";
+import "package:path/path.dart" as path;
 
 part "makemkv.g.dart";
+
+const writeFolder = "/tmp";
 
 MkvManager? _mkvManager;
 
@@ -55,4 +58,15 @@ Future<Stream<Progress>> progress(Ctx ctx, int deviceIndex) async {
   final mkv = await mkvManager.getMkvByDevice(deviceIndex);
   final stream = mkv.progressStream;
   return stream;
+}
+
+@Query()
+Future<bool> copyTrack(Ctx ctx, int deviceIndex, int track) async {
+  final mkv = await mkvManager.getMkvByDevice(deviceIndex);
+  mkv.copyTrack(deviceIndex, track, pathForDisc(deviceIndex));
+  return true;
+}
+
+pathForDisc(int deviceIndex) {
+  return path.join(writeFolder, "$deviceIndex");
 }

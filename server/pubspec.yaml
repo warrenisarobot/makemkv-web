@@ -21,6 +21,7 @@ dependencies:
   leto_schema: ^0.0.1-dev.3
   leto_shelf: ^0.0.1-dev.1
   logging: ^1.1.1
+  path: ^1.8.3
   shelf: ^1.4.0
   shelf_cors_headers: ^0.1.4
   shelf_router: ^1.1.3

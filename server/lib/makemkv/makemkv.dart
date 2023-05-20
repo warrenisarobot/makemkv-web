@@ -132,6 +132,15 @@ class MakemkvCon {
     return devices;
   }
 
+  Future<void> copyTrack(
+      int discIndex, int discTrack, String destinationFolder) async {
+    final statusCode = await runCommand(
+        [...commonArgs, 'mkv', '$discIndex', '$discTrack', destinationFolder]);
+    if (statusCode != 0) {
+      throw Exception("Track copy failed, status code: $statusCode");
+    }
+  }
+
   Future<DiscInfo> discInfo(int discIndex) async {
     final statusCode =
         await runCommand([...commonArgs, 'info', 'disc:$discIndex']);

@@ -509,6 +509,41 @@ const StreamInfo = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
+const Mutation = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'Mutation'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'copyTitle'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'deviceIndex'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'titleIndex'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
+      ),
+    )
+  ],
+);
 const Subscription = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'Subscription'),
   directives: [],
@@ -595,6 +630,7 @@ const document = _i1.DocumentNode(definitions: [
   DiscInfo,
   TitleInfo,
   StreamInfo,
+  Mutation,
   Subscription,
   Progress,
 ]);

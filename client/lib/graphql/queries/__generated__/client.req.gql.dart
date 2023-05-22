@@ -246,6 +246,63 @@ abstract class GrefreshDevicesReq
       );
 }
 
+abstract class GcopyTitleReq
+    implements
+        Built<GcopyTitleReq, GcopyTitleReqBuilder>,
+        _i1.OperationRequest<_i2.GcopyTitleData, _i3.GcopyTitleVars> {
+  GcopyTitleReq._();
+
+  factory GcopyTitleReq([Function(GcopyTitleReqBuilder b) updates]) =
+      _$GcopyTitleReq;
+
+  static void _initializeBuilder(GcopyTitleReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'copyTitle',
+    )
+    ..executeOnListen = true;
+  @override
+  _i3.GcopyTitleVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GcopyTitleData? Function(
+    _i2.GcopyTitleData?,
+    _i2.GcopyTitleData?,
+  )? get updateResult;
+  @override
+  _i2.GcopyTitleData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GcopyTitleData? parseData(Map<String, dynamic> json) =>
+      _i2.GcopyTitleData.fromJson(json);
+  static Serializer<GcopyTitleReq> get serializer => _$gcopyTitleReqSerializer;
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GcopyTitleReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GcopyTitleReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GcopyTitleReq.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragmentReq
     implements
         Built<GdeviceInfoFragmentReq, GdeviceInfoFragmentReqBuilder>,

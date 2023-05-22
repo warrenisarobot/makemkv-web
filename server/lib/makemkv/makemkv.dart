@@ -125,6 +125,7 @@ class MakemkvCon {
   }
 
   Future<List<Device>> getDevices() async {
+    devices = [];
     final statusCode = await runCommand([...commonArgs, 'info']);
     if (![0, 1].contains(statusCode)) {
       throw Exception('Failed to get devices');
@@ -133,15 +134,16 @@ class MakemkvCon {
   }
 
   Future<void> copyTrack(
-      int discIndex, int discTrack, String destinationFolder) async {
+      int discIndex, int discTitle, String destinationFolder) async {
     final statusCode = await runCommand(
-        [...commonArgs, 'mkv', '$discIndex', '$discTrack', destinationFolder]);
+        [...commonArgs, 'mkv', '$discIndex', '$discTitle', destinationFolder]);
     if (statusCode != 0) {
-      throw Exception("Track copy failed, status code: $statusCode");
+      throw Exception("Title copy failed, status code: $statusCode");
     }
   }
 
   Future<DiscInfo> discInfo(int discIndex) async {
+    disc = null;
     final statusCode =
         await runCommand([...commonArgs, 'info', 'disc:$discIndex']);
     if (statusCode != 0) {

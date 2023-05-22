@@ -88,6 +88,28 @@ abstract class GrefreshDevicesVars
       );
 }
 
+abstract class GcopyTitleVars
+    implements Built<GcopyTitleVars, GcopyTitleVarsBuilder> {
+  GcopyTitleVars._();
+
+  factory GcopyTitleVars([Function(GcopyTitleVarsBuilder b) updates]) =
+      _$GcopyTitleVars;
+
+  int get discIndex;
+  int get titleIndex;
+  static Serializer<GcopyTitleVars> get serializer =>
+      _$gcopyTitleVarsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcopyTitleVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GcopyTitleVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcopyTitleVars.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragmentVars
     implements Built<GdeviceInfoFragmentVars, GdeviceInfoFragmentVarsBuilder> {
   GdeviceInfoFragmentVars._();

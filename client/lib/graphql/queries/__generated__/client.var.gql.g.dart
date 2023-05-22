@@ -14,6 +14,8 @@ Serializer<GallStatusVars> _$gallStatusVarsSerializer =
     new _$GallStatusVarsSerializer();
 Serializer<GrefreshDevicesVars> _$grefreshDevicesVarsSerializer =
     new _$GrefreshDevicesVarsSerializer();
+Serializer<GcopyTitleVars> _$gcopyTitleVarsSerializer =
+    new _$GcopyTitleVarsSerializer();
 Serializer<GdeviceInfoFragmentVars> _$gdeviceInfoFragmentVarsSerializer =
     new _$GdeviceInfoFragmentVarsSerializer();
 Serializer<GdiscInfoFragmentVars> _$gdiscInfoFragmentVarsSerializer =
@@ -125,6 +127,55 @@ class _$GrefreshDevicesVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GrefreshDevicesVarsBuilder().build();
+  }
+}
+
+class _$GcopyTitleVarsSerializer
+    implements StructuredSerializer<GcopyTitleVars> {
+  @override
+  final Iterable<Type> types = const [GcopyTitleVars, _$GcopyTitleVars];
+  @override
+  final String wireName = 'GcopyTitleVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GcopyTitleVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'discIndex',
+      serializers.serialize(object.discIndex,
+          specifiedType: const FullType(int)),
+      'titleIndex',
+      serializers.serialize(object.titleIndex,
+          specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcopyTitleVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcopyTitleVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'discIndex':
+          result.discIndex = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'titleIndex':
+          result.titleIndex = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
   }
 }
 
@@ -457,6 +508,107 @@ class GrefreshDevicesVarsBuilder
 
   _$GrefreshDevicesVars _build() {
     final _$result = _$v ?? new _$GrefreshDevicesVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcopyTitleVars extends GcopyTitleVars {
+  @override
+  final int discIndex;
+  @override
+  final int titleIndex;
+
+  factory _$GcopyTitleVars([void Function(GcopyTitleVarsBuilder)? updates]) =>
+      (new GcopyTitleVarsBuilder()..update(updates))._build();
+
+  _$GcopyTitleVars._({required this.discIndex, required this.titleIndex})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        discIndex, r'GcopyTitleVars', 'discIndex');
+    BuiltValueNullFieldError.checkNotNull(
+        titleIndex, r'GcopyTitleVars', 'titleIndex');
+  }
+
+  @override
+  GcopyTitleVars rebuild(void Function(GcopyTitleVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcopyTitleVarsBuilder toBuilder() =>
+      new GcopyTitleVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcopyTitleVars &&
+        discIndex == other.discIndex &&
+        titleIndex == other.titleIndex;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, discIndex.hashCode);
+    _$hash = $jc(_$hash, titleIndex.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcopyTitleVars')
+          ..add('discIndex', discIndex)
+          ..add('titleIndex', titleIndex))
+        .toString();
+  }
+}
+
+class GcopyTitleVarsBuilder
+    implements Builder<GcopyTitleVars, GcopyTitleVarsBuilder> {
+  _$GcopyTitleVars? _$v;
+
+  int? _discIndex;
+  int? get discIndex => _$this._discIndex;
+  set discIndex(int? discIndex) => _$this._discIndex = discIndex;
+
+  int? _titleIndex;
+  int? get titleIndex => _$this._titleIndex;
+  set titleIndex(int? titleIndex) => _$this._titleIndex = titleIndex;
+
+  GcopyTitleVarsBuilder();
+
+  GcopyTitleVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _discIndex = $v.discIndex;
+      _titleIndex = $v.titleIndex;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcopyTitleVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcopyTitleVars;
+  }
+
+  @override
+  void update(void Function(GcopyTitleVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcopyTitleVars build() => _build();
+
+  _$GcopyTitleVars _build() {
+    final _$result = _$v ??
+        new _$GcopyTitleVars._(
+            discIndex: BuiltValueNullFieldError.checkNotNull(
+                discIndex, r'GcopyTitleVars', 'discIndex'),
+            titleIndex: BuiltValueNullFieldError.checkNotNull(
+                titleIndex, r'GcopyTitleVars', 'titleIndex'));
     replace(_$result);
     return _$result;
   }

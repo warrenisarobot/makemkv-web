@@ -57,6 +57,15 @@ class GraphRequest {
     throwGraphError(res);
     return res.data!.discInfo;
   }
+
+  Future<void> copyTitle(int discIndex, int titleIndex) async {
+    final res = await client
+        .request(GcopyTitleReq((b) => b
+          ..vars.discIndex = discIndex
+          ..vars.titleIndex = titleIndex))
+        .first;
+    throwGraphError(res);
+  }
 }
 
 final graphRequests = GraphRequest(

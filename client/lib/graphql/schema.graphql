@@ -69,6 +69,10 @@ type StreamInfo {
   panelTitle: String
 }
 
+type Mutation {
+  copyTitle(deviceIndex: Int!, titleIndex: Int!): Boolean!
+}
+
 type Subscription {
   progress(deviceIndex: Int!): Progress!
 }

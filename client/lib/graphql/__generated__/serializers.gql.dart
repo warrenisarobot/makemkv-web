@@ -15,6 +15,7 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dar
         GallStatusData_allStatus_discInfo,
         GallStatusData_allStatus_discInfo_titles,
         GallStatusData_allStatus_discInfo_titles_streams,
+        GcopyTitleData,
         GdeviceInfoFragmentData,
         GdevicesData,
         GdevicesData_devices,
@@ -35,6 +36,7 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dar
 import 'package:makemkv_client/graphql/queries/__generated__/client.req.gql.dart'
     show
         GallStatusReq,
+        GcopyTitleReq,
         GdeviceInfoFragmentReq,
         GdevicesReq,
         GdiscInfoFragmentReq,
@@ -44,6 +46,7 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.req.gql.dart
 import 'package:makemkv_client/graphql/queries/__generated__/client.var.gql.dart'
     show
         GallStatusVars,
+        GcopyTitleVars,
         GdeviceInfoFragmentVars,
         GdevicesVars,
         GdiscInfoFragmentVars,
@@ -65,6 +68,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GallStatusData_allStatus_discInfo_titles_streams,
   GallStatusReq,
   GallStatusVars,
+  GcopyTitleData,
+  GcopyTitleReq,
+  GcopyTitleVars,
   GdeviceInfoFragmentData,
   GdeviceInfoFragmentReq,
   GdeviceInfoFragmentVars,

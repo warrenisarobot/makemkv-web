@@ -41,6 +41,8 @@ Serializer<GrefreshDevicesData> _$grefreshDevicesDataSerializer =
 Serializer<GrefreshDevicesData_refreshDevices>
     _$grefreshDevicesDataRefreshDevicesSerializer =
     new _$GrefreshDevicesData_refreshDevicesSerializer();
+Serializer<GcopyTitleData> _$gcopyTitleDataSerializer =
+    new _$GcopyTitleDataSerializer();
 Serializer<GdeviceInfoFragmentData> _$gdeviceInfoFragmentDataSerializer =
     new _$GdeviceInfoFragmentDataSerializer();
 Serializer<GdiscInfoFragmentData> _$gdiscInfoFragmentDataSerializer =
@@ -1580,6 +1582,55 @@ class _$GrefreshDevicesData_refreshDevicesSerializer
           break;
         case 'visible':
           result.visible = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcopyTitleDataSerializer
+    implements StructuredSerializer<GcopyTitleData> {
+  @override
+  final Iterable<Type> types = const [GcopyTitleData, _$GcopyTitleData];
+  @override
+  final String wireName = 'GcopyTitleData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GcopyTitleData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'copyTitle',
+      serializers.serialize(object.copyTitle,
+          specifiedType: const FullType(bool)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcopyTitleData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcopyTitleDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'copyTitle':
+          result.copyTitle = serializers.deserialize(value,
               specifiedType: const FullType(bool))! as bool;
           break;
       }
@@ -5463,6 +5514,109 @@ class GrefreshDevicesData_refreshDevicesBuilder
                 discName, r'GrefreshDevicesData_refreshDevices', 'discName'),
             visible: BuiltValueNullFieldError.checkNotNull(
                 visible, r'GrefreshDevicesData_refreshDevices', 'visible'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcopyTitleData extends GcopyTitleData {
+  @override
+  final String G__typename;
+  @override
+  final bool copyTitle;
+
+  factory _$GcopyTitleData([void Function(GcopyTitleDataBuilder)? updates]) =>
+      (new GcopyTitleDataBuilder()..update(updates))._build();
+
+  _$GcopyTitleData._({required this.G__typename, required this.copyTitle})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GcopyTitleData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        copyTitle, r'GcopyTitleData', 'copyTitle');
+  }
+
+  @override
+  GcopyTitleData rebuild(void Function(GcopyTitleDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcopyTitleDataBuilder toBuilder() =>
+      new GcopyTitleDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcopyTitleData &&
+        G__typename == other.G__typename &&
+        copyTitle == other.copyTitle;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, copyTitle.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcopyTitleData')
+          ..add('G__typename', G__typename)
+          ..add('copyTitle', copyTitle))
+        .toString();
+  }
+}
+
+class GcopyTitleDataBuilder
+    implements Builder<GcopyTitleData, GcopyTitleDataBuilder> {
+  _$GcopyTitleData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  bool? _copyTitle;
+  bool? get copyTitle => _$this._copyTitle;
+  set copyTitle(bool? copyTitle) => _$this._copyTitle = copyTitle;
+
+  GcopyTitleDataBuilder() {
+    GcopyTitleData._initializeBuilder(this);
+  }
+
+  GcopyTitleDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _copyTitle = $v.copyTitle;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcopyTitleData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcopyTitleData;
+  }
+
+  @override
+  void update(void Function(GcopyTitleDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcopyTitleData build() => _build();
+
+  _$GcopyTitleData _build() {
+    final _$result = _$v ??
+        new _$GcopyTitleData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GcopyTitleData', 'G__typename'),
+            copyTitle: BuiltValueNullFieldError.checkNotNull(
+                copyTitle, r'GcopyTitleData', 'copyTitle'));
     replace(_$result);
     return _$result;
   }

@@ -24,6 +24,12 @@ GraphQLSchema get graphqlApiSchema => _graphqlApiSchema ??= GraphQLSchema(
           discInfoGraphQLField,
         ],
       ),
+      mutationType: objectType(
+        'Mutation',
+        fields: [
+          copyTitleGraphQLField,
+        ],
+      ),
       subscriptionType: objectType(
         'Subscription',
         fields: [

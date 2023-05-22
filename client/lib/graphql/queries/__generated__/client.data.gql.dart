@@ -590,6 +590,31 @@ abstract class GrefreshDevicesData_refreshDevices
       );
 }
 
+abstract class GcopyTitleData
+    implements Built<GcopyTitleData, GcopyTitleDataBuilder> {
+  GcopyTitleData._();
+
+  factory GcopyTitleData([Function(GcopyTitleDataBuilder b) updates]) =
+      _$GcopyTitleData;
+
+  static void _initializeBuilder(GcopyTitleDataBuilder b) =>
+      b..G__typename = 'Mutation';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  bool get copyTitle;
+  static Serializer<GcopyTitleData> get serializer =>
+      _$gcopyTitleDataSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcopyTitleData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GcopyTitleData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcopyTitleData.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragment {
   String get G__typename;
   int get index;

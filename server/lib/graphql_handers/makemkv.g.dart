@@ -88,3 +88,21 @@ final _progressGraphQLField = HotReloadableDefinition<
           },
         ))
           ..inputs.addAll([graphQLInt.nonNull().inputField('deviceIndex')]));
+
+GraphQLObjectField<bool, Object?, Object?> get copyTitleGraphQLField =>
+    _copyTitleGraphQLField.value;
+final _copyTitleGraphQLField =
+    HotReloadableDefinition<GraphQLObjectField<bool, Object?, Object?>>(
+        (setValue) => setValue(graphQLBoolean.nonNull().field<Object?>(
+              'copyTitle',
+              resolve: (obj, ctx) {
+                final args = ctx.args;
+
+                return copyTitle(ctx, (args["deviceIndex"] as int),
+                    (args["titleIndex"] as int));
+              },
+            ))
+              ..inputs.addAll([
+                graphQLInt.nonNull().inputField('deviceIndex'),
+                graphQLInt.nonNull().inputField('titleIndex')
+              ]));

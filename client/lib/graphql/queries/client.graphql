@@ -82,3 +82,7 @@ query refreshDevices {
     ...deviceInfoFragment
     }
   }
+
+mutation copyTitle($discIndex: Int!, $titleIndex: Int!) {
+  copyTitle(discIndex: $discIndex, titleIndex: $titleIndex) 
+  }

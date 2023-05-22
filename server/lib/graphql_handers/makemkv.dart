@@ -60,10 +60,10 @@ Future<Stream<Progress>> progress(Ctx ctx, int deviceIndex) async {
   return stream;
 }
 
-@Query()
-Future<bool> copyTrack(Ctx ctx, int deviceIndex, int track) async {
+@Mutation()
+Future<bool> copyTitle(Ctx ctx, int deviceIndex, int titleIndex) async {
   final mkv = await mkvManager.getMkvByDevice(deviceIndex);
-  mkv.copyTrack(deviceIndex, track, pathForDisc(deviceIndex));
+  mkv.copyTrack(deviceIndex, titleIndex, pathForDisc(deviceIndex));
   return true;
 }
 

@@ -141,8 +141,8 @@ class _$GcopyTitleVarsSerializer
   Iterable<Object?> serialize(Serializers serializers, GcopyTitleVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'discIndex',
-      serializers.serialize(object.discIndex,
+      'deviceIndex',
+      serializers.serialize(object.deviceIndex,
           specifiedType: const FullType(int)),
       'titleIndex',
       serializers.serialize(object.titleIndex,
@@ -164,8 +164,8 @@ class _$GcopyTitleVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'discIndex':
-          result.discIndex = serializers.deserialize(value,
+        case 'deviceIndex':
+          result.deviceIndex = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
         case 'titleIndex':
@@ -515,17 +515,17 @@ class GrefreshDevicesVarsBuilder
 
 class _$GcopyTitleVars extends GcopyTitleVars {
   @override
-  final int discIndex;
+  final int deviceIndex;
   @override
   final int titleIndex;
 
   factory _$GcopyTitleVars([void Function(GcopyTitleVarsBuilder)? updates]) =>
       (new GcopyTitleVarsBuilder()..update(updates))._build();
 
-  _$GcopyTitleVars._({required this.discIndex, required this.titleIndex})
+  _$GcopyTitleVars._({required this.deviceIndex, required this.titleIndex})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        discIndex, r'GcopyTitleVars', 'discIndex');
+        deviceIndex, r'GcopyTitleVars', 'deviceIndex');
     BuiltValueNullFieldError.checkNotNull(
         titleIndex, r'GcopyTitleVars', 'titleIndex');
   }
@@ -542,14 +542,14 @@ class _$GcopyTitleVars extends GcopyTitleVars {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is GcopyTitleVars &&
-        discIndex == other.discIndex &&
+        deviceIndex == other.deviceIndex &&
         titleIndex == other.titleIndex;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, discIndex.hashCode);
+    _$hash = $jc(_$hash, deviceIndex.hashCode);
     _$hash = $jc(_$hash, titleIndex.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -558,7 +558,7 @@ class _$GcopyTitleVars extends GcopyTitleVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GcopyTitleVars')
-          ..add('discIndex', discIndex)
+          ..add('deviceIndex', deviceIndex)
           ..add('titleIndex', titleIndex))
         .toString();
   }
@@ -568,9 +568,9 @@ class GcopyTitleVarsBuilder
     implements Builder<GcopyTitleVars, GcopyTitleVarsBuilder> {
   _$GcopyTitleVars? _$v;
 
-  int? _discIndex;
-  int? get discIndex => _$this._discIndex;
-  set discIndex(int? discIndex) => _$this._discIndex = discIndex;
+  int? _deviceIndex;
+  int? get deviceIndex => _$this._deviceIndex;
+  set deviceIndex(int? deviceIndex) => _$this._deviceIndex = deviceIndex;
 
   int? _titleIndex;
   int? get titleIndex => _$this._titleIndex;
@@ -581,7 +581,7 @@ class GcopyTitleVarsBuilder
   GcopyTitleVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _discIndex = $v.discIndex;
+      _deviceIndex = $v.deviceIndex;
       _titleIndex = $v.titleIndex;
       _$v = null;
     }
@@ -605,8 +605,8 @@ class GcopyTitleVarsBuilder
   _$GcopyTitleVars _build() {
     final _$result = _$v ??
         new _$GcopyTitleVars._(
-            discIndex: BuiltValueNullFieldError.checkNotNull(
-                discIndex, r'GcopyTitleVars', 'discIndex'),
+            deviceIndex: BuiltValueNullFieldError.checkNotNull(
+                deviceIndex, r'GcopyTitleVars', 'deviceIndex'),
             titleIndex: BuiltValueNullFieldError.checkNotNull(
                 titleIndex, r'GcopyTitleVars', 'titleIndex'));
     replace(_$result);

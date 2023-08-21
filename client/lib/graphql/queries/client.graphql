@@ -83,6 +83,6 @@ query refreshDevices {
     }
   }
 
-mutation copyTitle($discIndex: Int!, $titleIndex: Int!) {
-  copyTitle(discIndex: $discIndex, titleIndex: $titleIndex) 
+mutation copyTitle($deviceIndex: Int!, $titleIndex: Int!) {
+  copyTitle(deviceIndex: $deviceIndex, titleIndex: $titleIndex) 
   }

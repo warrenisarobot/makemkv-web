@@ -95,7 +95,7 @@ abstract class GcopyTitleVars
   factory GcopyTitleVars([Function(GcopyTitleVarsBuilder b) updates]) =
       _$GcopyTitleVars;
 
-  int get discIndex;
+  int get deviceIndex;
   int get titleIndex;
   static Serializer<GcopyTitleVars> get serializer =>
       _$gcopyTitleVarsSerializer;

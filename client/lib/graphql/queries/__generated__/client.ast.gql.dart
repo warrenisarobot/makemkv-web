@@ -450,7 +450,7 @@ const copyTitle = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'copyTitle'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'discIndex')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'deviceIndex')),
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
@@ -475,8 +475,8 @@ const copyTitle = _i1.OperationDefinitionNode(
       alias: null,
       arguments: [
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'discIndex'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'discIndex')),
+          name: _i1.NameNode(value: 'deviceIndex'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'deviceIndex')),
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'titleIndex'),

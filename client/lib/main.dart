@@ -126,27 +126,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (makemkv.selectedDriveIndex == null) return;
                           makemkv.scanDrive(makemkv.selectedDriveIndex!);
                         },
-                        child: const Text("Scan")),
-                    if (makemkv.selectedDrive!.discInfo == null)
-                      Text("No disc"),
-                    if (makemkv.selectedDrive!.discInfo != null)
-                      Column(
-                          children: makemkv.selectedDrive!.discInfo!.titles
-                              .map<Widget>((title) => Row(children: [
-                                    Checkbox(
-                                        value: makemkv.titleSelection(
-                                            makemkv.selectedDrive!.deviceIndex,
-                                            title.index),
-                                        onChanged: (val) {
-                                          makemkv.toggleTitleSelection(
-                                              makemkv
-                                                  .selectedDrive!.deviceIndex,
-                                              title.index);
-                                        }),
-                                    Text(title.comment ?? "Unknown name")
-                                  ]))
-                              .toList())
+                        child: const Text("Scan"))
                   ]),
+                  if (makemkv.selectedDrive!.discInfo == null)
+                    const Text("No disc"),
+                  if (makemkv.selectedDrive!.discInfo != null)
+                    Column(
+                        children: makemkv.selectedDrive!.discInfo!.titles
+                            .map<Widget>((title) => Row(children: [
+                                  Text("${title.index}"),
+                                  Checkbox(
+                                      value: makemkv.titleSelection(
+                                          makemkv.selectedDrive!.deviceIndex,
+                                          title.index),
+                                      onChanged: (val) {
+                                        makemkv.toggleTitleSelection(
+                                            makemkv.selectedDrive!.deviceIndex,
+                                            title.index);
+                                      }),
+                                  Text(title.comment ?? "Unknown name")
+                                ]))
+                            .toList())
                 ]);
               }))
             ])));

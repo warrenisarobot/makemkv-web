@@ -816,9 +816,9 @@ class _$GallStatusData_allStatusSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'running',
-      serializers.serialize(object.running,
-          specifiedType: const FullType(bool)),
+      'status',
+      serializers.serialize(object.status,
+          specifiedType: const FullType(_i2.GMakemkvStatus)),
       'deviceIndex',
       serializers.serialize(object.deviceIndex,
           specifiedType: const FullType(int)),
@@ -853,9 +853,10 @@ class _$GallStatusData_allStatusSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'running':
-          result.running = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+        case 'status':
+          result.status = serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GMakemkvStatus))!
+              as _i2.GMakemkvStatus;
           break;
         case 'deviceIndex':
           result.deviceIndex = serializers.deserialize(value,
@@ -2237,9 +2238,9 @@ class _$GstatusFragmentDataSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'running',
-      serializers.serialize(object.running,
-          specifiedType: const FullType(bool)),
+      'status',
+      serializers.serialize(object.status,
+          specifiedType: const FullType(_i2.GMakemkvStatus)),
       'deviceIndex',
       serializers.serialize(object.deviceIndex,
           specifiedType: const FullType(int)),
@@ -2274,9 +2275,10 @@ class _$GstatusFragmentDataSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'running':
-          result.running = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+        case 'status':
+          result.status = serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GMakemkvStatus))!
+              as _i2.GMakemkvStatus;
           break;
         case 'deviceIndex':
           result.deviceIndex = serializers.deserialize(value,
@@ -4140,7 +4142,7 @@ class _$GallStatusData_allStatus extends GallStatusData_allStatus {
   @override
   final String G__typename;
   @override
-  final bool running;
+  final _i2.GMakemkvStatus status;
   @override
   final int deviceIndex;
   @override
@@ -4154,7 +4156,7 @@ class _$GallStatusData_allStatus extends GallStatusData_allStatus {
 
   _$GallStatusData_allStatus._(
       {required this.G__typename,
-      required this.running,
+      required this.status,
       required this.deviceIndex,
       required this.device,
       this.discInfo})
@@ -4162,7 +4164,7 @@ class _$GallStatusData_allStatus extends GallStatusData_allStatus {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GallStatusData_allStatus', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        running, r'GallStatusData_allStatus', 'running');
+        status, r'GallStatusData_allStatus', 'status');
     BuiltValueNullFieldError.checkNotNull(
         deviceIndex, r'GallStatusData_allStatus', 'deviceIndex');
     BuiltValueNullFieldError.checkNotNull(
@@ -4183,7 +4185,7 @@ class _$GallStatusData_allStatus extends GallStatusData_allStatus {
     if (identical(other, this)) return true;
     return other is GallStatusData_allStatus &&
         G__typename == other.G__typename &&
-        running == other.running &&
+        status == other.status &&
         deviceIndex == other.deviceIndex &&
         device == other.device &&
         discInfo == other.discInfo;
@@ -4193,7 +4195,7 @@ class _$GallStatusData_allStatus extends GallStatusData_allStatus {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, running.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, deviceIndex.hashCode);
     _$hash = $jc(_$hash, device.hashCode);
     _$hash = $jc(_$hash, discInfo.hashCode);
@@ -4205,7 +4207,7 @@ class _$GallStatusData_allStatus extends GallStatusData_allStatus {
   String toString() {
     return (newBuiltValueToStringHelper(r'GallStatusData_allStatus')
           ..add('G__typename', G__typename)
-          ..add('running', running)
+          ..add('status', status)
           ..add('deviceIndex', deviceIndex)
           ..add('device', device)
           ..add('discInfo', discInfo))
@@ -4222,9 +4224,9 @@ class GallStatusData_allStatusBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  bool? _running;
-  bool? get running => _$this._running;
-  set running(bool? running) => _$this._running = running;
+  _i2.GMakemkvStatus? _status;
+  _i2.GMakemkvStatus? get status => _$this._status;
+  set status(_i2.GMakemkvStatus? status) => _$this._status = status;
 
   int? _deviceIndex;
   int? get deviceIndex => _$this._deviceIndex;
@@ -4250,7 +4252,7 @@ class GallStatusData_allStatusBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _running = $v.running;
+      _status = $v.status;
       _deviceIndex = $v.deviceIndex;
       _device = $v.device.toBuilder();
       _discInfo = $v.discInfo?.toBuilder();
@@ -4280,8 +4282,8 @@ class GallStatusData_allStatusBuilder
           new _$GallStatusData_allStatus._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GallStatusData_allStatus', 'G__typename'),
-              running: BuiltValueNullFieldError.checkNotNull(
-                  running, r'GallStatusData_allStatus', 'running'),
+              status: BuiltValueNullFieldError.checkNotNull(
+                  status, r'GallStatusData_allStatus', 'status'),
               deviceIndex: BuiltValueNullFieldError.checkNotNull(
                   deviceIndex, r'GallStatusData_allStatus', 'deviceIndex'),
               device: device.build(),
@@ -6533,7 +6535,7 @@ class _$GstatusFragmentData extends GstatusFragmentData {
   @override
   final String G__typename;
   @override
-  final bool running;
+  final _i2.GMakemkvStatus status;
   @override
   final int deviceIndex;
   @override
@@ -6547,7 +6549,7 @@ class _$GstatusFragmentData extends GstatusFragmentData {
 
   _$GstatusFragmentData._(
       {required this.G__typename,
-      required this.running,
+      required this.status,
       required this.deviceIndex,
       required this.device,
       this.discInfo})
@@ -6555,7 +6557,7 @@ class _$GstatusFragmentData extends GstatusFragmentData {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GstatusFragmentData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        running, r'GstatusFragmentData', 'running');
+        status, r'GstatusFragmentData', 'status');
     BuiltValueNullFieldError.checkNotNull(
         deviceIndex, r'GstatusFragmentData', 'deviceIndex');
     BuiltValueNullFieldError.checkNotNull(
@@ -6576,7 +6578,7 @@ class _$GstatusFragmentData extends GstatusFragmentData {
     if (identical(other, this)) return true;
     return other is GstatusFragmentData &&
         G__typename == other.G__typename &&
-        running == other.running &&
+        status == other.status &&
         deviceIndex == other.deviceIndex &&
         device == other.device &&
         discInfo == other.discInfo;
@@ -6586,7 +6588,7 @@ class _$GstatusFragmentData extends GstatusFragmentData {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, running.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, deviceIndex.hashCode);
     _$hash = $jc(_$hash, device.hashCode);
     _$hash = $jc(_$hash, discInfo.hashCode);
@@ -6598,7 +6600,7 @@ class _$GstatusFragmentData extends GstatusFragmentData {
   String toString() {
     return (newBuiltValueToStringHelper(r'GstatusFragmentData')
           ..add('G__typename', G__typename)
-          ..add('running', running)
+          ..add('status', status)
           ..add('deviceIndex', deviceIndex)
           ..add('device', device)
           ..add('discInfo', discInfo))
@@ -6614,9 +6616,9 @@ class GstatusFragmentDataBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  bool? _running;
-  bool? get running => _$this._running;
-  set running(bool? running) => _$this._running = running;
+  _i2.GMakemkvStatus? _status;
+  _i2.GMakemkvStatus? get status => _$this._status;
+  set status(_i2.GMakemkvStatus? status) => _$this._status = status;
 
   int? _deviceIndex;
   int? get deviceIndex => _$this._deviceIndex;
@@ -6642,7 +6644,7 @@ class GstatusFragmentDataBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _running = $v.running;
+      _status = $v.status;
       _deviceIndex = $v.deviceIndex;
       _device = $v.device.toBuilder();
       _discInfo = $v.discInfo?.toBuilder();
@@ -6672,8 +6674,8 @@ class GstatusFragmentDataBuilder
           new _$GstatusFragmentData._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GstatusFragmentData', 'G__typename'),
-              running: BuiltValueNullFieldError.checkNotNull(
-                  running, r'GstatusFragmentData', 'running'),
+              status: BuiltValueNullFieldError.checkNotNull(
+                  status, r'GstatusFragmentData', 'status'),
               deviceIndex: BuiltValueNullFieldError.checkNotNull(
                   deviceIndex, r'GstatusFragmentData', 'deviceIndex'),
               device: device.build(),

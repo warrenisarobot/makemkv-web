@@ -8,6 +8,7 @@ part of 'serializers.gql.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
+      ..add(GMakemkvStatus.serializer)
       ..add(GallStatusData.serializer)
       ..add(GallStatusData_allStatus.serializer)
       ..add(GallStatusData_allStatus_device.serializer)

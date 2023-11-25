@@ -17,10 +17,12 @@ abstract class GdevicesVars
       _$GdevicesVars;
 
   static Serializer<GdevicesVars> get serializer => _$gdevicesVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdevicesVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdevicesVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdevicesVars.serializer,
@@ -37,10 +39,12 @@ abstract class GdiscInfoVars
 
   int get discIndex;
   static Serializer<GdiscInfoVars> get serializer => _$gdiscInfoVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoVars.serializer,
@@ -57,10 +61,12 @@ abstract class GallStatusVars
 
   static Serializer<GallStatusVars> get serializer =>
       _$gallStatusVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GallStatusVars.serializer,
@@ -77,10 +83,12 @@ abstract class GrefreshDevicesVars
 
   static Serializer<GrefreshDevicesVars> get serializer =>
       _$grefreshDevicesVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GrefreshDevicesVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GrefreshDevicesVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GrefreshDevicesVars.serializer,
@@ -97,12 +105,15 @@ abstract class GcopyTitleVars
 
   int get deviceIndex;
   int get titleIndex;
+  String get filename;
   static Serializer<GcopyTitleVars> get serializer =>
       _$gcopyTitleVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GcopyTitleVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GcopyTitleVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GcopyTitleVars.serializer,
@@ -120,10 +131,12 @@ abstract class GdeviceInfoFragmentVars
 
   static Serializer<GdeviceInfoFragmentVars> get serializer =>
       _$gdeviceInfoFragmentVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdeviceInfoFragmentVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdeviceInfoFragmentVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdeviceInfoFragmentVars.serializer,
@@ -141,10 +154,12 @@ abstract class GdiscInfoFragmentVars
 
   static Serializer<GdiscInfoFragmentVars> get serializer =>
       _$gdiscInfoFragmentVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoFragmentVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoFragmentVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoFragmentVars.serializer,
@@ -161,10 +176,12 @@ abstract class GstatusFragmentVars
 
   static Serializer<GstatusFragmentVars> get serializer =>
       _$gstatusFragmentVarsSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GstatusFragmentVars.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GstatusFragmentVars.serializer,

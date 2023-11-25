@@ -305,13 +305,13 @@ const statusFragment = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'statusFragment'),
   typeCondition: _i1.TypeConditionNode(
       on: _i1.NamedTypeNode(
-    name: _i1.NameNode(value: 'MakemkvStatus'),
+    name: _i1.NameNode(value: 'MakemkvState'),
     isNonNull: false,
   )),
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'running'),
+      name: _i1.NameNode(value: 'status'),
       alias: null,
       arguments: [],
       directives: [],
@@ -467,6 +467,15 @@ const copyTitle = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'filename')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -481,6 +490,10 @@ const copyTitle = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'titleIndex'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'titleIndex')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'fileName'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'filename')),
         ),
       ],
       directives: [],

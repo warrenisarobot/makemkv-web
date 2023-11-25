@@ -147,6 +147,9 @@ class _$GcopyTitleVarsSerializer
       'titleIndex',
       serializers.serialize(object.titleIndex,
           specifiedType: const FullType(int)),
+      'filename',
+      serializers.serialize(object.filename,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -171,6 +174,10 @@ class _$GcopyTitleVarsSerializer
         case 'titleIndex':
           result.titleIndex = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'filename':
+          result.filename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -518,16 +525,23 @@ class _$GcopyTitleVars extends GcopyTitleVars {
   final int deviceIndex;
   @override
   final int titleIndex;
+  @override
+  final String filename;
 
   factory _$GcopyTitleVars([void Function(GcopyTitleVarsBuilder)? updates]) =>
       (new GcopyTitleVarsBuilder()..update(updates))._build();
 
-  _$GcopyTitleVars._({required this.deviceIndex, required this.titleIndex})
+  _$GcopyTitleVars._(
+      {required this.deviceIndex,
+      required this.titleIndex,
+      required this.filename})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         deviceIndex, r'GcopyTitleVars', 'deviceIndex');
     BuiltValueNullFieldError.checkNotNull(
         titleIndex, r'GcopyTitleVars', 'titleIndex');
+    BuiltValueNullFieldError.checkNotNull(
+        filename, r'GcopyTitleVars', 'filename');
   }
 
   @override
@@ -543,7 +557,8 @@ class _$GcopyTitleVars extends GcopyTitleVars {
     if (identical(other, this)) return true;
     return other is GcopyTitleVars &&
         deviceIndex == other.deviceIndex &&
-        titleIndex == other.titleIndex;
+        titleIndex == other.titleIndex &&
+        filename == other.filename;
   }
 
   @override
@@ -551,6 +566,7 @@ class _$GcopyTitleVars extends GcopyTitleVars {
     var _$hash = 0;
     _$hash = $jc(_$hash, deviceIndex.hashCode);
     _$hash = $jc(_$hash, titleIndex.hashCode);
+    _$hash = $jc(_$hash, filename.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -559,7 +575,8 @@ class _$GcopyTitleVars extends GcopyTitleVars {
   String toString() {
     return (newBuiltValueToStringHelper(r'GcopyTitleVars')
           ..add('deviceIndex', deviceIndex)
-          ..add('titleIndex', titleIndex))
+          ..add('titleIndex', titleIndex)
+          ..add('filename', filename))
         .toString();
   }
 }
@@ -576,6 +593,10 @@ class GcopyTitleVarsBuilder
   int? get titleIndex => _$this._titleIndex;
   set titleIndex(int? titleIndex) => _$this._titleIndex = titleIndex;
 
+  String? _filename;
+  String? get filename => _$this._filename;
+  set filename(String? filename) => _$this._filename = filename;
+
   GcopyTitleVarsBuilder();
 
   GcopyTitleVarsBuilder get _$this {
@@ -583,6 +604,7 @@ class GcopyTitleVarsBuilder
     if ($v != null) {
       _deviceIndex = $v.deviceIndex;
       _titleIndex = $v.titleIndex;
+      _filename = $v.filename;
       _$v = null;
     }
     return this;
@@ -608,7 +630,9 @@ class GcopyTitleVarsBuilder
             deviceIndex: BuiltValueNullFieldError.checkNotNull(
                 deviceIndex, r'GcopyTitleVars', 'deviceIndex'),
             titleIndex: BuiltValueNullFieldError.checkNotNull(
-                titleIndex, r'GcopyTitleVars', 'titleIndex'));
+                titleIndex, r'GcopyTitleVars', 'titleIndex'),
+            filename: BuiltValueNullFieldError.checkNotNull(
+                filename, r'GcopyTitleVars', 'filename'));
     replace(_$result);
     return _$result;
   }

@@ -7,6 +7,8 @@ import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
+import 'package:makemkv_client/graphql/__generated__/schema.schema.gql.dart'
+    show GMakemkvStatus;
 import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dart'
     show
         GallStatusData,
@@ -60,6 +62,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GMakemkvStatus,
   GallStatusData,
   GallStatusData_allStatus,
   GallStatusData_allStatus_device,

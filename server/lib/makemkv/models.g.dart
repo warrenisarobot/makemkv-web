@@ -6,26 +6,26 @@ part of 'models.dart';
 // _GraphQLGenerator
 // **************************************************************************
 
-final _makemkvStatusGraphQLType =
-    HotReloadableDefinition<GraphQLObjectType<MakemkvStatus>>((setValue) {
-  final __name = 'MakemkvStatus';
+final _makemkvStateGraphQLType =
+    HotReloadableDefinition<GraphQLObjectType<MakemkvState>>((setValue) {
+  final __name = 'MakemkvState';
 
-  final __makemkvStatusGraphQLType = objectType<MakemkvStatus>(
+  final __makemkvStateGraphQLType = objectType<MakemkvState>(
     __name,
     isInterface: false,
     interfaces: [],
   );
 
-  setValue(__makemkvStatusGraphQLType);
-  __makemkvStatusGraphQLType.fields.addAll(
+  setValue(__makemkvStateGraphQLType);
+  __makemkvStateGraphQLType.fields.addAll(
     [
-      graphQLBoolean.nonNull().field(
-            'running',
+      makemkvStatusGraphQLType.nonNull().field(
+            'status',
             resolve: (
               obj,
               ctx,
             ) =>
-                obj.running,
+                obj.status,
           ),
       graphQLInt.nonNull().field(
             'deviceIndex',
@@ -54,12 +54,12 @@ final _makemkvStatusGraphQLType =
     ],
   );
 
-  return __makemkvStatusGraphQLType;
+  return __makemkvStateGraphQLType;
 });
 
-/// Auto-generated from [MakemkvStatus].
-GraphQLObjectType<MakemkvStatus> get makemkvStatusGraphQLType =>
-    _makemkvStatusGraphQLType.value;
+/// Auto-generated from [MakemkvState].
+GraphQLObjectType<MakemkvState> get makemkvStateGraphQLType =>
+    _makemkvStateGraphQLType.value;
 
 final _deviceGraphQLType =
     HotReloadableDefinition<GraphQLObjectType<Device>>((setValue) {
@@ -526,6 +526,25 @@ final _progressGraphQLType =
 /// Auto-generated from [Progress].
 GraphQLObjectType<Progress> get progressGraphQLType =>
     _progressGraphQLType.value;
+
+/// Auto-generated from [MakemkvStatus].
+final GraphQLEnumType<MakemkvStatus> makemkvStatusGraphQLType = GraphQLEnumType(
+  'MakemkvStatus',
+  [
+    GraphQLEnumValue(
+      'idle',
+      MakemkvStatus.idle,
+    ),
+    GraphQLEnumValue(
+      'scanning',
+      MakemkvStatus.scanning,
+    ),
+    GraphQLEnumValue(
+      'copying',
+      MakemkvStatus.copying,
+    ),
+  ],
+);
 
 /// Auto-generated from [DiscInfoAttribute].
 final GraphQLEnumType<DiscInfoAttribute> discInfoAttributeGraphQLType =

@@ -3,14 +3,17 @@ import "package:leto_schema/leto_schema.dart";
 
 part "models.g.dart";
 
+@GraphQLEnum()
+enum MakemkvStatus { idle, scanning, copying }
+
 @GraphQLObject()
-class MakemkvStatus {
-  bool running;
+class MakemkvState {
+  MakemkvStatus status;
   int deviceIndex;
   Device device;
   DiscInfo? discInfo;
 
-  MakemkvStatus(this.running, this.deviceIndex, this.device, {this.discInfo});
+  MakemkvState(this.status, this.deviceIndex, this.device, {this.discInfo});
 }
 
 @GraphQLObject()

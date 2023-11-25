@@ -5,6 +5,8 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:makemkv_client/graphql/__generated__/schema.schema.gql.dart'
+    as _i2;
 import 'package:makemkv_client/graphql/__generated__/serializers.gql.dart'
     as _i1;
 
@@ -19,14 +21,17 @@ abstract class GdevicesData
 
   static void _initializeBuilder(GdevicesDataBuilder b) =>
       b..G__typename = 'Query';
+
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   BuiltList<GdevicesData_devices> get devices;
   static Serializer<GdevicesData> get serializer => _$gdevicesDataSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdevicesData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdevicesData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdevicesData.serializer,
@@ -46,6 +51,7 @@ abstract class GdevicesData_devices
 
   static void _initializeBuilder(GdevicesData_devicesBuilder b) =>
       b..G__typename = 'Device';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -59,11 +65,13 @@ abstract class GdevicesData_devices
   bool get visible;
   static Serializer<GdevicesData_devices> get serializer =>
       _$gdevicesDataDevicesSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdevicesData_devices.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdevicesData_devices? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdevicesData_devices.serializer,
@@ -80,14 +88,17 @@ abstract class GdiscInfoData
 
   static void _initializeBuilder(GdiscInfoDataBuilder b) =>
       b..G__typename = 'Query';
+
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   GdiscInfoData_discInfo get discInfo;
   static Serializer<GdiscInfoData> get serializer => _$gdiscInfoDataSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoData.serializer,
@@ -107,6 +118,7 @@ abstract class GdiscInfoData_discInfo
 
   static void _initializeBuilder(GdiscInfoData_discInfoBuilder b) =>
       b..G__typename = 'DiscInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -122,11 +134,13 @@ abstract class GdiscInfoData_discInfo
   BuiltList<GdiscInfoData_discInfo_titles> get titles;
   static Serializer<GdiscInfoData_discInfo> get serializer =>
       _$gdiscInfoDataDiscInfoSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoData_discInfo.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoData_discInfo? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoData_discInfo.serializer,
@@ -147,6 +161,7 @@ abstract class GdiscInfoData_discInfo_titles
 
   static void _initializeBuilder(GdiscInfoData_discInfo_titlesBuilder b) =>
       b..G__typename = 'TitleInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -184,11 +199,13 @@ abstract class GdiscInfoData_discInfo_titles
   BuiltList<GdiscInfoData_discInfo_titles_streams> get streams;
   static Serializer<GdiscInfoData_discInfo_titles> get serializer =>
       _$gdiscInfoDataDiscInfoTitlesSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoData_discInfo_titles.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoData_discInfo_titles? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoData_discInfo_titles.serializer,
@@ -210,6 +227,7 @@ abstract class GdiscInfoData_discInfo_titles_streams
   static void _initializeBuilder(
           GdiscInfoData_discInfo_titles_streamsBuilder b) =>
       b..G__typename = 'StreamInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -243,11 +261,13 @@ abstract class GdiscInfoData_discInfo_titles_streams
   String? get panelTitle;
   static Serializer<GdiscInfoData_discInfo_titles_streams> get serializer =>
       _$gdiscInfoDataDiscInfoTitlesStreamsSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoData_discInfo_titles_streams.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoData_discInfo_titles_streams? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -265,15 +285,18 @@ abstract class GallStatusData
 
   static void _initializeBuilder(GallStatusDataBuilder b) =>
       b..G__typename = 'Query';
+
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   BuiltList<GallStatusData_allStatus> get allStatus;
   static Serializer<GallStatusData> get serializer =>
       _$gallStatusDataSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GallStatusData.serializer,
@@ -292,12 +315,13 @@ abstract class GallStatusData_allStatus
       _$GallStatusData_allStatus;
 
   static void _initializeBuilder(GallStatusData_allStatusBuilder b) =>
-      b..G__typename = 'MakemkvStatus';
+      b..G__typename = 'MakemkvState';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  bool get running;
+  _i2.GMakemkvStatus get status;
   @override
   int get deviceIndex;
   @override
@@ -306,11 +330,13 @@ abstract class GallStatusData_allStatus
   GallStatusData_allStatus_discInfo? get discInfo;
   static Serializer<GallStatusData_allStatus> get serializer =>
       _$gallStatusDataAllStatusSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusData_allStatus.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusData_allStatus? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GallStatusData_allStatus.serializer,
@@ -332,6 +358,7 @@ abstract class GallStatusData_allStatus_device
 
   static void _initializeBuilder(GallStatusData_allStatus_deviceBuilder b) =>
       b..G__typename = 'Device';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -345,11 +372,13 @@ abstract class GallStatusData_allStatus_device
   bool get visible;
   static Serializer<GallStatusData_allStatus_device> get serializer =>
       _$gallStatusDataAllStatusDeviceSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusData_allStatus_device.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusData_allStatus_device? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GallStatusData_allStatus_device.serializer,
@@ -371,6 +400,7 @@ abstract class GallStatusData_allStatus_discInfo
 
   static void _initializeBuilder(GallStatusData_allStatus_discInfoBuilder b) =>
       b..G__typename = 'DiscInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -386,11 +416,13 @@ abstract class GallStatusData_allStatus_discInfo
   BuiltList<GallStatusData_allStatus_discInfo_titles> get titles;
   static Serializer<GallStatusData_allStatus_discInfo> get serializer =>
       _$gallStatusDataAllStatusDiscInfoSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusData_allStatus_discInfo.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusData_allStatus_discInfo? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -414,6 +446,7 @@ abstract class GallStatusData_allStatus_discInfo_titles
   static void _initializeBuilder(
           GallStatusData_allStatus_discInfo_titlesBuilder b) =>
       b..G__typename = 'TitleInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -451,11 +484,13 @@ abstract class GallStatusData_allStatus_discInfo_titles
   BuiltList<GallStatusData_allStatus_discInfo_titles_streams> get streams;
   static Serializer<GallStatusData_allStatus_discInfo_titles> get serializer =>
       _$gallStatusDataAllStatusDiscInfoTitlesSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusData_allStatus_discInfo_titles.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusData_allStatus_discInfo_titles? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -479,6 +514,7 @@ abstract class GallStatusData_allStatus_discInfo_titles_streams
   static void _initializeBuilder(
           GallStatusData_allStatus_discInfo_titles_streamsBuilder b) =>
       b..G__typename = 'StreamInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -513,11 +549,13 @@ abstract class GallStatusData_allStatus_discInfo_titles_streams
   static Serializer<GallStatusData_allStatus_discInfo_titles_streams>
       get serializer =>
           _$gallStatusDataAllStatusDiscInfoTitlesStreamsSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GallStatusData_allStatus_discInfo_titles_streams.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusData_allStatus_discInfo_titles_streams? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -535,15 +573,18 @@ abstract class GrefreshDevicesData
 
   static void _initializeBuilder(GrefreshDevicesDataBuilder b) =>
       b..G__typename = 'Query';
+
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   BuiltList<GrefreshDevicesData_refreshDevices> get refreshDevices;
   static Serializer<GrefreshDevicesData> get serializer =>
       _$grefreshDevicesDataSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GrefreshDevicesData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GrefreshDevicesData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GrefreshDevicesData.serializer,
@@ -564,6 +605,7 @@ abstract class GrefreshDevicesData_refreshDevices
 
   static void _initializeBuilder(GrefreshDevicesData_refreshDevicesBuilder b) =>
       b..G__typename = 'Device';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -577,11 +619,13 @@ abstract class GrefreshDevicesData_refreshDevices
   bool get visible;
   static Serializer<GrefreshDevicesData_refreshDevices> get serializer =>
       _$grefreshDevicesDataRefreshDevicesSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GrefreshDevicesData_refreshDevices.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GrefreshDevicesData_refreshDevices? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -599,15 +643,18 @@ abstract class GcopyTitleData
 
   static void _initializeBuilder(GcopyTitleDataBuilder b) =>
       b..G__typename = 'Mutation';
+
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   bool get copyTitle;
   static Serializer<GcopyTitleData> get serializer =>
       _$gcopyTitleDataSerializer;
+
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GcopyTitleData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GcopyTitleData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GcopyTitleData.serializer,
@@ -636,6 +683,7 @@ abstract class GdeviceInfoFragmentData
 
   static void _initializeBuilder(GdeviceInfoFragmentDataBuilder b) =>
       b..G__typename = 'Device';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -649,11 +697,13 @@ abstract class GdeviceInfoFragmentData
   bool get visible;
   static Serializer<GdeviceInfoFragmentData> get serializer =>
       _$gdeviceInfoFragmentDataSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdeviceInfoFragmentData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdeviceInfoFragmentData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdeviceInfoFragmentData.serializer,
@@ -723,6 +773,7 @@ abstract class GdiscInfoFragmentData
 
   static void _initializeBuilder(GdiscInfoFragmentDataBuilder b) =>
       b..G__typename = 'DiscInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -738,11 +789,13 @@ abstract class GdiscInfoFragmentData
   BuiltList<GdiscInfoFragmentData_titles> get titles;
   static Serializer<GdiscInfoFragmentData> get serializer =>
       _$gdiscInfoFragmentDataSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoFragmentData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoFragmentData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoFragmentData.serializer,
@@ -763,6 +816,7 @@ abstract class GdiscInfoFragmentData_titles
 
   static void _initializeBuilder(GdiscInfoFragmentData_titlesBuilder b) =>
       b..G__typename = 'TitleInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -800,11 +854,13 @@ abstract class GdiscInfoFragmentData_titles
   BuiltList<GdiscInfoFragmentData_titles_streams> get streams;
   static Serializer<GdiscInfoFragmentData_titles> get serializer =>
       _$gdiscInfoFragmentDataTitlesSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoFragmentData_titles.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoFragmentData_titles? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GdiscInfoFragmentData_titles.serializer,
@@ -826,6 +882,7 @@ abstract class GdiscInfoFragmentData_titles_streams
   static void _initializeBuilder(
           GdiscInfoFragmentData_titles_streamsBuilder b) =>
       b..G__typename = 'StreamInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -859,11 +916,13 @@ abstract class GdiscInfoFragmentData_titles_streams
   String? get panelTitle;
   static Serializer<GdiscInfoFragmentData_titles_streams> get serializer =>
       _$gdiscInfoFragmentDataTitlesStreamsSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GdiscInfoFragmentData_titles_streams.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoFragmentData_titles_streams? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -874,7 +933,7 @@ abstract class GdiscInfoFragmentData_titles_streams
 
 abstract class GstatusFragment {
   String get G__typename;
-  bool get running;
+  _i2.GMakemkvStatus get status;
   int get deviceIndex;
   GstatusFragment_device get device;
   GstatusFragment_discInfo? get discInfo;
@@ -999,12 +1058,13 @@ abstract class GstatusFragmentData
       [Function(GstatusFragmentDataBuilder b) updates]) = _$GstatusFragmentData;
 
   static void _initializeBuilder(GstatusFragmentDataBuilder b) =>
-      b..G__typename = 'MakemkvStatus';
+      b..G__typename = 'MakemkvState';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  bool get running;
+  _i2.GMakemkvStatus get status;
   @override
   int get deviceIndex;
   @override
@@ -1013,11 +1073,13 @@ abstract class GstatusFragmentData
   GstatusFragmentData_discInfo? get discInfo;
   static Serializer<GstatusFragmentData> get serializer =>
       _$gstatusFragmentDataSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GstatusFragmentData.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GstatusFragmentData.serializer,
@@ -1038,6 +1100,7 @@ abstract class GstatusFragmentData_device
 
   static void _initializeBuilder(GstatusFragmentData_deviceBuilder b) =>
       b..G__typename = 'Device';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -1051,11 +1114,13 @@ abstract class GstatusFragmentData_device
   bool get visible;
   static Serializer<GstatusFragmentData_device> get serializer =>
       _$gstatusFragmentDataDeviceSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GstatusFragmentData_device.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentData_device? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GstatusFragmentData_device.serializer,
@@ -1077,6 +1142,7 @@ abstract class GstatusFragmentData_discInfo
 
   static void _initializeBuilder(GstatusFragmentData_discInfoBuilder b) =>
       b..G__typename = 'DiscInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -1092,11 +1158,13 @@ abstract class GstatusFragmentData_discInfo
   BuiltList<GstatusFragmentData_discInfo_titles> get titles;
   static Serializer<GstatusFragmentData_discInfo> get serializer =>
       _$gstatusFragmentDataDiscInfoSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GstatusFragmentData_discInfo.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentData_discInfo? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GstatusFragmentData_discInfo.serializer,
@@ -1119,6 +1187,7 @@ abstract class GstatusFragmentData_discInfo_titles
   static void _initializeBuilder(
           GstatusFragmentData_discInfo_titlesBuilder b) =>
       b..G__typename = 'TitleInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -1156,11 +1225,13 @@ abstract class GstatusFragmentData_discInfo_titles
   BuiltList<GstatusFragmentData_discInfo_titles_streams> get streams;
   static Serializer<GstatusFragmentData_discInfo_titles> get serializer =>
       _$gstatusFragmentDataDiscInfoTitlesSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GstatusFragmentData_discInfo_titles.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentData_discInfo_titles? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -1184,6 +1255,7 @@ abstract class GstatusFragmentData_discInfo_titles_streams
   static void _initializeBuilder(
           GstatusFragmentData_discInfo_titles_streamsBuilder b) =>
       b..G__typename = 'StreamInfo';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -1217,11 +1289,13 @@ abstract class GstatusFragmentData_discInfo_titles_streams
   String? get panelTitle;
   static Serializer<GstatusFragmentData_discInfo_titles_streams>
       get serializer => _$gstatusFragmentDataDiscInfoTitlesStreamsSerializer;
+
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GstatusFragmentData_discInfo_titles_streams.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentData_discInfo_titles_streams? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(

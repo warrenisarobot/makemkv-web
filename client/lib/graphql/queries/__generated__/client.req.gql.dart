@@ -32,6 +32,7 @@ abstract class GdevicesReq
       operationName: 'devices',
     )
     ..executeOnListen = true;
+
   @override
   _i3.GdevicesVars get vars;
   @override
@@ -41,6 +42,7 @@ abstract class GdevicesReq
         operation: operation,
         variables: vars.toJson(),
       );
+
   @override
   String? get requestId;
   @override
@@ -62,11 +64,14 @@ abstract class GdevicesReq
   @override
   _i2.GdevicesData? parseData(Map<String, dynamic> json) =>
       _i2.GdevicesData.fromJson(json);
+
   static Serializer<GdevicesReq> get serializer => _$gdevicesReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GdevicesReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdevicesReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GdevicesReq.serializer,
@@ -89,6 +94,7 @@ abstract class GdiscInfoReq
       operationName: 'discInfo',
     )
     ..executeOnListen = true;
+
   @override
   _i3.GdiscInfoVars get vars;
   @override
@@ -98,6 +104,7 @@ abstract class GdiscInfoReq
         operation: operation,
         variables: vars.toJson(),
       );
+
   @override
   String? get requestId;
   @override
@@ -119,11 +126,14 @@ abstract class GdiscInfoReq
   @override
   _i2.GdiscInfoData? parseData(Map<String, dynamic> json) =>
       _i2.GdiscInfoData.fromJson(json);
+
   static Serializer<GdiscInfoReq> get serializer => _$gdiscInfoReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GdiscInfoReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GdiscInfoReq.serializer,
@@ -146,6 +156,7 @@ abstract class GallStatusReq
       operationName: 'allStatus',
     )
     ..executeOnListen = true;
+
   @override
   _i3.GallStatusVars get vars;
   @override
@@ -155,6 +166,7 @@ abstract class GallStatusReq
         operation: operation,
         variables: vars.toJson(),
       );
+
   @override
   String? get requestId;
   @override
@@ -176,11 +188,14 @@ abstract class GallStatusReq
   @override
   _i2.GallStatusData? parseData(Map<String, dynamic> json) =>
       _i2.GallStatusData.fromJson(json);
+
   static Serializer<GallStatusReq> get serializer => _$gallStatusReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GallStatusReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GallStatusReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GallStatusReq.serializer,
@@ -203,6 +218,7 @@ abstract class GrefreshDevicesReq
       operationName: 'refreshDevices',
     )
     ..executeOnListen = true;
+
   @override
   _i3.GrefreshDevicesVars get vars;
   @override
@@ -212,6 +228,7 @@ abstract class GrefreshDevicesReq
         operation: operation,
         variables: vars.toJson(),
       );
+
   @override
   String? get requestId;
   @override
@@ -233,12 +250,15 @@ abstract class GrefreshDevicesReq
   @override
   _i2.GrefreshDevicesData? parseData(Map<String, dynamic> json) =>
       _i2.GrefreshDevicesData.fromJson(json);
+
   static Serializer<GrefreshDevicesReq> get serializer =>
       _$grefreshDevicesReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GrefreshDevicesReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GrefreshDevicesReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GrefreshDevicesReq.serializer,
@@ -261,6 +281,7 @@ abstract class GcopyTitleReq
       operationName: 'copyTitle',
     )
     ..executeOnListen = true;
+
   @override
   _i3.GcopyTitleVars get vars;
   @override
@@ -270,6 +291,7 @@ abstract class GcopyTitleReq
         operation: operation,
         variables: vars.toJson(),
       );
+
   @override
   String? get requestId;
   @override
@@ -291,11 +313,14 @@ abstract class GcopyTitleReq
   @override
   _i2.GcopyTitleData? parseData(Map<String, dynamic> json) =>
       _i2.GcopyTitleData.fromJson(json);
+
   static Serializer<GcopyTitleReq> get serializer => _$gcopyTitleReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GcopyTitleReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GcopyTitleReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GcopyTitleReq.serializer,
@@ -317,6 +342,7 @@ abstract class GdeviceInfoFragmentReq
   static void _initializeBuilder(GdeviceInfoFragmentReqBuilder b) => b
     ..document = _i5.document
     ..fragmentName = 'deviceInfoFragment';
+
   @override
   _i3.GdeviceInfoFragmentVars get vars;
   @override
@@ -328,12 +354,15 @@ abstract class GdeviceInfoFragmentReq
   @override
   _i2.GdeviceInfoFragmentData? parseData(Map<String, dynamic> json) =>
       _i2.GdeviceInfoFragmentData.fromJson(json);
+
   static Serializer<GdeviceInfoFragmentReq> get serializer =>
       _$gdeviceInfoFragmentReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GdeviceInfoFragmentReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdeviceInfoFragmentReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GdeviceInfoFragmentReq.serializer,
@@ -344,8 +373,8 @@ abstract class GdeviceInfoFragmentReq
 abstract class GdiscInfoFragmentReq
     implements
         Built<GdiscInfoFragmentReq, GdiscInfoFragmentReqBuilder>,
-        _i1.FragmentRequest<_i2.GdiscInfoFragmentData,
-            _i3.GdiscInfoFragmentVars> {
+        _i1
+        .FragmentRequest<_i2.GdiscInfoFragmentData, _i3.GdiscInfoFragmentVars> {
   GdiscInfoFragmentReq._();
 
   factory GdiscInfoFragmentReq(
@@ -355,6 +384,7 @@ abstract class GdiscInfoFragmentReq
   static void _initializeBuilder(GdiscInfoFragmentReqBuilder b) => b
     ..document = _i5.document
     ..fragmentName = 'discInfoFragment';
+
   @override
   _i3.GdiscInfoFragmentVars get vars;
   @override
@@ -366,12 +396,15 @@ abstract class GdiscInfoFragmentReq
   @override
   _i2.GdiscInfoFragmentData? parseData(Map<String, dynamic> json) =>
       _i2.GdiscInfoFragmentData.fromJson(json);
+
   static Serializer<GdiscInfoFragmentReq> get serializer =>
       _$gdiscInfoFragmentReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GdiscInfoFragmentReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GdiscInfoFragmentReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GdiscInfoFragmentReq.serializer,
@@ -391,6 +424,7 @@ abstract class GstatusFragmentReq
   static void _initializeBuilder(GstatusFragmentReqBuilder b) => b
     ..document = _i5.document
     ..fragmentName = 'statusFragment';
+
   @override
   _i3.GstatusFragmentVars get vars;
   @override
@@ -402,12 +436,15 @@ abstract class GstatusFragmentReq
   @override
   _i2.GstatusFragmentData? parseData(Map<String, dynamic> json) =>
       _i2.GstatusFragmentData.fromJson(json);
+
   static Serializer<GstatusFragmentReq> get serializer =>
       _$gstatusFragmentReqSerializer;
+
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
         GstatusFragmentReq.serializer,
         this,
       ) as Map<String, dynamic>);
+
   static GstatusFragmentReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GstatusFragmentReq.serializer,

@@ -11,7 +11,7 @@ export 'models.dart';
 final _log = Logger("makemkv");
 
 class MakemkvCon {
-  bool running = false;
+  String? runningCommand;
   String makemkvconCli;
   Progress progress;
   List<Device> devices = [];
@@ -55,17 +55,16 @@ class MakemkvCon {
   }
 
   void init() {
-    if (running == true) {
+    if (runningCommand != null) {
       throw Exception("MakemkvCon is already running");
     }
     devices = [];
-    running = true;
     progress = Progress("", "", 0, 0, 0);
     _progressUpdatedController = StreamController<Progress>();
   }
 
   void close() {
-    running = false;
+    runningCommand = null;
     _progressUpdatedController.close();
     if (process != null) {
       process!.kill();
@@ -126,7 +125,7 @@ class MakemkvCon {
 
   Future<List<Device>> getDevices() async {
     devices = [];
-    final statusCode = await runCommand([...commonArgs, 'info']);
+    final statusCode = await runCommand('info', []);
     if (![0, 1].contains(statusCode)) {
       throw Exception('Failed to get devices');
     }
@@ -136,7 +135,7 @@ class MakemkvCon {
   Future<void> copyTrack(
       int discIndex, int discTitle, String destinationFolder) async {
     final statusCode = await runCommand(
-        [...commonArgs, 'mkv', '$discIndex', '$discTitle', destinationFolder]);
+        'mkv', ['$discIndex', '$discTitle', destinationFolder]);
     if (statusCode != 0) {
       throw Exception("Title copy failed, status code: $statusCode");
     }
@@ -144,17 +143,18 @@ class MakemkvCon {
 
   Future<DiscInfo> discInfo(int discIndex) async {
     disc = null;
-    final statusCode =
-        await runCommand([...commonArgs, 'info', 'disc:$discIndex']);
+    final statusCode = await runCommand('info', ['disc:$discIndex']);
     if (statusCode != 0) {
       throw Exception('Failed to get disc title info');
     }
     return getOrCreateDisc();
   }
 
-  Future<int> runCommand(List<String> args) async {
+  Future<int> runCommand(String command, List<String> args) async {
     init();
-    process = await Process.start(makemkvconCli, args);
+    runningCommand = command;
+    process =
+        await Process.start(makemkvconCli, [...commonArgs, command, ...args]);
     final stdoutStream =
         process!.stdout.transform(utf8.decoder).transform(LineSplitter());
     //log these errors

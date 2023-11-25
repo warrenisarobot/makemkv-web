@@ -42,7 +42,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
-          name: _i1.NameNode(value: 'MakemkvStatus'),
+          name: _i1.NameNode(value: 'MakemkvState'),
           isNonNull: true,
         ),
         isNonNull: true,
@@ -124,17 +124,17 @@ const Device = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const MakemkvStatus = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'MakemkvStatus'),
+const MakemkvState = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'MakemkvState'),
   directives: [],
   interfaces: [],
   fields: [
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'running'),
+      name: _i1.NameNode(value: 'status'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Boolean'),
+        name: _i1.NameNode(value: 'MakemkvStatus'),
         isNonNull: true,
       ),
     ),
@@ -164,6 +164,24 @@ const MakemkvStatus = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'DiscInfo'),
         isNonNull: false,
       ),
+    ),
+  ],
+);
+const MakemkvStatus = _i1.EnumTypeDefinitionNode(
+  name: _i1.NameNode(value: 'MakemkvStatus'),
+  directives: [],
+  values: [
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'idle'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'scanning'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'copying'),
+      directives: [],
     ),
   ],
 );
@@ -536,6 +554,15 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           ),
           defaultValue: null,
         ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'fileName'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Boolean'),
@@ -626,6 +653,7 @@ const document = _i1.DocumentNode(definitions: [
   oneOf,
   Query,
   Device,
+  MakemkvState,
   MakemkvStatus,
   DiscInfo,
   TitleInfo,

@@ -6,7 +6,7 @@ directive @oneOf on INPUT_OBJECT
 type Query {
   isRunning: Boolean!
   devices: [Device!]!
-  allStatus: [MakemkvStatus!]!
+  allStatus: [MakemkvState!]!
   refreshDevices: [Device!]!
   discInfo(deviceIndex: Int!): DiscInfo!
 }
@@ -18,11 +18,17 @@ type Device {
   visible: Boolean!
 }
 
-type MakemkvStatus {
-  running: Boolean!
+type MakemkvState {
+  status: MakemkvStatus!
   deviceIndex: Int!
   device: Device!
   discInfo: DiscInfo
+}
+
+enum MakemkvStatus {
+  idle
+  scanning
+  copying
 }
 
 type DiscInfo {
@@ -70,7 +76,7 @@ type StreamInfo {
 }
 
 type Mutation {
-  copyTitle(deviceIndex: Int!, titleIndex: Int!): Boolean!
+  copyTitle(deviceIndex: Int!, titleIndex: Int!, fileName: String!): Boolean!
 }
 
 type Subscription {

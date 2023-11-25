@@ -30,13 +30,20 @@ Future<List<Device>> devices(Ctx ctx) async {
 }
 
 @Query()
-Future<List<MakemkvStatus>> allStatus(Ctx ctx) async {
-  List<MakemkvStatus> res = [];
+Future<List<MakemkvState>> allStatus(Ctx ctx) async {
+  List<MakemkvState> res = [];
   final devices = await mkvManager.getDevices();
   for (final device in devices) {
     final mkv = await mkvManager.getMkvByDevice(device.index);
-    res.add(
-        MakemkvStatus(mkv.running, device.index, device, discInfo: mkv.disc));
+    MakemkvStatus status;
+    if (mkv.runningCommand == null) {
+      status = MakemkvStatus.idle;
+    } else if (mkv.runningCommand == "mkv") {
+      status = MakemkvStatus.copying;
+    } else {
+      status = MakemkvStatus.scanning;
+    }
+    res.add(MakemkvState(status, device.index, device, discInfo: mkv.disc));
   }
   return res;
 }
@@ -61,7 +68,8 @@ Future<Stream<Progress>> progress(Ctx ctx, int deviceIndex) async {
 }
 
 @Mutation()
-Future<bool> copyTitle(Ctx ctx, int deviceIndex, int titleIndex) async {
+Future<bool> copyTitle(
+    Ctx ctx, int deviceIndex, int titleIndex, String fileName) async {
   final mkv = await mkvManager.getMkvByDevice(deviceIndex);
   mkv.copyTrack(deviceIndex, titleIndex, pathForDisc(deviceIndex));
   return true;

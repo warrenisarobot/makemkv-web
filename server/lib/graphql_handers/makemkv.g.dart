@@ -33,12 +33,12 @@ final _devicesGraphQLField = HotReloadableDefinition<
           },
         )));
 
-GraphQLObjectField<List<MakemkvStatus>, Object?, Object?>
+GraphQLObjectField<List<MakemkvState>, Object?, Object?>
     get allStatusGraphQLField => _allStatusGraphQLField.value;
 final _allStatusGraphQLField = HotReloadableDefinition<
-        GraphQLObjectField<List<MakemkvStatus>, Object?, Object?>>(
+        GraphQLObjectField<List<MakemkvState>, Object?, Object?>>(
     (setValue) => setValue(
-            makemkvStatusGraphQLType.nonNull().list().nonNull().field<Object?>(
+            makemkvStateGraphQLType.nonNull().list().nonNull().field<Object?>(
           'allStatus',
           resolve: (obj, ctx) {
             final args = ctx.args;
@@ -99,10 +99,11 @@ final _copyTitleGraphQLField =
                 final args = ctx.args;
 
                 return copyTitle(ctx, (args["deviceIndex"] as int),
-                    (args["titleIndex"] as int));
+                    (args["titleIndex"] as int), (args["fileName"] as String));
               },
             ))
               ..inputs.addAll([
                 graphQLInt.nonNull().inputField('deviceIndex'),
-                graphQLInt.nonNull().inputField('titleIndex')
+                graphQLInt.nonNull().inputField('titleIndex'),
+                graphQLString.nonNull().inputField('fileName')
               ]));

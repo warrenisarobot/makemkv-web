@@ -3,7 +3,6 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dar
 
 class DeviceSelect extends StatefulWidget {
   final List<GdeviceInfoFragment>? devices;
-  final String bob = "bob";
   final void Function(int index) selectDrive;
 
   const DeviceSelect(this.devices, this.selectDrive, {Key? key})

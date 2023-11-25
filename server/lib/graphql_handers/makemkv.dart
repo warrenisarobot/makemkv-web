@@ -7,6 +7,7 @@ import "package:path/path.dart" as path;
 part "makemkv.g.dart";
 
 const writeFolder = "/tmp";
+const tempFolder = "/tmp";
 
 MkvManager? _mkvManager;
 
@@ -71,10 +72,13 @@ Future<Stream<Progress>> progress(Ctx ctx, int deviceIndex) async {
 Future<bool> copyTitle(
     Ctx ctx, int deviceIndex, int titleIndex, String fileName) async {
   final mkv = await mkvManager.getMkvByDevice(deviceIndex);
-  mkv.copyTrack(deviceIndex, titleIndex, pathForDisc(deviceIndex));
+  if (!fileName.endsWith(".mkv")) {
+    fileName = "$fileName.mkv";
+  }
+  mkv.copyTrack(deviceIndex, titleIndex, tempFolder, destinationPath(fileName));
   return true;
 }
 
-pathForDisc(int deviceIndex) {
-  return path.join(writeFolder, "$deviceIndex");
+String destinationPath(String fileName) {
+  return path.join(writeFolder, fileName);
 }

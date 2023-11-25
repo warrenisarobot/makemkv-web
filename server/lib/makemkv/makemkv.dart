@@ -73,6 +73,8 @@ class MakemkvCon {
   }
 
   void processMessage(CliMessage message) {
+    _log.finest(
+        "Message - type: ${message.messageType}, params: ${message.params}");
     if (message.messageType == "DRV") {
       final device = Device.fromParamList(message.paramsAsList());
       if (device.visible) devices.add(device);
@@ -82,7 +84,7 @@ class MakemkvCon {
     } else if (message.messageType.length == 5 &&
         message.messageType.endsWith("INFO")) {
       processInfoMessage(message);
-    }
+    } else {}
   }
 
   void processProgressMessage(CliMessage message) {
@@ -132,12 +134,21 @@ class MakemkvCon {
     return devices;
   }
 
-  Future<void> copyTrack(
-      int discIndex, int discTitle, String destinationFolder) async {
+  Future<void> copyTrack(int discIndex, int discTitle, String destinationFolder,
+      String destinationFile) async {
     final statusCode = await runCommand(
-        'mkv', ['$discIndex', '$discTitle', destinationFolder]);
+        'mkv', ['disc:$discIndex', '$discTitle', destinationFolder]);
     if (statusCode != 0) {
       throw Exception("Title copy failed, status code: $statusCode");
+    }
+    final folder = Directory(destinationFolder);
+    final fileSuffix = "t${discTitle.toString().padLeft(2, '0')}.mkv";
+    _log.info("Looking for file ending with $fileSuffix in $folder");
+    await for (final file in folder.list()) {
+      if (!file.path.endsWith(fileSuffix)) continue;
+      final f = File(file.path);
+      _log.info("Found file: ${file.path}, moving to: $destinationFile");
+      await f.rename(destinationFile);
     }
   }
 
@@ -153,6 +164,8 @@ class MakemkvCon {
   Future<int> runCommand(String command, List<String> args) async {
     init();
     runningCommand = command;
+    _log.info(
+        "Running command: ${commonArgs.join(' ')} $command ${args.join(' ')}");
     process =
         await Process.start(makemkvconCli, [...commonArgs, command, ...args]);
     final stdoutStream =

@@ -118,77 +118,91 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 400,
                   child: Consumer<MakemkvModel>(
                       builder: (context, makemkv, child) {
-                    if (makemkv.selectedDrive == null) return const SizedBox();
-                    if (makemkv.selectedDrive!.discInfo == null) {
-                      return const SizedBox();
-                    }
-                    final titles = <Widget>[];
-                    for (var index = 0;
-                        index <
-                            (makemkv.selectedDrive!.discInfo?.titles.length ??
-                                0);
-                        index++) {
-                      final title =
-                          makemkv.selectedDrive!.discInfo!.titles[index];
-                      final deviceIndex = makemkv.selectedDrive!.deviceIndex;
-                      titles.add(Row(children: [
-                        Text("${title.index}"),
-                        Checkbox(
-                            value: makemkv.titleSelection(
-                                deviceIndex, title.index),
-                            onChanged: (val) {
-                              makemkv.toggleTitleSelection(
-                                  deviceIndex, title.index);
-                            }),
-                        SizedBox(
-                            width: 300,
-                            child: TextField(
-                              controller: makemkv.titleController(
-                                  deviceIndex, title.index),
-                              onTap: () =>
-                                  makemkv.selectTitle(deviceIndex, title.index),
-                              onTapOutside: (event) => makemkv.unselectTitle(
-                                  deviceIndex, title.index),
-                            ))
-                      ]));
-                    }
-                    final hasSelectedTitles = makemkv
-                        .selectedDrive!.discInfo!.titles
-                        .any((title) => makemkv.titleSelection(
-                            makemkv.selectedDrive!.deviceIndex, title.index));
-                    return Column(children: [
-                      Row(children: [
-                        Text(makemkv.selectedDrive!.device.name),
-                        const SizedBox(width: 30),
-                        ElevatedButton(
-                            onPressed: () {
-                              if (makemkv.selectedDriveIndex == null) return;
-                              makemkv.scanDrive(makemkv.selectedDriveIndex!);
-                            },
-                            child: const Text("Scan"))
-                      ]),
-                      if (makemkv.selectedDrive!.discInfo == null)
-                        const Text("No disc"),
-                      if (makemkv.selectedDrive!.discInfo != null)
-                        Column(children: titles),
-                      ElevatedButton(
-                          onPressed: hasSelectedTitles ? () {} : null,
-                          child: const Text("Copy selected titles"))
-                    ]);
+                    return TrackSelect(makemkv);
                   })),
               Consumer<MakemkvModel>(builder: (context, makemkv, child) {
-                if (makemkv.selectedTitle == null) return const SizedBox();
-                final title = makemkv.selectedTitle!;
-                return SizedBox(
-                    width: 400,
-                    child: Column(children: [
-                      Text("${title.index} - ${trackDisplayName(title)}"),
-                      const SizedBox(height: 30),
-                      Text("Filename: ${title.outputFileName}"),
-                      Text("Size: ${title.diskSize}"),
-                      Text("Duration: ${title.duration}"),
-                    ]));
+                return TitleDetail(makemkv.selectedTitle);
               }),
             ])));
+  }
+}
+
+class TrackSelect extends StatelessWidget {
+  final MakemkvModel makemkv;
+
+  const TrackSelect(this.makemkv, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (makemkv.selectedDrive == null) return const SizedBox();
+    final titles = <Widget>[];
+    for (var index = 0;
+        index < (makemkv.selectedDrive!.discInfo?.titles.length ?? 0);
+        index++) {
+      final title = makemkv.selectedDrive!.discInfo!.titles[index];
+      final deviceIndex = makemkv.selectedDrive!.deviceIndex;
+      titles.add(Row(children: [
+        Text("${title.index}"),
+        Checkbox(
+            value: makemkv.titleSelection(deviceIndex, title.index),
+            onChanged: (val) {
+              makemkv.toggleTitleSelection(deviceIndex, title.index);
+            }),
+        SizedBox(
+            width: 300,
+            child: TextField(
+              controller: makemkv.titleController(deviceIndex, title.index),
+              onTap: () => makemkv.selectTitle(deviceIndex, title.index),
+              onTapOutside: (event) =>
+                  makemkv.unselectTitle(deviceIndex, title.index),
+            ))
+      ]));
+    }
+    final hasSelectedTitles = (makemkv.selectedDrive?.discInfo != null) &&
+        makemkv.selectedDrive!.discInfo!.titles.any((title) => makemkv
+            .titleSelection(makemkv.selectedDrive!.deviceIndex, title.index));
+    return Column(children: [
+      Row(children: [
+        Text(makemkv.selectedDrive!.device.name),
+        const SizedBox(width: 30),
+        ElevatedButton(
+            onPressed: () {
+              if (makemkv.selectedDriveIndex == null) return;
+              makemkv.scanDrive(makemkv.selectedDriveIndex!);
+            },
+            child: const Text("Scan"))
+      ]),
+      if (makemkv.selectedDrive!.discInfo == null)
+        const Text("No disc info, run scan"),
+      if (makemkv.selectedDrive!.discInfo != null) Column(children: titles),
+      if (makemkv.selectedDrive!.discInfo != null)
+        ElevatedButton(
+            onPressed: hasSelectedTitles
+                ? () {
+                    makemkv.copySelectedTracks();
+                  }
+                : null,
+            child: const Text("Copy selected titles"))
+    ]);
+  }
+}
+
+class TitleDetail extends StatelessWidget {
+  final GstatusFragment_discInfo_titles? title;
+
+  const TitleDetail(this.title, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (title == null) return const SizedBox();
+    return SizedBox(
+        width: 400,
+        child: Column(children: [
+          Text("${title!.index} - ${trackDisplayName(title!)}"),
+          const SizedBox(height: 30),
+          Text("Filename: ${title!.outputFileName}"),
+          Text("Size: ${title!.diskSize}"),
+          Text("Duration: ${title!.duration}"),
+        ]));
   }
 }

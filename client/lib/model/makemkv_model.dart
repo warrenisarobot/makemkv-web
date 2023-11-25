@@ -5,8 +5,9 @@ import "package:makemkv_client/graphql/queries/requests.dart";
 class TrackSelector {
   TextEditingController title = TextEditingController();
   bool selected = false;
+  int index;
 
-  TrackSelector(this.title, this.selected);
+  TrackSelector(this.title, this.selected, this.index);
 }
 
 class MakemkvModel extends ChangeNotifier {
@@ -56,7 +57,7 @@ class MakemkvModel extends ChangeNotifier {
     for (var i = 0; i < discInfo.titles.length; i++) {
       final track = discInfo.titles[i];
       res.add(TrackSelector(
-          TextEditingController(text: trackDisplayName(track)), false));
+          TextEditingController(text: trackDisplayName(track)), false, i));
     }
     return res;
   }
@@ -90,13 +91,11 @@ class MakemkvModel extends ChangeNotifier {
   }
 
   void defaultTitleSelection(int index) {
-    print("default Title Selection");
     if (driveStatuses.length <= index) return;
     final drive = driveStatuses[index];
     //default to all titles unselected
     final titleSelection =
         drive.discInfo?.titles.map((t) => false).toList() ?? [];
-    print("titleSelection: $titleSelection");
   }
 
   void toggleTitleSelection(int driveIndex, int title) {
@@ -140,6 +139,21 @@ class MakemkvModel extends ChangeNotifier {
       selectedTitle = null;
       notifyListeners();
     }
+  }
+
+  void copySelectedTracks() async {
+    if (selectedDrive == null) return;
+    final selectedTracks = trackControllers[selectedDriveIndex]
+        ?.where((element) => element.selected);
+    if (selectedTracks == null) return;
+    if (selectedTracks.isEmpty) return;
+    //temporary check
+    if (selectedTracks.length > 1) {
+      throw Exception("Only one track copy supported");
+    }
+    final copyTrack = selectedTracks.first;
+    await client.copyTitle(
+        selectedDriveIndex!, copyTrack.index, copyTrack.title.text);
   }
 }
 

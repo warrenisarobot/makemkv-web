@@ -17,6 +17,10 @@ void main(List<String> arguments) async {
   app.all("/graphql", graphQLHttp(graph));
   app.all("/graphql-subscription", graphQLWebSocket(graph));
 
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((event) {
+    print('${event.level.name}: ${event.time}: ${event.message}');
+  });
   final handler = const Pipeline()
       .addMiddleware(corsHeaders(originChecker: originAllowAll))
       .addHandler(app);

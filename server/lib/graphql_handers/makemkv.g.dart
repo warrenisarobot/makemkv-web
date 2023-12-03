@@ -75,11 +75,11 @@ final _discInfoGraphQLField = HotReloadableDefinition<
         ))
           ..inputs.addAll([graphQLInt.nonNull().inputField('deviceIndex')]));
 
-GraphQLObjectField<Progress, Object?, Object?> get progressGraphQLField =>
+GraphQLObjectField<Progress?, Object?, Object?> get progressGraphQLField =>
     _progressGraphQLField.value;
 final _progressGraphQLField = HotReloadableDefinition<
-        GraphQLObjectField<Progress, Object?, Object?>>(
-    (setValue) => setValue(progressGraphQLType.nonNull().field<Object?>(
+        GraphQLObjectField<Progress?, Object?, Object?>>(
+    (setValue) => setValue(progressGraphQLType.field<Object?>(
           'progress',
           subscribe: (obj, ctx) {
             final args = ctx.args;

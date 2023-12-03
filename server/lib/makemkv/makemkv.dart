@@ -17,20 +17,18 @@ class MakemkvCon {
   List<Device> devices = [];
   DiscInfo? disc;
   static List<String> commonArgs = ["--robot", "--progress", "-same"];
-  StreamController<Progress> _progressUpdatedController;
+  final StreamController<Progress> _progressUpdatedController;
   late Stream<Progress> progressStream;
   Process? process;
 
   MakemkvCon(this.makemkvconCli)
-      : progress = Progress("", "", 0, 0, 0),
+      : progress = Progress.fromEmpty(),
         _progressUpdatedController = StreamController<Progress>() {
-    progressStream = _progressUpdatedController.stream.asBroadcastStream();
+    progressStream = _progressUpdatedController.stream;
   }
 
   DiscInfo getOrCreateDisc() {
-    if (disc == null) {
-      disc = DiscInfo();
-    }
+    disc ??= DiscInfo();
     return disc!;
   }
 
@@ -55,17 +53,19 @@ class MakemkvCon {
   }
 
   void init() {
+    _log.info("Initializing makemkvcon");
     if (runningCommand != null) {
       throw Exception("MakemkvCon is already running");
     }
     devices = [];
-    progress = Progress("", "", 0, 0, 0);
-    _progressUpdatedController = StreamController<Progress>();
+    _log.info("Resetting progress controller stream");
+    progress = Progress.fromEmpty();
   }
 
-  void close() {
+  void close() async {
+    _log.info("Closing makemkvcon");
     runningCommand = null;
-    _progressUpdatedController.close();
+    _progressUpdatedController.add(Progress.fromEmpty());
     if (process != null) {
       process!.kill();
       process = null;
@@ -182,6 +182,7 @@ class MakemkvCon {
       final msg = CliMessage.fromLine(line);
       processMessage(msg);
     }
+    _log.info("Command finished: $command");
     final exitCode = await process!.exitCode;
     process = null;
     close();

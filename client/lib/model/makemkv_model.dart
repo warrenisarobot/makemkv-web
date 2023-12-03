@@ -1,20 +1,40 @@
+import "dart:async";
+
 import 'package:flutter/material.dart';
+import "package:logging/logging.dart";
 import "package:makemkv_client/graphql/queries/__generated__/client.data.gql.dart";
 import "package:makemkv_client/graphql/queries/requests.dart";
+
+final _log = Logger("MakeMKVModel");
 
 class TrackSelector {
   TextEditingController title = TextEditingController();
   bool selected = false;
   int index;
 
-  TrackSelector(this.title, this.selected, this.index);
+  TrackSelector(
+    this.title,
+    this.selected,
+    this.index,
+  );
+}
+
+class DriveInfo {
+  StreamSubscription<GprogressFragment?>? progressStream;
+  GprogressFragment? progress;
+  GstatusFragment driveStatus;
+  List<TrackSelector> trackControllers = [];
+
+  DriveInfo(
+    this.driveStatus,
+  );
 }
 
 class MakemkvModel extends ChangeNotifier {
   final GraphRequest client;
   List<GstatusFragment> driveStatuses = [];
   int? selectedDriveIndex;
-  Map<int, List<TrackSelector>> trackControllers = {};
+  Map<int, DriveInfo> driveInfo = {};
   GstatusFragment_discInfo_titles? selectedTitle;
 
   MakemkvModel(this.client) : super() {
@@ -24,13 +44,16 @@ class MakemkvModel extends ChangeNotifier {
   GstatusFragment? get selectedDrive =>
       selectedDriveIndex != null ? driveStatuses[selectedDriveIndex!] : null;
 
+  DriveInfo? get selectedDriveInfo =>
+      selectedDriveIndex != null ? driveInfo[selectedDriveIndex!] : null;
+
   Future<void> refreshDriveStatuses() async {
     driveStatuses = <GstatusFragment>[];
     notifyListeners();
-    print("Refreshing drives, pre: ${driveStatuses.length}");
+    _log.info("Refreshing drives, pre: ${driveStatuses.length}");
     driveStatuses.addAll(await client.deviceStatuses());
     refreshTrackControllers();
-    print("Drive refresh finished, post: ${driveStatuses.length}");
+    _log.info("Drive refresh finished, post: ${driveStatuses.length}");
     notifyListeners();
   }
 
@@ -42,7 +65,42 @@ class MakemkvModel extends ChangeNotifier {
   void selectDrive(int index) {
     selectedDriveIndex = index;
     selectedTitle = null;
+    subscribeProgress(index);
+
     notifyListeners();
+  }
+
+  void subscribeProgress(int index) {
+    _log.info("Subscribing to progress for drive $index");
+    for (final driveIndex in driveInfo.keys) {
+      if (driveIndex == index) continue;
+      final drive = driveInfo[driveIndex]!;
+      if (drive.progressStream != null) {
+        final sub = drive.progressStream!;
+        drive.progressStream = null;
+        drive.progress = null;
+        sub.cancel();
+        _log.info("Cancelled progress subscription for drive $driveIndex");
+      }
+    }
+    final drive = driveInfo[index]!;
+    drive.progress = null;
+    drive.progressStream = client.progress(index).listen((event) {
+      _log.fine("Progress event: $event");
+      drive.progress = event;
+      notifyListeners();
+    }, onError: (err) {
+      _log.warning("Error in progress stream: $err");
+    }, onDone: () {
+      _log.info("Progress stream done for drive $index");
+      if (drive.progressStream != null) {
+        //if the progress stream hasn't been cancelled and cleared
+        //we want to reconnect
+        drive.progress = null;
+        subscribeProgress(index);
+        _log.info("Reconnecting progress stream for drive $index");
+      }
+    });
   }
 
   List<TrackSelector> initTrackController(int index) {
@@ -63,9 +121,10 @@ class MakemkvModel extends ChangeNotifier {
   }
 
   void refreshTrackControllers() {
-    trackControllers = {};
+    driveInfo = {};
     for (var i = 0; i < driveStatuses.length; i++) {
-      trackControllers[i] = initTrackController(i);
+      driveInfo[i] = DriveInfo(driveStatuses[i])
+        ..trackControllers = initTrackController(i);
     }
   }
 
@@ -75,7 +134,7 @@ class MakemkvModel extends ChangeNotifier {
     final clearedDrive = GstatusFragmentData.fromJson(drive.toJson())!
         .rebuild((b) => b..discInfo = null);
     driveStatuses[index] = clearedDrive;
-    trackControllers[index] = [];
+    driveInfo[index]!.trackControllers = [];
     selectedTitle = null;
     notifyListeners();
     final info = await client.discInfo(index);
@@ -85,44 +144,35 @@ class MakemkvModel extends ChangeNotifier {
     final newDriveData =
         driveData.rebuild((b) => b..discInfo = newDiscInfo!.toBuilder());
     driveStatuses[index] = newDriveData;
-    defaultTitleSelection(index);
-    trackControllers[index] = initTrackController(index);
+    driveInfo[index]!.trackControllers = initTrackController(index);
     notifyListeners();
   }
 
-  void defaultTitleSelection(int index) {
-    if (driveStatuses.length <= index) return;
-    final drive = driveStatuses[index];
-    //default to all titles unselected
-    final titleSelection =
-        drive.discInfo?.titles.map((t) => false).toList() ?? [];
-  }
-
   void toggleTitleSelection(int driveIndex, int title) {
-    if (trackControllers[driveIndex] == null) return;
-    if (trackControllers[driveIndex]!.length <= title) return;
-    final titleSelection = trackControllers[title];
-    trackControllers[driveIndex]![title].selected =
-        !trackControllers[driveIndex]![title].selected;
+    if (driveInfo[driveIndex] == null) return;
+    if (driveInfo[driveIndex]!.trackControllers.length <= title) return;
+    driveInfo[driveIndex]!.trackControllers[title].selected =
+        !driveInfo[driveIndex]!.trackControllers[title].selected;
     notifyListeners();
   }
 
   bool titleSelection(int driveIndex, int title) {
-    if (trackControllers[driveIndex] == null) return false;
-    if (trackControllers[driveIndex]!.length <= title) return false;
-    final titleSelection = trackControllers[driveIndex]![title].selected;
+    if (driveInfo[driveIndex] == null) return false;
+    if (driveInfo[driveIndex]!.trackControllers.length <= title) return false;
+    final titleSelection =
+        driveInfo[driveIndex]!.trackControllers[title].selected;
     return titleSelection;
   }
 
   TextEditingController titleController(int driveIndex, int title) {
-    if (trackControllers[driveIndex] == null) {
+    if (driveInfo[driveIndex] == null) {
       throw Exception(
           "No track controller for drive $driveIndex, title $title");
     }
-    if (trackControllers[driveIndex]!.length <= title) {
+    if (driveInfo[driveIndex]!.trackControllers.length <= title) {
       return TextEditingController();
     }
-    return trackControllers[driveIndex]![title].title;
+    return driveInfo[driveIndex]!.trackControllers[title].title;
   }
 
   //select the title for the given driveIndex and title index.  This is to display the
@@ -143,8 +193,9 @@ class MakemkvModel extends ChangeNotifier {
 
   void copySelectedTracks() async {
     if (selectedDrive == null) return;
-    final selectedTracks = trackControllers[selectedDriveIndex]
-        ?.where((element) => element.selected);
+    final selectedTracks = driveInfo[selectedDriveIndex]
+        ?.trackControllers
+        .where((element) => element.selected);
     if (selectedTracks == null) return;
     if (selectedTracks.isEmpty) return;
     //temporary check

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:leto/leto.dart';
 import 'package:leto_shelf/leto_shelf.dart';
 import 'package:logging/logging.dart';
@@ -10,7 +12,10 @@ import 'package:shelf_router/shelf_router.dart';
 final _log = Logger('makemkv_web');
 
 void main(List<String> arguments) async {
-  createMkvManager("/Applications/MakeMKV.app/Contents/MacOS/makemkvcon");
+  final makemkvCon = Platform.environment['MAKEMKVCON'] ?? 'makemkvcon';
+  final destinationFolder = Platform.environment['DEST_FOLDER'] ?? '/tmp';
+  final tmpFolder = Platform.environment['TMP_FOLDER'] ?? '/tmp';
+  createMkvManager(makemkvCon, destinationFolder, tmpFolder);
   final schema = graphqlApiSchema;
   final graph = GraphQL(schema, introspect: true);
   final app = Router();

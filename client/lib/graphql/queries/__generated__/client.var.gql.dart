@@ -121,6 +121,28 @@ abstract class GcopyTitleVars
       );
 }
 
+abstract class GprogressVars
+    implements Built<GprogressVars, GprogressVarsBuilder> {
+  GprogressVars._();
+
+  factory GprogressVars([Function(GprogressVarsBuilder b) updates]) =
+      _$GprogressVars;
+
+  int get deviceIndex;
+  static Serializer<GprogressVars> get serializer => _$gprogressVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GprogressVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GprogressVars.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragmentVars
     implements Built<GdeviceInfoFragmentVars, GdeviceInfoFragmentVarsBuilder> {
   GdeviceInfoFragmentVars._();
@@ -185,6 +207,29 @@ abstract class GstatusFragmentVars
   static GstatusFragmentVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GstatusFragmentVars.serializer,
+        json,
+      );
+}
+
+abstract class GprogressFragmentVars
+    implements Built<GprogressFragmentVars, GprogressFragmentVarsBuilder> {
+  GprogressFragmentVars._();
+
+  factory GprogressFragmentVars(
+          [Function(GprogressFragmentVarsBuilder b) updates]) =
+      _$GprogressFragmentVars;
+
+  static Serializer<GprogressFragmentVars> get serializer =>
+      _$gprogressFragmentVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GprogressFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GprogressFragmentVars.serializer,
         json,
       );
 }

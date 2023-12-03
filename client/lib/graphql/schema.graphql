@@ -80,7 +80,7 @@ type Mutation {
 }
 
 type Subscription {
-  progress(deviceIndex: Int!): Progress!
+  progress(deviceIndex: Int!): Progress
 }
 
 type Progress {

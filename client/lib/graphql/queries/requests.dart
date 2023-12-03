@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:ferry/ferry.dart";
 import "package:gql_http_link/gql_http_link.dart";
 import "package:gql_websocket_link/gql_websocket_link.dart";
@@ -17,8 +19,9 @@ class GraphRequest {
   final String httpHost;
   final String websocketHost;
   final HttpLink httpLink;
-  final WebSocketLink websocketLink;
+  final TransportWebSocketLink websocketLink;
   late final Client client;
+  late final Client websocketClient;
 
   GraphRequest(this.httpHost, this.websocketHost)
       : httpLink = HttpLink(
@@ -28,8 +31,10 @@ class GraphRequest {
             "Accept": "application/json",
           },
         ),
-        websocketLink = WebSocketLink(websocketHost) {
+        websocketLink = TransportWebSocketLink(TransportWsClientOptions(
+            socketMaker: WebSocketMaker.url(() => websocketHost))) {
     client = Client(link: httpLink);
+    websocketClient = Client(link: websocketLink);
   }
 
   Future<Iterable<GdevicesData_devices>> devices() async {
@@ -67,6 +72,24 @@ class GraphRequest {
           ..vars.filename = fileName))
         .first;
     throwGraphError(res);
+  }
+
+  Stream<GprogressFragment?> progress(int deviceIndex) {
+    final req = GprogressReq((b) => b..vars.deviceIndex = deviceIndex);
+    final res = websocketClient.request(req);
+    final f = StreamController<GprogressFragment?>();
+    res.listen((r) {
+      print("event: $r");
+      throwGraphError(r);
+      f.add(r.data!.progress);
+    }, onDone: () {
+      print("done");
+      f.close();
+    }, onError: (e) {
+      print("error: $e");
+      f.addError(e);
+    });
+    return f.stream;
   }
 }
 

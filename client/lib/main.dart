@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dart';
 import 'package:makemkv_client/graphql/queries/requests.dart';
 import 'package:makemkv_client/model/makemkv_model.dart';
@@ -6,6 +8,12 @@ import 'package:makemkv_client/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  if (kDebugMode) {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    });
+  }
   runApp(const MyApp());
 }
 
@@ -100,10 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(children: [
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
-              Consumer<MakemkvModel>(builder: (context, makemkv, child) {
-                return SizedBox(
-                    width: 350,
-                    child: Column(children: <Widget>[
+              SizedBox(
+                  width: 350,
+                  child: Consumer<MakemkvModel>(
+                      builder: (context, makemkv, child) {
+                    return Column(children: <Widget>[
                       ElevatedButton(
                           onPressed: () {
                             makemkv.refreshDrives();
@@ -112,12 +121,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       DeviceSelect(
                           makemkv.driveStatuses.map((e) => e.device).toList(),
                           makemkv.selectDrive),
-                    ]));
-              }),
+                    ]);
+                  })),
               SizedBox(
                   width: 400,
                   child: Consumer<MakemkvModel>(
                       builder: (context, makemkv, child) {
+                    if ((makemkv.selectedDriveInfo?.progress?.total ?? 0) > 0) {
+                      return DeviceProgress(
+                          makemkv.selectedDriveInfo?.progress);
+                    }
                     return TrackSelect(makemkv);
                   })),
               Consumer<MakemkvModel>(builder: (context, makemkv, child) {
@@ -184,25 +197,5 @@ class TrackSelect extends StatelessWidget {
                 : null,
             child: const Text("Copy selected titles"))
     ]);
-  }
-}
-
-class TitleDetail extends StatelessWidget {
-  final GstatusFragment_discInfo_titles? title;
-
-  const TitleDetail(this.title, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    if (title == null) return const SizedBox();
-    return SizedBox(
-        width: 400,
-        child: Column(children: [
-          Text("${title!.index} - ${trackDisplayName(title!)}"),
-          const SizedBox(height: 30),
-          Text("Filename: ${title!.outputFileName}"),
-          Text("Size: ${title!.diskSize}"),
-          Text("Duration: ${title!.duration}"),
-        ]));
   }
 }

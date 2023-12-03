@@ -43,6 +43,10 @@ Serializer<GrefreshDevicesData_refreshDevices>
     new _$GrefreshDevicesData_refreshDevicesSerializer();
 Serializer<GcopyTitleData> _$gcopyTitleDataSerializer =
     new _$GcopyTitleDataSerializer();
+Serializer<GprogressData> _$gprogressDataSerializer =
+    new _$GprogressDataSerializer();
+Serializer<GprogressData_progress> _$gprogressDataProgressSerializer =
+    new _$GprogressData_progressSerializer();
 Serializer<GdeviceInfoFragmentData> _$gdeviceInfoFragmentDataSerializer =
     new _$GdeviceInfoFragmentDataSerializer();
 Serializer<GdiscInfoFragmentData> _$gdiscInfoFragmentDataSerializer =
@@ -66,6 +70,8 @@ Serializer<GstatusFragmentData_discInfo_titles>
 Serializer<GstatusFragmentData_discInfo_titles_streams>
     _$gstatusFragmentDataDiscInfoTitlesStreamsSerializer =
     new _$GstatusFragmentData_discInfo_titles_streamsSerializer();
+Serializer<GprogressFragmentData> _$gprogressFragmentDataSerializer =
+    new _$GprogressFragmentDataSerializer();
 
 class _$GdevicesDataSerializer implements StructuredSerializer<GdevicesData> {
   @override
@@ -1641,6 +1647,137 @@ class _$GcopyTitleDataSerializer
   }
 }
 
+class _$GprogressDataSerializer implements StructuredSerializer<GprogressData> {
+  @override
+  final Iterable<Type> types = const [GprogressData, _$GprogressData];
+  @override
+  final String wireName = 'GprogressData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GprogressData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.progress;
+    if (value != null) {
+      result
+        ..add('progress')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GprogressData_progress)));
+    }
+    return result;
+  }
+
+  @override
+  GprogressData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GprogressDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'progress':
+          result.progress.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GprogressData_progress))!
+              as GprogressData_progress);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GprogressData_progressSerializer
+    implements StructuredSerializer<GprogressData_progress> {
+  @override
+  final Iterable<Type> types = const [
+    GprogressData_progress,
+    _$GprogressData_progress
+  ];
+  @override
+  final String wireName = 'GprogressData_progress';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GprogressData_progress object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'titleTotal',
+      serializers.serialize(object.titleTotal,
+          specifiedType: const FullType(String)),
+      'titleCurrent',
+      serializers.serialize(object.titleCurrent,
+          specifiedType: const FullType(String)),
+      'current',
+      serializers.serialize(object.current, specifiedType: const FullType(int)),
+      'total',
+      serializers.serialize(object.total, specifiedType: const FullType(int)),
+      'max',
+      serializers.serialize(object.max, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GprogressData_progress deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GprogressData_progressBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'titleTotal':
+          result.titleTotal = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'titleCurrent':
+          result.titleCurrent = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'current':
+          result.current = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'total':
+          result.total = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'max':
+          result.max = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GdeviceInfoFragmentDataSerializer
     implements StructuredSerializer<GdeviceInfoFragmentData> {
   @override
@@ -2874,6 +3011,84 @@ class _$GstatusFragmentData_discInfo_titles_streamsSerializer
         case 'panelTitle':
           result.panelTitle = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GprogressFragmentDataSerializer
+    implements StructuredSerializer<GprogressFragmentData> {
+  @override
+  final Iterable<Type> types = const [
+    GprogressFragmentData,
+    _$GprogressFragmentData
+  ];
+  @override
+  final String wireName = 'GprogressFragmentData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GprogressFragmentData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'titleTotal',
+      serializers.serialize(object.titleTotal,
+          specifiedType: const FullType(String)),
+      'titleCurrent',
+      serializers.serialize(object.titleCurrent,
+          specifiedType: const FullType(String)),
+      'current',
+      serializers.serialize(object.current, specifiedType: const FullType(int)),
+      'total',
+      serializers.serialize(object.total, specifiedType: const FullType(int)),
+      'max',
+      serializers.serialize(object.max, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GprogressFragmentData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GprogressFragmentDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'titleTotal':
+          result.titleTotal = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'titleCurrent':
+          result.titleCurrent = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'current':
+          result.current = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'total':
+          result.total = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'max':
+          result.max = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
           break;
       }
     }
@@ -5624,6 +5839,286 @@ class GcopyTitleDataBuilder
   }
 }
 
+class _$GprogressData extends GprogressData {
+  @override
+  final String G__typename;
+  @override
+  final GprogressData_progress? progress;
+
+  factory _$GprogressData([void Function(GprogressDataBuilder)? updates]) =>
+      (new GprogressDataBuilder()..update(updates))._build();
+
+  _$GprogressData._({required this.G__typename, this.progress}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GprogressData', 'G__typename');
+  }
+
+  @override
+  GprogressData rebuild(void Function(GprogressDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GprogressDataBuilder toBuilder() => new GprogressDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GprogressData &&
+        G__typename == other.G__typename &&
+        progress == other.progress;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, progress.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GprogressData')
+          ..add('G__typename', G__typename)
+          ..add('progress', progress))
+        .toString();
+  }
+}
+
+class GprogressDataBuilder
+    implements Builder<GprogressData, GprogressDataBuilder> {
+  _$GprogressData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GprogressData_progressBuilder? _progress;
+  GprogressData_progressBuilder get progress =>
+      _$this._progress ??= new GprogressData_progressBuilder();
+  set progress(GprogressData_progressBuilder? progress) =>
+      _$this._progress = progress;
+
+  GprogressDataBuilder() {
+    GprogressData._initializeBuilder(this);
+  }
+
+  GprogressDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _progress = $v.progress?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GprogressData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GprogressData;
+  }
+
+  @override
+  void update(void Function(GprogressDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GprogressData build() => _build();
+
+  _$GprogressData _build() {
+    _$GprogressData _$result;
+    try {
+      _$result = _$v ??
+          new _$GprogressData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GprogressData', 'G__typename'),
+              progress: _progress?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'progress';
+        _progress?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GprogressData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GprogressData_progress extends GprogressData_progress {
+  @override
+  final String G__typename;
+  @override
+  final String titleTotal;
+  @override
+  final String titleCurrent;
+  @override
+  final int current;
+  @override
+  final int total;
+  @override
+  final int max;
+
+  factory _$GprogressData_progress(
+          [void Function(GprogressData_progressBuilder)? updates]) =>
+      (new GprogressData_progressBuilder()..update(updates))._build();
+
+  _$GprogressData_progress._(
+      {required this.G__typename,
+      required this.titleTotal,
+      required this.titleCurrent,
+      required this.current,
+      required this.total,
+      required this.max})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GprogressData_progress', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        titleTotal, r'GprogressData_progress', 'titleTotal');
+    BuiltValueNullFieldError.checkNotNull(
+        titleCurrent, r'GprogressData_progress', 'titleCurrent');
+    BuiltValueNullFieldError.checkNotNull(
+        current, r'GprogressData_progress', 'current');
+    BuiltValueNullFieldError.checkNotNull(
+        total, r'GprogressData_progress', 'total');
+    BuiltValueNullFieldError.checkNotNull(
+        max, r'GprogressData_progress', 'max');
+  }
+
+  @override
+  GprogressData_progress rebuild(
+          void Function(GprogressData_progressBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GprogressData_progressBuilder toBuilder() =>
+      new GprogressData_progressBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GprogressData_progress &&
+        G__typename == other.G__typename &&
+        titleTotal == other.titleTotal &&
+        titleCurrent == other.titleCurrent &&
+        current == other.current &&
+        total == other.total &&
+        max == other.max;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, titleTotal.hashCode);
+    _$hash = $jc(_$hash, titleCurrent.hashCode);
+    _$hash = $jc(_$hash, current.hashCode);
+    _$hash = $jc(_$hash, total.hashCode);
+    _$hash = $jc(_$hash, max.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GprogressData_progress')
+          ..add('G__typename', G__typename)
+          ..add('titleTotal', titleTotal)
+          ..add('titleCurrent', titleCurrent)
+          ..add('current', current)
+          ..add('total', total)
+          ..add('max', max))
+        .toString();
+  }
+}
+
+class GprogressData_progressBuilder
+    implements Builder<GprogressData_progress, GprogressData_progressBuilder> {
+  _$GprogressData_progress? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _titleTotal;
+  String? get titleTotal => _$this._titleTotal;
+  set titleTotal(String? titleTotal) => _$this._titleTotal = titleTotal;
+
+  String? _titleCurrent;
+  String? get titleCurrent => _$this._titleCurrent;
+  set titleCurrent(String? titleCurrent) => _$this._titleCurrent = titleCurrent;
+
+  int? _current;
+  int? get current => _$this._current;
+  set current(int? current) => _$this._current = current;
+
+  int? _total;
+  int? get total => _$this._total;
+  set total(int? total) => _$this._total = total;
+
+  int? _max;
+  int? get max => _$this._max;
+  set max(int? max) => _$this._max = max;
+
+  GprogressData_progressBuilder() {
+    GprogressData_progress._initializeBuilder(this);
+  }
+
+  GprogressData_progressBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _titleTotal = $v.titleTotal;
+      _titleCurrent = $v.titleCurrent;
+      _current = $v.current;
+      _total = $v.total;
+      _max = $v.max;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GprogressData_progress other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GprogressData_progress;
+  }
+
+  @override
+  void update(void Function(GprogressData_progressBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GprogressData_progress build() => _build();
+
+  _$GprogressData_progress _build() {
+    final _$result = _$v ??
+        new _$GprogressData_progress._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GprogressData_progress', 'G__typename'),
+            titleTotal: BuiltValueNullFieldError.checkNotNull(
+                titleTotal, r'GprogressData_progress', 'titleTotal'),
+            titleCurrent: BuiltValueNullFieldError.checkNotNull(
+                titleCurrent, r'GprogressData_progress', 'titleCurrent'),
+            current: BuiltValueNullFieldError.checkNotNull(
+                current, r'GprogressData_progress', 'current'),
+            total: BuiltValueNullFieldError.checkNotNull(
+                total, r'GprogressData_progress', 'total'),
+            max: BuiltValueNullFieldError.checkNotNull(
+                max, r'GprogressData_progress', 'max'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GdeviceInfoFragmentData extends GdeviceInfoFragmentData {
   @override
   final String G__typename;
@@ -7613,6 +8108,172 @@ class GstatusFragmentData_discInfo_titles_streamsBuilder
             metaLangName: metaLangName,
             treeInfo: treeInfo,
             panelTitle: panelTitle);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GprogressFragmentData extends GprogressFragmentData {
+  @override
+  final String G__typename;
+  @override
+  final String titleTotal;
+  @override
+  final String titleCurrent;
+  @override
+  final int current;
+  @override
+  final int total;
+  @override
+  final int max;
+
+  factory _$GprogressFragmentData(
+          [void Function(GprogressFragmentDataBuilder)? updates]) =>
+      (new GprogressFragmentDataBuilder()..update(updates))._build();
+
+  _$GprogressFragmentData._(
+      {required this.G__typename,
+      required this.titleTotal,
+      required this.titleCurrent,
+      required this.current,
+      required this.total,
+      required this.max})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GprogressFragmentData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        titleTotal, r'GprogressFragmentData', 'titleTotal');
+    BuiltValueNullFieldError.checkNotNull(
+        titleCurrent, r'GprogressFragmentData', 'titleCurrent');
+    BuiltValueNullFieldError.checkNotNull(
+        current, r'GprogressFragmentData', 'current');
+    BuiltValueNullFieldError.checkNotNull(
+        total, r'GprogressFragmentData', 'total');
+    BuiltValueNullFieldError.checkNotNull(max, r'GprogressFragmentData', 'max');
+  }
+
+  @override
+  GprogressFragmentData rebuild(
+          void Function(GprogressFragmentDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GprogressFragmentDataBuilder toBuilder() =>
+      new GprogressFragmentDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GprogressFragmentData &&
+        G__typename == other.G__typename &&
+        titleTotal == other.titleTotal &&
+        titleCurrent == other.titleCurrent &&
+        current == other.current &&
+        total == other.total &&
+        max == other.max;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, titleTotal.hashCode);
+    _$hash = $jc(_$hash, titleCurrent.hashCode);
+    _$hash = $jc(_$hash, current.hashCode);
+    _$hash = $jc(_$hash, total.hashCode);
+    _$hash = $jc(_$hash, max.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GprogressFragmentData')
+          ..add('G__typename', G__typename)
+          ..add('titleTotal', titleTotal)
+          ..add('titleCurrent', titleCurrent)
+          ..add('current', current)
+          ..add('total', total)
+          ..add('max', max))
+        .toString();
+  }
+}
+
+class GprogressFragmentDataBuilder
+    implements Builder<GprogressFragmentData, GprogressFragmentDataBuilder> {
+  _$GprogressFragmentData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _titleTotal;
+  String? get titleTotal => _$this._titleTotal;
+  set titleTotal(String? titleTotal) => _$this._titleTotal = titleTotal;
+
+  String? _titleCurrent;
+  String? get titleCurrent => _$this._titleCurrent;
+  set titleCurrent(String? titleCurrent) => _$this._titleCurrent = titleCurrent;
+
+  int? _current;
+  int? get current => _$this._current;
+  set current(int? current) => _$this._current = current;
+
+  int? _total;
+  int? get total => _$this._total;
+  set total(int? total) => _$this._total = total;
+
+  int? _max;
+  int? get max => _$this._max;
+  set max(int? max) => _$this._max = max;
+
+  GprogressFragmentDataBuilder() {
+    GprogressFragmentData._initializeBuilder(this);
+  }
+
+  GprogressFragmentDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _titleTotal = $v.titleTotal;
+      _titleCurrent = $v.titleCurrent;
+      _current = $v.current;
+      _total = $v.total;
+      _max = $v.max;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GprogressFragmentData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GprogressFragmentData;
+  }
+
+  @override
+  void update(void Function(GprogressFragmentDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GprogressFragmentData build() => _build();
+
+  _$GprogressFragmentData _build() {
+    final _$result = _$v ??
+        new _$GprogressFragmentData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GprogressFragmentData', 'G__typename'),
+            titleTotal: BuiltValueNullFieldError.checkNotNull(
+                titleTotal, r'GprogressFragmentData', 'titleTotal'),
+            titleCurrent: BuiltValueNullFieldError.checkNotNull(
+                titleCurrent, r'GprogressFragmentData', 'titleCurrent'),
+            current: BuiltValueNullFieldError.checkNotNull(
+                current, r'GprogressFragmentData', 'current'),
+            total: BuiltValueNullFieldError.checkNotNull(
+                total, r'GprogressFragmentData', 'total'),
+            max: BuiltValueNullFieldError.checkNotNull(
+                max, r'GprogressFragmentData', 'max'));
     replace(_$result);
     return _$result;
   }

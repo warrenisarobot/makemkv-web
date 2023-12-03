@@ -287,50 +287,50 @@ packages:
     dependency: transitive
     description:
       name: gql
-      sha256: "998304fbb88a3956cfea10cd27a56f8e5d4b3bc110f03c952c18a9310774e8bb"
+      sha256: "994e0c530b5ca9fce716945031b90c7925eb00bd37624c43ad4cb51883f383b3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.0"
+    version: "1.0.0+1"
   gql_code_builder:
     dependency: transitive
     description:
       name: gql_code_builder
-      sha256: "66fc942416d9703e59ac732b2cb4e8442261fc90e1fcf89881b5b796d0803d02"
+      sha256: "6e386a85f5d91daae82915337f566a43dfeb0a0df38caa372387fbc07d31b8c1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.1"
+    version: "0.7.2"
   gql_exec:
     dependency: transitive
     description:
       name: gql_exec
-      sha256: "0d1fdb2e4154efbfc1dcf3f35ec36d19c8428ff0d560eb4c45b354f8f871dc50"
+      sha256: "957db95ba37028001f76c1904e18b848f57cfef878e572ce77c6d898fafecf8f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.3"
+    version: "1.0.0+1"
   gql_http_link:
     dependency: "direct main"
     description:
       name: gql_http_link
-      sha256: "89ef87b32947acf4189f564c095f1148b0ab9bb9996fe518716dbad66708b834"
+      sha256: "1f922eed1b7078fdbfd602187663026f9f659fe9a9499e2207b5d5e01617f658"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.5"
+    version: "1.0.1+1"
   gql_link:
     dependency: transitive
     description:
       name: gql_link
-      sha256: f7973279126bc922d465c4f4da6ed93d187085e597b3480f5e14e74d28fe14bd
+      sha256: "4aa288a1e67c899b0d746a2209e949fd0dc87e56d9b759a5cdc46a7069722cf3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1"
+    version: "1.0.0+1"
   gql_websocket_link:
     dependency: "direct main"
     description:
       name: gql_websocket_link
-      sha256: bb325ff05e16815c45600a5b56843a7f64fc04bb6a9690920fade70fc8080b0b
+      sha256: "18cb9eb1e2e111edfd2d60cad13615ba16dfd12029c87741520d4e76f6d3159b"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.4+1"
+    version: "2.0.0"
   graphs:
     dependency: transitive
     description:
@@ -404,7 +404,7 @@ packages:
     source: hosted
     version: "2.1.1"
   logging:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: logging
       sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"

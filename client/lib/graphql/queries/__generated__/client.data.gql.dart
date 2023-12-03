@@ -662,6 +662,75 @@ abstract class GcopyTitleData
       );
 }
 
+abstract class GprogressData
+    implements Built<GprogressData, GprogressDataBuilder> {
+  GprogressData._();
+
+  factory GprogressData([Function(GprogressDataBuilder b) updates]) =
+      _$GprogressData;
+
+  static void _initializeBuilder(GprogressDataBuilder b) =>
+      b..G__typename = 'Subscription';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GprogressData_progress? get progress;
+  static Serializer<GprogressData> get serializer => _$gprogressDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GprogressData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GprogressData.serializer,
+        json,
+      );
+}
+
+abstract class GprogressData_progress
+    implements
+        Built<GprogressData_progress, GprogressData_progressBuilder>,
+        GprogressFragment {
+  GprogressData_progress._();
+
+  factory GprogressData_progress(
+          [Function(GprogressData_progressBuilder b) updates]) =
+      _$GprogressData_progress;
+
+  static void _initializeBuilder(GprogressData_progressBuilder b) =>
+      b..G__typename = 'Progress';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get titleTotal;
+  @override
+  String get titleCurrent;
+  @override
+  int get current;
+  @override
+  int get total;
+  @override
+  int get max;
+  static Serializer<GprogressData_progress> get serializer =>
+      _$gprogressDataProgressSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GprogressData_progress.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressData_progress? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GprogressData_progress.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragment {
   String get G__typename;
   int get index;
@@ -1300,6 +1369,58 @@ abstract class GstatusFragmentData_discInfo_titles_streams
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GstatusFragmentData_discInfo_titles_streams.serializer,
+        json,
+      );
+}
+
+abstract class GprogressFragment {
+  String get G__typename;
+  String get titleTotal;
+  String get titleCurrent;
+  int get current;
+  int get total;
+  int get max;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GprogressFragmentData
+    implements
+        Built<GprogressFragmentData, GprogressFragmentDataBuilder>,
+        GprogressFragment {
+  GprogressFragmentData._();
+
+  factory GprogressFragmentData(
+          [Function(GprogressFragmentDataBuilder b) updates]) =
+      _$GprogressFragmentData;
+
+  static void _initializeBuilder(GprogressFragmentDataBuilder b) =>
+      b..G__typename = 'Progress';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get titleTotal;
+  @override
+  String get titleCurrent;
+  @override
+  int get current;
+  @override
+  int get total;
+  @override
+  int get max;
+  static Serializer<GprogressFragmentData> get serializer =>
+      _$gprogressFragmentDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GprogressFragmentData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressFragmentData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GprogressFragmentData.serializer,
         json,
       );
 }

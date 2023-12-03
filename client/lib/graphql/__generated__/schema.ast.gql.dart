@@ -592,7 +592,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Progress'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     )
   ],

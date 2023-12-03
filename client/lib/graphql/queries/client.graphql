@@ -55,7 +55,15 @@ fragment statusFragment on MakemkvState {
     discInfo {
       ...discInfoFragment
     }  
-  }
+}
+
+fragment progressFragment on Progress {
+    titleTotal
+    titleCurrent
+    current
+    total
+    max
+}
 
 query devices {
   devices {
@@ -86,3 +94,9 @@ query refreshDevices {
 mutation copyTitle($deviceIndex: Int!, $titleIndex: Int!, $filename: String!) {
   copyTitle(deviceIndex: $deviceIndex, titleIndex: $titleIndex, fileName: $filename) 
   }
+
+subscription progress($deviceIndex: Int!) {
+    progress(deviceIndex: $deviceIndex) {
+      ...progressFragment
+    }
+}

@@ -328,6 +328,68 @@ abstract class GcopyTitleReq
       );
 }
 
+abstract class GprogressReq
+    implements
+        Built<GprogressReq, GprogressReqBuilder>,
+        _i1.OperationRequest<_i2.GprogressData, _i3.GprogressVars> {
+  GprogressReq._();
+
+  factory GprogressReq([Function(GprogressReqBuilder b) updates]) =
+      _$GprogressReq;
+
+  static void _initializeBuilder(GprogressReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'progress',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GprogressVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GprogressData? Function(
+    _i2.GprogressData?,
+    _i2.GprogressData?,
+  )? get updateResult;
+  @override
+  _i2.GprogressData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GprogressData? parseData(Map<String, dynamic> json) =>
+      _i2.GprogressData.fromJson(json);
+
+  static Serializer<GprogressReq> get serializer => _$gprogressReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GprogressReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GprogressReq.serializer,
+        json,
+      );
+}
+
 abstract class GdeviceInfoFragmentReq
     implements
         Built<GdeviceInfoFragmentReq, GdeviceInfoFragmentReqBuilder>,
@@ -448,6 +510,48 @@ abstract class GstatusFragmentReq
   static GstatusFragmentReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GstatusFragmentReq.serializer,
+        json,
+      );
+}
+
+abstract class GprogressFragmentReq
+    implements
+        Built<GprogressFragmentReq, GprogressFragmentReqBuilder>,
+        _i1
+        .FragmentRequest<_i2.GprogressFragmentData, _i3.GprogressFragmentVars> {
+  GprogressFragmentReq._();
+
+  factory GprogressFragmentReq(
+          [Function(GprogressFragmentReqBuilder b) updates]) =
+      _$GprogressFragmentReq;
+
+  static void _initializeBuilder(GprogressFragmentReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'progressFragment';
+
+  @override
+  _i3.GprogressFragmentVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GprogressFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GprogressFragmentData.fromJson(json);
+
+  static Serializer<GprogressFragmentReq> get serializer =>
+      _$gprogressFragmentReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GprogressFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GprogressFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GprogressFragmentReq.serializer,
         json,
       );
 }

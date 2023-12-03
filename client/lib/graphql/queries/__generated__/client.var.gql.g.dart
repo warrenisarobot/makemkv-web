@@ -16,12 +16,16 @@ Serializer<GrefreshDevicesVars> _$grefreshDevicesVarsSerializer =
     new _$GrefreshDevicesVarsSerializer();
 Serializer<GcopyTitleVars> _$gcopyTitleVarsSerializer =
     new _$GcopyTitleVarsSerializer();
+Serializer<GprogressVars> _$gprogressVarsSerializer =
+    new _$GprogressVarsSerializer();
 Serializer<GdeviceInfoFragmentVars> _$gdeviceInfoFragmentVarsSerializer =
     new _$GdeviceInfoFragmentVarsSerializer();
 Serializer<GdiscInfoFragmentVars> _$gdiscInfoFragmentVarsSerializer =
     new _$GdiscInfoFragmentVarsSerializer();
 Serializer<GstatusFragmentVars> _$gstatusFragmentVarsSerializer =
     new _$GstatusFragmentVarsSerializer();
+Serializer<GprogressFragmentVars> _$gprogressFragmentVarsSerializer =
+    new _$GprogressFragmentVarsSerializer();
 
 class _$GdevicesVarsSerializer implements StructuredSerializer<GdevicesVars> {
   @override
@@ -186,6 +190,47 @@ class _$GcopyTitleVarsSerializer
   }
 }
 
+class _$GprogressVarsSerializer implements StructuredSerializer<GprogressVars> {
+  @override
+  final Iterable<Type> types = const [GprogressVars, _$GprogressVars];
+  @override
+  final String wireName = 'GprogressVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GprogressVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'deviceIndex',
+      serializers.serialize(object.deviceIndex,
+          specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GprogressVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GprogressVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'deviceIndex':
+          result.deviceIndex = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GdeviceInfoFragmentVarsSerializer
     implements StructuredSerializer<GdeviceInfoFragmentVars> {
   @override
@@ -258,6 +303,31 @@ class _$GstatusFragmentVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GstatusFragmentVarsBuilder().build();
+  }
+}
+
+class _$GprogressFragmentVarsSerializer
+    implements StructuredSerializer<GprogressFragmentVars> {
+  @override
+  final Iterable<Type> types = const [
+    GprogressFragmentVars,
+    _$GprogressFragmentVars
+  ];
+  @override
+  final String wireName = 'GprogressFragmentVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GprogressFragmentVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GprogressFragmentVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GprogressFragmentVarsBuilder().build();
   }
 }
 
@@ -638,6 +708,90 @@ class GcopyTitleVarsBuilder
   }
 }
 
+class _$GprogressVars extends GprogressVars {
+  @override
+  final int deviceIndex;
+
+  factory _$GprogressVars([void Function(GprogressVarsBuilder)? updates]) =>
+      (new GprogressVarsBuilder()..update(updates))._build();
+
+  _$GprogressVars._({required this.deviceIndex}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        deviceIndex, r'GprogressVars', 'deviceIndex');
+  }
+
+  @override
+  GprogressVars rebuild(void Function(GprogressVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GprogressVarsBuilder toBuilder() => new GprogressVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GprogressVars && deviceIndex == other.deviceIndex;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, deviceIndex.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GprogressVars')
+          ..add('deviceIndex', deviceIndex))
+        .toString();
+  }
+}
+
+class GprogressVarsBuilder
+    implements Builder<GprogressVars, GprogressVarsBuilder> {
+  _$GprogressVars? _$v;
+
+  int? _deviceIndex;
+  int? get deviceIndex => _$this._deviceIndex;
+  set deviceIndex(int? deviceIndex) => _$this._deviceIndex = deviceIndex;
+
+  GprogressVarsBuilder();
+
+  GprogressVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _deviceIndex = $v.deviceIndex;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GprogressVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GprogressVars;
+  }
+
+  @override
+  void update(void Function(GprogressVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GprogressVars build() => _build();
+
+  _$GprogressVars _build() {
+    final _$result = _$v ??
+        new _$GprogressVars._(
+            deviceIndex: BuiltValueNullFieldError.checkNotNull(
+                deviceIndex, r'GprogressVars', 'deviceIndex'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GdeviceInfoFragmentVars extends GdeviceInfoFragmentVars {
   factory _$GdeviceInfoFragmentVars(
           [void Function(GdeviceInfoFragmentVarsBuilder)? updates]) =>
@@ -814,6 +968,66 @@ class GstatusFragmentVarsBuilder
 
   _$GstatusFragmentVars _build() {
     final _$result = _$v ?? new _$GstatusFragmentVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GprogressFragmentVars extends GprogressFragmentVars {
+  factory _$GprogressFragmentVars(
+          [void Function(GprogressFragmentVarsBuilder)? updates]) =>
+      (new GprogressFragmentVarsBuilder()..update(updates))._build();
+
+  _$GprogressFragmentVars._() : super._();
+
+  @override
+  GprogressFragmentVars rebuild(
+          void Function(GprogressFragmentVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GprogressFragmentVarsBuilder toBuilder() =>
+      new GprogressFragmentVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GprogressFragmentVars;
+  }
+
+  @override
+  int get hashCode {
+    return 788884558;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GprogressFragmentVars').toString();
+  }
+}
+
+class GprogressFragmentVarsBuilder
+    implements Builder<GprogressFragmentVars, GprogressFragmentVarsBuilder> {
+  _$GprogressFragmentVars? _$v;
+
+  GprogressFragmentVarsBuilder();
+
+  @override
+  void replace(GprogressFragmentVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GprogressFragmentVars;
+  }
+
+  @override
+  void update(void Function(GprogressFragmentVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GprogressFragmentVars build() => _build();
+
+  _$GprogressFragmentVars _build() {
+    final _$result = _$v ?? new _$GprogressFragmentVars._();
     replace(_$result);
     return _$result;
   }

@@ -28,6 +28,9 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.data.gql.dar
         GdiscInfoFragmentData,
         GdiscInfoFragmentData_titles,
         GdiscInfoFragmentData_titles_streams,
+        GprogressData,
+        GprogressData_progress,
+        GprogressFragmentData,
         GrefreshDevicesData,
         GrefreshDevicesData_refreshDevices,
         GstatusFragmentData,
@@ -43,6 +46,8 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.req.gql.dart
         GdevicesReq,
         GdiscInfoFragmentReq,
         GdiscInfoReq,
+        GprogressFragmentReq,
+        GprogressReq,
         GrefreshDevicesReq,
         GstatusFragmentReq;
 import 'package:makemkv_client/graphql/queries/__generated__/client.var.gql.dart'
@@ -53,6 +58,8 @@ import 'package:makemkv_client/graphql/queries/__generated__/client.var.gql.dart
         GdevicesVars,
         GdiscInfoFragmentVars,
         GdiscInfoVars,
+        GprogressFragmentVars,
+        GprogressVars,
         GrefreshDevicesVars,
         GstatusFragmentVars;
 
@@ -92,6 +99,13 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GdiscInfoFragmentVars,
   GdiscInfoReq,
   GdiscInfoVars,
+  GprogressData,
+  GprogressData_progress,
+  GprogressFragmentData,
+  GprogressFragmentReq,
+  GprogressFragmentVars,
+  GprogressReq,
+  GprogressVars,
   GrefreshDevicesData,
   GrefreshDevicesData_refreshDevices,
   GrefreshDevicesReq,

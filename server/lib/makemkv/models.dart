@@ -271,6 +271,13 @@ class Progress {
   Progress(
       this.titleTotal, this.titleCurrent, this.current, this.total, this.max);
 
+  Progress.fromEmpty()
+      : titleTotal = "",
+        titleCurrent = "",
+        current = 0,
+        total = 0,
+        max = 0;
+
   @GraphQLField(omit: true)
   void updateFromMessage(CliMessage message) {
     final params = message.paramsAsList();

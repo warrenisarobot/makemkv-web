@@ -1,13 +1,16 @@
 import "dart:async";
 
 import "package:leto_schema/leto_schema.dart";
+import "package:logging/logging.dart";
 import "package:makemkv_web/makemkv.dart";
 import "package:path/path.dart" as path;
 
 part "makemkv.g.dart";
 
-const writeFolder = "/tmp";
-const tempFolder = "/tmp";
+var _destFolder = "/tmp";
+var _tempFolder = "/tmp";
+
+final _log = Logger("GraphQLHandler");
 
 MkvManager? _mkvManager;
 
@@ -18,8 +21,10 @@ MkvManager get mkvManager {
   return _mkvManager!;
 }
 
-void createMkvManager(String path) {
+void createMkvManager(String path, String destFolder, String tempFolder) {
   _mkvManager = MkvManager(path);
+  _destFolder = destFolder;
+  _tempFolder = tempFolder;
 }
 
 @Query()
@@ -63,8 +68,8 @@ Future<DiscInfo> discInfo(Ctx ctx, int deviceIndex) async {
 
 @Subscription()
 Future<Stream<Progress>> progress(Ctx ctx, int deviceIndex) async {
-  final mkv = await mkvManager.getMkvByDevice(deviceIndex);
-  final stream = mkv.progressStream;
+  _log.info("Progress subscription for device: $deviceIndex");
+  final stream = mkvManager.getProgressStream(deviceIndex);
   return stream;
 }
 
@@ -75,10 +80,11 @@ Future<bool> copyTitle(
   if (!fileName.endsWith(".mkv")) {
     fileName = "$fileName.mkv";
   }
-  mkv.copyTrack(deviceIndex, titleIndex, tempFolder, destinationPath(fileName));
+  mkv.copyTrack(
+      deviceIndex, titleIndex, _tempFolder, destinationPath(fileName));
   return true;
 }
 
 String destinationPath(String fileName) {
-  return path.join(writeFolder, fileName);
+  return path.join(_destFolder, fileName);
 }

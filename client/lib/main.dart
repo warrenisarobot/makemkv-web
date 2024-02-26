@@ -60,31 +60,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  Iterable<GdevicesData_devices?> _devices = [];
-
-  void _backgroundInit() async {
-    final newDevices = await graphRequests.devices();
-    setState(() {
-      _devices = newDevices;
-    });
-  }
+  GraphRequest graphRequests = GraphRequest(
+      const String.fromEnvironment("API_URL", defaultValue: "API_URL"),
+      const String.fromEnvironment("WS_URL", defaultValue: "WS_URL"));
 
   @override
   void initState() {
     super.initState();
-    _backgroundInit();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
   }
 
   @override
@@ -102,9 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: ChangeNotifierProvider(
-            create: (context) => MakemkvModel(GraphRequest(
-                "http://localhost:8080/graphql",
-                "ws://localhost:8080/graphql-subscription")),
+            create: (context) => MakemkvModel(graphRequests),
             child: Row(children: [
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.

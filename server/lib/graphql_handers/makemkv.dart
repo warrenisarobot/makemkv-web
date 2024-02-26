@@ -32,11 +32,13 @@ bool isRunning() => true;
 
 @Query()
 Future<List<Device>> devices(Ctx ctx) async {
+  _log.info("Devices");
   return await mkvManager.getDevices();
 }
 
 @Query()
 Future<List<MakemkvState>> allStatus(Ctx ctx) async {
+  _log.info("All status");
   List<MakemkvState> res = [];
   final devices = await mkvManager.getDevices();
   for (final device in devices) {
@@ -56,11 +58,13 @@ Future<List<MakemkvState>> allStatus(Ctx ctx) async {
 
 @Query()
 Future<List<Device>> refreshDevices(Ctx ctx) async {
+  _log.info("Refreshing devices");
   return await mkvManager.refreshDevices();
 }
 
 @Query()
 Future<DiscInfo> discInfo(Ctx ctx, int deviceIndex) async {
+  _log.info("Disc info for device: $deviceIndex");
   final mkv = await mkvManager.getMkvByDevice(deviceIndex);
   final disc = await mkv.discInfo(deviceIndex);
   return disc;
@@ -76,6 +80,7 @@ Future<Stream<Progress>> progress(Ctx ctx, int deviceIndex) async {
 @Mutation()
 Future<bool> copyTitle(
     Ctx ctx, int deviceIndex, int titleIndex, String fileName) async {
+  _log.info("Copy title $titleIndex from device $deviceIndex to $fileName");
   final mkv = await mkvManager.getMkvByDevice(deviceIndex);
   if (!fileName.endsWith(".mkv")) {
     fileName = "$fileName.mkv";

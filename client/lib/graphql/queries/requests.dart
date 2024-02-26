@@ -79,19 +79,13 @@ class GraphRequest {
     final res = websocketClient.request(req);
     final f = StreamController<GprogressFragment?>();
     res.listen((r) {
-      print("event: $r");
       throwGraphError(r);
       f.add(r.data!.progress);
     }, onDone: () {
-      print("done");
       f.close();
     }, onError: (e) {
-      print("error: $e");
       f.addError(e);
     });
     return f.stream;
   }
 }
-
-final graphRequests = GraphRequest(
-    "http://localhost:8080/graphql", "ws://localhost:8080/graphql");

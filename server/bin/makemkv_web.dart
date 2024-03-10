@@ -15,8 +15,7 @@ final _log = Logger('makemkv_web');
 void main(List<String> arguments) async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((event) {
-    print(
-        '(${event.loggerName}) - ${event.level.name}: ${event.time}: ${event.message}');
+    print('(${event.loggerName}) - ${event.level.name}: ${event.time}: ${event.message}');
   });
 
   final makemkvCon = Platform.environment['MAKEMKVCON'] ?? 'makemkvcon';
@@ -37,15 +36,12 @@ void main(List<String> arguments) async {
         "/",
         createStaticHandler(
           enableStaticFiles,
-          //defaultDocument: 'index.html',
+          defaultDocument: 'index.html',
           serveFilesOutsidePath: true,
-          listDirectories: true,
         ));
   }
 
-  final handler = const Pipeline()
-      .addMiddleware(corsHeaders(originChecker: originAllowAll))
-      .addHandler(app);
+  final handler = const Pipeline().addMiddleware(corsHeaders(originChecker: originAllowAll)).addHandler(app);
 
   _log.info('Starting server on port 8080');
   serve(handler, "0.0.0.0", 8080);

@@ -19,4 +19,4 @@ run:
 
 compile:
 	@echo "Compiling..."
-	cd client && flutter build web
+	cd client && flutter build web --dart-define=API_URL=/graphql --dart-define=API_WS_URL=/graphql-subscription
